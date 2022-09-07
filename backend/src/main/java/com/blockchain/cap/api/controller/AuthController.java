@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthController {
 
     UserService userService;
-    PasswordEncoder passwordEncoder;
 
     @ApiOperation(value="로그인", notes="아이디와 패스워드를 통해 로그인")
     @ApiResponses({
