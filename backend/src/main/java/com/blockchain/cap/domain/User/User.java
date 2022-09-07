@@ -11,6 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(name="USER_TABLE")
 public class User extends BaseTimeEntity {
 
     @Id
@@ -19,7 +20,9 @@ public class User extends BaseTimeEntity {
     private long id;
 
     @Column(nullable=false)
+    private String password;
+    @Column(nullable=false)
     private String phone;
     @Column(nullable=false)
-    private String password;
+    private String wallet;
 }
