@@ -1,6 +1,7 @@
 package com.blockchain.cap.api.service;
 
 import com.blockchain.cap.api.request.UserRegisterPostReq;
+import com.blockchain.cap.domain.Auth.RefreshRepository;
 import com.blockchain.cap.domain.User.User;
 import com.blockchain.cap.domain.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,10 @@ public class UserService {
 
         userRepository.save(User.builder()
                         .phone(registerInfo.getPhone())
-                        .password(registerInfo.getPassword())
+                        .password(passwordEncoder.encode(registerInfo.getPassword()))
                         .wallet(registerInfo.getWallet())
                         .build());
 
-        if(userRepository.findByPhone(registerInfo.getPhone())==null) {
-            return false;
-        }
         return true;
     }
 }

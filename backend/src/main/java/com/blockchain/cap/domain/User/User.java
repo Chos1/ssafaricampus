@@ -6,7 +6,6 @@ import lombok.*;
 import javax.persistence.*;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -15,7 +14,7 @@ import javax.persistence.*;
 public class User extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id", insertable=false, updatable=false) // 기본키는 변경될 일이 없으므로 읽기전용 설정
     private long id;
 

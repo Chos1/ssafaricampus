@@ -19,7 +19,7 @@ public class JwtTokenUtil {
     private static Integer accessExpirationTime;
     private static Integer refreshExpirationTime;
 
-    public static final String TOKEN_PRIFIX="Bearer";
+    public static final String TOKEN_PRIFIX="Bearer ";
     public static final String HEADER_STRING="Authorization";
     public static final String ISSUER="ssafy.com";
 
@@ -30,6 +30,10 @@ public class JwtTokenUtil {
         this.secretKey=secretKey;
         this.accessExpirationTime=accessExpirationTime;
         this.refreshExpirationTime=refreshExpirationTime;
+    }
+
+    public static int getRefreshTime() {
+        return refreshExpirationTime;
     }
 
     public static JWTVerifier getVerifier() {

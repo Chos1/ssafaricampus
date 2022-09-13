@@ -4,6 +4,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+/**
+ *  API ([POST] /api/v1/auth) 요청에 대한 공통 응답값 정의 (부모클래스)
+ */
+
 @ApiModel("기본 응답값 형태")
 @Getter
 @Setter
