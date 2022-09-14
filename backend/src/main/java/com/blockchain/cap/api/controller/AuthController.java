@@ -107,7 +107,7 @@ public class AuthController {
             @ApiResponse(code = 404, message = "요청 실패", response = BaseResponseBody.class),
             @ApiResponse(code = 500, message = "서버 오류", response = BaseResponseBody.class)
     })
-    public ResponseEntity<? extends BaseResponseBody> reissue(HttpServletRequest request) {
+    public ResponseEntity<? extends BaseResponseBody> reaccess(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         if(cookies==null) {
             return ResponseEntity.status(404).body(ReAccessPostRes.of(404, "Cookies is null", null));
