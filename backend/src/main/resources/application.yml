@@ -10,10 +10,11 @@ server:
 spring:
   jpa:
     show_sql: true
-    hibernate.ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    hibernate.ddl-auto: create-drop
   # test db (h2)
   datasource:
-    url: jdbc:h2:mem:backend
+    url: jdbc:h2:mem:backend;MODE=MYSQL
     username: ssafy
     password:
     driver-class-name: org.h2.Driver
