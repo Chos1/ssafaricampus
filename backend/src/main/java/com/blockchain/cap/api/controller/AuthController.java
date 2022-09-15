@@ -46,7 +46,7 @@ public class AuthController {
     })
     @PostMapping("/login")
     public ResponseEntity<? extends BaseResponseBody> login(HttpServletResponse response, @RequestBody @ApiParam(value="로그인 정보", required=true) AuthLoginPostReq loginInfo) {
-        User user = userService.getUserByPhone(loginInfo.getPhone());
+        User user = userService.getUserByLoginId(loginInfo.getLoginId());
 
         if(user==null) {
             return ResponseEntity.status(404).body(AuthLoginPostRes.of(404, "Not Exist", null));
@@ -55,13 +55,13 @@ public class AuthController {
             return ResponseEntity.status(401).body(AuthLoginPostRes.of(401, "Invalid Password", null));
         }
 
-        String refreshToken = JwtTokenUtil.getRefreshToken(loginInfo.getPhone());
+        String refreshToken = JwtTokenUtil.getRefreshToken(loginInfo.getLoginId());
 
         // DB 나 Redis 에 refreshToken 저장, 현재는 일단 DB
         refreshRepository.save(Refresh.builder().refreshToken(refreshToken).build());
 
         response.addCookie(CreateRefreshCookie(refreshToken)); // 응답 헤더에 쿠키 추가
-        return ResponseEntity.ok(AuthLoginPostRes.of(200, "Success", JwtTokenUtil.getAccessToken(loginInfo.getPhone())));
+        return ResponseEntity.ok(AuthLoginPostRes.of(200, "Success", JwtTokenUtil.getAccessToken(loginInfo.getLoginId())));
     }
 
     @ApiOperation(value = "로그아웃", notes = "로그아웃한다")
@@ -129,10 +129,10 @@ public class AuthController {
             return ResponseEntity.status(401).body(ReAccessPostRes.of(401, "Invalid Token", null));
         }
 
-        // Jwt 페이로드에 폰번호도 보내기
+        // Jwt 페이로드에 아이디 넣기
         DecodedJWT decodedJWT = JwtTokenUtil.getVerifier().verify(refreshToken.replace(JwtTokenUtil.TOKEN_PRIFIX, ""));
-        String phone = decodedJWT.getSubject();
-        return ResponseEntity.ok(ReAccessPostRes.of(200, "Success", JwtTokenUtil.getAccessToken(phone)));
+        String userId = decodedJWT.getSubject();
+        return ResponseEntity.ok(ReAccessPostRes.of(200, "Success", JwtTokenUtil.getAccessToken(userId)));
     }
 
     private Cookie DeleteRefreshCookie() {

@@ -56,13 +56,13 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
             JWTVerifier verifier=JwtTokenUtil.getVerifier();
             JwtTokenUtil.handleError(token);
             DecodedJWT decodedJWT=verifier.verify(token.replace(JwtTokenUtil.TOKEN_PRIFIX,""));
-            String phone=decodedJWT.getSubject();
+            String loginId=decodedJWT.getSubject();
 
-            if(phone!=null) {
-                User user=userService.getUserByPhone(phone);
+            if(loginId!=null) {
+                User user=userService.getUserByLoginId(loginId);
                 if(user!=null) {
                     CapUserDetail userDetail=new CapUserDetail(user);
-                    UsernamePasswordAuthenticationToken jwtAuthentication = new UsernamePasswordAuthenticationToken(phone,null,userDetail.getAuthorities());
+                    UsernamePasswordAuthenticationToken jwtAuthentication = new UsernamePasswordAuthenticationToken(loginId,null,userDetail.getAuthorities());
                     return jwtAuthentication;
                 }
             }
