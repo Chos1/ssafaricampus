@@ -1,5 +1,6 @@
 package com.blockchain.cap.api.service;
 
+import com.blockchain.cap.api.request.CompanyRegisterPostReq;
 import com.blockchain.cap.api.request.UserRegisterPostReq;
 import com.blockchain.cap.domain.Auth.RefreshRepository;
 import com.blockchain.cap.domain.User.RoleType;
@@ -34,6 +35,23 @@ public class UserService {
                         .name(registerInfo.getName())
                         .email(registerInfo.getEmail())
                         .build());
+
+        return true;
+    }
+
+    public boolean createCompany(CompanyRegisterPostReq registerInfo) {
+        if(userRepository.findByUserId(registerInfo.getUserId())!=null) {
+            return false;
+        }
+
+        userRepository.save(User.builder()
+                .role(RoleType.COMPANY)
+                .userId(registerInfo.getUserId())
+                .password(passwordEncoder.encode(registerInfo.getPassword()))
+                .phone(registerInfo.getPhone())
+                .name(registerInfo.getName())
+                .companyNumber(registerInfo.getCompanyNumber())
+                .build());
 
         return true;
     }

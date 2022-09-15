@@ -34,12 +34,12 @@ public class User extends BaseTimeEntity {
     @Column
     private String email;
     @ColumnDefault("false")
-    private boolean email_auth;
+    private boolean emailAuth;
 
     @Column
-    private String company_number;
+    private String companyNumber;
     @ColumnDefault("false")
-    private boolean company_auth;
+    private boolean companyAuth;
 
     @Column
     private String wallet;
