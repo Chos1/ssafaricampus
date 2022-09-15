@@ -14,8 +14,8 @@ import lombok.Setter;
 @Setter
 public class AuthLoginPostReq {
 
-    @ApiModelProperty(name="핸드폰 번호", example="01000000000")
-    String phone;
+    @ApiModelProperty(name="유저 아이디", example="ssafy")
+    String userId;
     @ApiModelProperty(name="유저 비밀번호", example="1234")
     String password;
 

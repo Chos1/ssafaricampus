@@ -27,13 +27,13 @@ public class UserController {
 
     UserService userService;
 
-    @ApiOperation(value="회원가입", notes="입력한 정보로 회원가입 한다")
+    @ApiOperation(value="유저 회원가입", notes="유저로 회원가입 한다")
     @ApiResponses({
             @ApiResponse(code=200, message="성공", response= AuthLoginPostReq.class),
             @ApiResponse(code=401, message="가입 실패", response= BaseResponseBody.class),
             @ApiResponse(code=500, message="서버오류", response=BaseResponseBody.class)
     })
-    @PostMapping("register")
+    @PostMapping("register/user")
     public ResponseEntity<? extends BaseResponseBody> register(
             @RequestBody @ApiParam(value = "회원가입 정보", required = true) UserRegisterPostReq registerInfo) {
         // service 에서 DB 에 회원정보 등록하기 전에 validation 체크 필요
@@ -42,7 +42,6 @@ public class UserController {
             return ResponseEntity.status(200).body(BaseResponseBody.of(200, "Success"));
         }
         return ResponseEntity.status(401).body(BaseResponseBody.of(401, "Failure"));
-
     }
 
 

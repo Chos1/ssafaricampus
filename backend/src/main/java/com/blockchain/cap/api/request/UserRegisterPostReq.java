@@ -14,11 +14,15 @@ import lombok.Setter;
 @Setter
 public class UserRegisterPostReq {
 
-    @ApiModelProperty(name="핸드폰 번호", example="01000000000")
-    String phone;
+    @ApiModelProperty(name="유저 아이디", example="ssafy")
+    String userId;
     @ApiModelProperty(name="유저 비밀번호", example="1234")
     String password;
-    @ApiModelProperty(name="블록체인 지갑", example="0x1234123412341241234")
-    String wallet;
+    @ApiModelProperty(name="핸드폰 번호", example="01000000000")
+    String phone;
+    @ApiModelProperty(name="유저 이름", example="홍길동")
+    String name;
+    @ApiModelProperty(name="유저 이메일", example="ssafy@edu.com")
+    String email;
 
 }
