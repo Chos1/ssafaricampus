@@ -46,7 +46,7 @@ public class AuthController {
     })
     @PostMapping("/login")
     public ResponseEntity<? extends BaseResponseBody> login(HttpServletResponse response, @RequestBody @ApiParam(value="로그인 정보", required=true) AuthLoginPostReq loginInfo) {
-        User user = userService.getUserByUserId(loginInfo.getUserId());
+        User user = userService.getUserByLoginId(loginInfo.getLoginId());
 
         if(user==null) {
             return ResponseEntity.status(404).body(AuthLoginPostRes.of(404, "Not Exist", null));
@@ -55,13 +55,13 @@ public class AuthController {
             return ResponseEntity.status(401).body(AuthLoginPostRes.of(401, "Invalid Password", null));
         }
 
-        String refreshToken = JwtTokenUtil.getRefreshToken(loginInfo.getUserId());
+        String refreshToken = JwtTokenUtil.getRefreshToken(loginInfo.getLoginId());
 
         // DB 나 Redis 에 refreshToken 저장, 현재는 일단 DB
         refreshRepository.save(Refresh.builder().refreshToken(refreshToken).build());
 
         response.addCookie(CreateRefreshCookie(refreshToken)); // 응답 헤더에 쿠키 추가
-        return ResponseEntity.ok(AuthLoginPostRes.of(200, "Success", JwtTokenUtil.getAccessToken(loginInfo.getUserId())));
+        return ResponseEntity.ok(AuthLoginPostRes.of(200, "Success", JwtTokenUtil.getAccessToken(loginInfo.getLoginId())));
     }
 
     @ApiOperation(value = "로그아웃", notes = "로그아웃한다")

@@ -48,22 +48,22 @@ public class JwtTokenUtil {
         return new Date(now.getTime()+expirationTime);
     }
 
-    public static String getToken(String user_id, int expirationTime) {
+    public static String getToken(String loginId, int expirationTime) {
         Date expire = JwtTokenUtil.getTokenExpiration(expirationTime);
         return JWT.create()
-                .withSubject(user_id)
+                .withSubject(loginId)
                 .withExpiresAt(expire)
                 .withIssuer(ISSUER)
                 .withIssuedAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()))
                 .sign(Algorithm.HMAC512(secretKey.getBytes()));
     }
 
-    public static String getAccessToken(String user_id){
-        return getToken(user_id, accessExpirationTime);
+    public static String getAccessToken(String loginId){
+        return getToken(loginId, accessExpirationTime);
     }
 
-    public static String getRefreshToken(String user_id){
-        return getToken(user_id, accessExpirationTime);
+    public static String getRefreshToken(String loginId){
+        return getToken(loginId, accessExpirationTime);
     }
 
     public static void handleError(String token) {

@@ -15,7 +15,7 @@ import lombok.Setter;
 public class CompanyRegisterPostReq {
 
     @ApiModelProperty(name="유저 아이디", example="ssafy2")
-    String userId;
+    String loginId;
     @ApiModelProperty(name="유저 비밀번호", example="1234")
     String password;
     @ApiModelProperty(name="핸드폰 번호", example="01000000000")

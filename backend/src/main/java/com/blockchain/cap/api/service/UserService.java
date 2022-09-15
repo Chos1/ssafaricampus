@@ -18,18 +18,18 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User getUserByUserId(String phone) {
-        return userRepository.findByUserId(phone);
+    public User getUserByLoginId(String phone) {
+        return userRepository.findByLoginId(phone);
     }
 
     public boolean createUser(UserRegisterPostReq registerInfo) {
-        if(userRepository.findByUserId(registerInfo.getUserId())!=null) {
+        if(userRepository.findByLoginId(registerInfo.getLoginId())!=null) {
             return false;
         }
 
         userRepository.save(User.builder()
                         .role(RoleType.USER)
-                        .userId(registerInfo.getUserId())
+                        .loginId(registerInfo.getLoginId())
                         .password(passwordEncoder.encode(registerInfo.getPassword()))
                         .phone(registerInfo.getPhone())
                         .name(registerInfo.getName())
@@ -40,13 +40,13 @@ public class UserService {
     }
 
     public boolean createCompany(CompanyRegisterPostReq registerInfo) {
-        if(userRepository.findByUserId(registerInfo.getUserId())!=null) {
+        if(userRepository.findByLoginId(registerInfo.getLoginId())!=null) {
             return false;
         }
 
         userRepository.save(User.builder()
                 .role(RoleType.COMPANY)
-                .userId(registerInfo.getUserId())
+                .loginId(registerInfo.getLoginId())
                 .password(passwordEncoder.encode(registerInfo.getPassword()))
                 .phone(registerInfo.getPhone())
                 .name(registerInfo.getName())
