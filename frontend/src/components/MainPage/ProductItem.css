@@ -19,6 +19,7 @@
 .App {
     width : 90%;
     margin : 0 auto;
+    margin-bottom: 100px;
 }
 .border_out{
     border: 1px solid #fff;
@@ -27,13 +28,3 @@
     overflow: hidden;
     height: 400px;
 }
-
-.slick-slide > div{
-    margin : 0 10px;
-}
-
-.slick-list{
-    margin: 0 -10px;
-}
-
-
