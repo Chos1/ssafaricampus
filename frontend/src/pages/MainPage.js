@@ -1,10 +1,14 @@
+import ProductCarousel from '../components/MainPage/ProductCarousel.js';
+import ProductItem from '../components/MainPage/ProductItem.js';
 
 const MainPage = () => {
     return (
         <div>
-            <p>Main Page</p>
+            <ProductCarousel />
+            <ProductItem />
         </div>
     );
 };
 
 export default MainPage;
+

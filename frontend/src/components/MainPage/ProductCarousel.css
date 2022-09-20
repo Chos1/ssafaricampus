@@ -1,0 +1,8 @@
+.Main-Carousel{
+  width: 100%;
+}
+
+.Main-Carousel .img-back{
+  max-width: 100%;
+  object-fit: contain;
+}
