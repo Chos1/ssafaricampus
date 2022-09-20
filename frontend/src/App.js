@@ -23,18 +23,17 @@ function App() {
       <MainHeader />
       <main>
         <Routes>
-          {/* 비로그인 */}
           <Route path='/' element={<MainPage />} />
           <Route path='/main' element={<MainPage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/products/:productId' element={<ProductDetail />} />
           <Route path='/signup' element={<SignUpMain />} />
-          {/* 구매자 */}
+
           <Route path='/mypage/:userId' element={<MyPage />} />
           <Route path='/products/:productId/contract' element={<PurchaseContract />} />
           <Route path='/products/:productId/request' element={<PurchaseRequest />} />
           <Route path='/mypage/:userId/transactionDetail' element={<TransactionDetail />} />
-          {/* 판매자 */}
+          
           <Route path='/:userId/orderDetail/:orderId' element={<OrderDetail />} />
           <Route path='/:userId/orderManage' element={<OrderManage />} />
           <Route path='/:userId/product/:productId/manage' element={<ProductManage />} />
