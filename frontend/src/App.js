@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import MainHeader from './components/MainHeader/MainHeader';
+import MainFooter from './components/MainFooter/MainFooter';
 
 import Login from './pages/Login';
 import MainPage from './pages/MainPage';
@@ -41,6 +42,7 @@ function App() {
           <Route path='/:userId/product/regist' element={<ProductRegist />} />
         </Routes>
       </main>
+      <MainFooter />
     </div>
   );
 }
