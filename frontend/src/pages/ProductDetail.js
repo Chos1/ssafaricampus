@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 
+import ProductSummary from '../components/ProductSummary';
+
 const ProductDetail = () => {
   const params = useParams();
 
@@ -7,8 +9,9 @@ const ProductDetail = () => {
 
   return (
     <section>
-      <h1>Product Detail</h1>
-      <p>{params.productId}</p>
+      {/* <h1>Product Detail</h1>
+      <p>{params.productId}</p> */}
+      <ProductSummary />
     </section>
   );
 };
