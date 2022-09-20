@@ -5,6 +5,9 @@ import Login from './pages/Login';
 import MainPage from './pages/MainPage';
 import ProductDetail from './pages/ProductDetail';
 import SignUpMain from './pages/SignUpMain';
+import SignUpSeller from './pages/SignUpSeller';
+import SignUpCustomer from './pages/SignUpCustomer';
+
 
 import MyPage from './pages/customer/MyPage';
 import PurchaseContract from './pages/customer/PurchaseContract';
@@ -28,6 +31,8 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/products/:productId' element={<ProductDetail />} />
           <Route path='/signup' element={<SignUpMain />} />
+          <Route path='/signup/customer' element={<SignUpCustomer />} />
+          <Route path='/signup/seller' element={<SignUpSeller />} />
 
           <Route path='/mypage/:userId' element={<MyPage />} />
           <Route path='/products/:productId/contract' element={<PurchaseContract />} />
