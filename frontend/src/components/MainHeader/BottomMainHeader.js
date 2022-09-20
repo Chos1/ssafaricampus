@@ -1,10 +1,10 @@
 
-const BottonMainHeader = () => {
+const BottomMainHeader = () => {
   return (
       <div>
-          <p>Botton Main Header</p>
+          <p>Bottom Main Header</p>
       </div>
   );
 };
 
-export default BottonMainHeader;
+export default BottomMainHeader;
