@@ -1,9 +1,23 @@
 
 const UserHeader = () => {
   return (
-      <div>
-          <p>User Header</p>
-      </div>
+    <ul>
+      <li>
+        <NavLink to='/main'>
+          Main
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to='/login'>
+          Login
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to='/signup'>
+          SignUp
+        </NavLink>
+      </li>
+    </ul>   
   );
 };
 

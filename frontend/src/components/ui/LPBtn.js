@@ -1,10 +1,10 @@
 import styles from './LPBtn.module.css';
 
 const LPBtn = (props) => {
-  const classes = styles.btn + ' ' + props.className;
+  const classes = styles.LPBtn + ' ' + props.className;
 
   return (
-    <button className={classes}>{props.children}</button>
+    <button className={classes} onClick={props.onClick}>{props.children}</button>
   );
 };
 

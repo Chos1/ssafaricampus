@@ -1,8 +1,8 @@
-const XsKBtn = () => {
+import styles from './XsKBtn.module.css';
+const XsKBtn = (props) => {
+  const classes = styles.SWBtnPBrd + ' ' + props.className;
   return (
-      <div>
-          <p>XsKBtn</p>
-      </div>
+    <button className={classes} onClick={props.onClick}>{props.children}</button>
   );
 };
 

@@ -1,8 +1,10 @@
-const LKBtn = () => {
+import styles from './LKBtn.module.css';
+
+const LKBtn = (props) => {
+  const classes = styles.LPBtn + ' ' + props.className;
+
   return (
-      <div>
-          <p>LKBtn</p>
-      </div>
+    <button className={classes} onClick={props.onClick}>{props.children}</button>
   );
 };
 

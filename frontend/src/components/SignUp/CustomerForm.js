@@ -1,6 +1,6 @@
 import MPBtn from '../ui/MPBtn';
 import SWBtnPBrd from '../ui/SWBtnPBrd';
-import './SignUp.css';
+import './SignUpForm.css';
 const CustomerForm = () => {
   return (
       <div>

@@ -1,8 +1,10 @@
-const BtnKTxt = () => {
+import styles from './BtnKTxt.module.css';
+
+const BtnKTxt = (props) => {
+  const classes = styles.LPBtn + ' ' + props.className;
+
   return (
-      <div>
-          <p>BtnKTxt</p>
-      </div>
+    <button className={classes} onClick={props.onClick}>{props.children}</button>
   );
 };
 

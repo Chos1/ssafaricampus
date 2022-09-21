@@ -9,12 +9,14 @@
 .Login_inputgroup {
   width: 100%;
   text-align: center;
+  margin-bottom: 1rem;
   /* margin: 1rem 2rem; */
 }
 
 
 .Login_inputgroup input {
-  width:50%;
+  width:40%;
+  height: 30px;
   padding: 1rem 2rem;
   font-size: 1rem;
   background-color: var(--gray);
@@ -22,7 +24,7 @@
   border: 0.125rem solid var(--white);
   outline: none;
   margin-top: 0.8rem;
-  
+ 
  
 }
 

@@ -1,9 +1,11 @@
-const LWBtnPBrd = () => {
+import styles from './LWBtnBrd.module.css';
+
+const LWBtnBrd = (props) => {
+  const classes = styles.LPBtn + ' ' + props.className;
+
   return (
-      <div>
-          <p>LWBtnPBrd</p>
-      </div>
+    <button className={classes} onClick={props.onClick}>{props.children}</button>
   );
 };
 
-export default LWBtnPBrd;
+export default LWBtnBrd;

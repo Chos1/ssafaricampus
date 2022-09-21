@@ -1,21 +1,17 @@
-.MPBtnBrd{
+.LKBtn{
     border:0;
-    background: #ffffff;
-    color:  #7f5feb;
-    border : #7f5feb solid 2px;
+    background: black;
+    color: #dfdeee;
     border-radius: 10px;
-
     width:48%;
     height: 49px;
     font-size: 16px;
-
     transition: 0.3s;
     cursor: pointer;
     margin:auto;
-    margin-top: 10px;
+    
     display:block;
 }
-.MPBtnBrd:hover {
-    background: #5d33e6;
-    color: #ffffff;
+.LKBtn:hover {
+    background: grey;
   }

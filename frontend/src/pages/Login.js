@@ -1,16 +1,16 @@
 import './Login.css';
 import LoginForm from '../components/Login/LoginForm'
-import MPBtn from '../components/ui/MPBtn'
-import MPBtnBrd from '../components/ui/MPBtnBrd'
-
+import { ReactComponent as Reservation } from "../assets/Login.svg";
 const Login = () => {
+
     return (
         <div className="Login_container">
-            <h1 >Login</h1>
+            
+            <div className="Login_logo">
+            <Reservation width="18rem" height="11rem" />
+            </div>
             <hr/>
             <LoginForm />
-            <MPBtn>로그인</MPBtn>
-            <MPBtnBrd>회원가입</MPBtnBrd>
         </div>
     );
 };
