@@ -1,10 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import MainHeader from './components/MainHeader/MainHeader';
+import MainFooter from './components/MainFooter/MainFooter';
 
 import Login from './pages/Login';
 import MainPage from './pages/MainPage';
 import ProductDetail from './pages/ProductDetail';
 import SignUpMain from './pages/SignUpMain';
+import SignUpSeller from './pages/SignUpSeller';
+import SignUpCustomer from './pages/SignUpCustomer';
+
 
 import MyPage from './pages/customer/MyPage';
 import PurchaseContract from './pages/customer/PurchaseContract';
@@ -23,18 +27,19 @@ function App() {
       <MainHeader />
       <main>
         <Routes>
-          {/* 비로그인 */}
           <Route path='/' element={<MainPage />} />
           <Route path='/main' element={<MainPage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/products/:productId' element={<ProductDetail />} />
           <Route path='/signup' element={<SignUpMain />} />
-          {/* 구매자 */}
+          <Route path='/signup/customer' element={<SignUpCustomer />} />
+          <Route path='/signup/seller' element={<SignUpSeller />} />
+
           <Route path='/mypage/:userId' element={<MyPage />} />
           <Route path='/products/:productId/contract' element={<PurchaseContract />} />
           <Route path='/products/:productId/request' element={<PurchaseRequest />} />
           <Route path='/mypage/:userId/transactionDetail' element={<TransactionDetail />} />
-          {/* 판매자 */}
+          
           <Route path='/:userId/orderDetail/:orderId' element={<OrderDetail />} />
           <Route path='/:userId/orderManage' element={<OrderManage />} />
           <Route path='/:userId/product/:productId/manage' element={<ProductManage />} />
@@ -42,6 +47,7 @@ function App() {
           <Route path='/:userId/product/regist' element={<ProductRegist />} />
         </Routes>
       </main>
+      <MainFooter />
     </div>
   );
 }

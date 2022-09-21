@@ -1,10 +1,15 @@
+import Banner from '../components/MainPage/Banner.js';
+import ProductCarousel from '../components/MainPage/ProductCarousel.js';
 
 const MainPage = () => {
     return (
         <div>
-            <p>Main Page</p>
+            <Banner />
+            <ProductCarousel />
+            
         </div>
     );
 };
 
 export default MainPage;
+
