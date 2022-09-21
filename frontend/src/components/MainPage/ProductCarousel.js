@@ -19,7 +19,7 @@ const ProductCarousel = () =>{
       spaceBetween={10}
       navigation={true} 
       modules={[Navigation]}
-      className="mySwiper">
+      >
         <SwiperSlide className="border_out">
           1
         </SwiperSlide>
