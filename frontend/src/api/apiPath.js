@@ -5,13 +5,13 @@ const USER = 'user/';
 
 const apiPath = {
   auth: {
-    login: () => HOST + AUTH + 'login/',
-    logout: () => HOST + AUTH + 'logout/',
-    reaccess: () => HOST + AUTH + 'reaccess/',
+    login: () => HOST + AUTH + 'login',
+    logout: () => HOST + AUTH + 'logout',
+    reaccess: () => HOST + AUTH + 'reaccess',
   },
   user: {
-    join: () => HOST + USER + 'register/',
-    delete: () => HOST + USER + 'register/company/',
+    join: () => HOST + USER + 'register',
+    delete: () => HOST + USER + 'register/company',
   },
 };
 
