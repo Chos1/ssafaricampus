@@ -14,43 +14,7 @@
     display:flex;
     justify-content: center;
 }
-.container .MPBtn{
-    border:0;
-    background: #7f5feb;
-    color: #dfdeee;
-    border-radius: 10px;
-    width:220px;
-    height: 49px;
-    font-size: 16px;
 
-    transition: 0.3s;
-    cursor: pointer;
-    margin:auto;
-    margin-top: 3rem;
-    display:block;
-    
-  }
-  
-  .container .MPBtn:hover {
-    background: #5d33e6;
-  }
-  .container .SWBtnPBrd {
-    background:  #ffffff;
-    color: #7f5feb;
-    border-radius: 7px;
-    border-color:#7f5feb ;
-    width:120px;
-    height: 52px;
-    font-size: 16px;
-
-    cursor: pointer;
-    margin:auto;
-  }
-  .container .SWBtnPBrd:hover{
-    background: #7f5feb;
-    color: #dfdeee;
-    border:none;
-  }
   .inputgroup {
     position: relative;
     width: 100%;
