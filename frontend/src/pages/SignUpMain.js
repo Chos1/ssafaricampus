@@ -1,19 +1,9 @@
-import { Link } from 'react-router-dom';
+import SignUpChoice from "../components/SignUp/SignUpChoice";
 const SignUpMain = () => {
     return (
         <div>
             <p>Sign Up Main</p>
-  
-        <div>
-            <Link to='/signup/customer'>
-            구매자
-            </Link>
-            </div>
-        <div>
-        <Link to='/signup/seller'>
-            판매자
-            </Link>
-            </div>
+ <SignUpChoice/>
         </div>
     );
 };
