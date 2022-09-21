@@ -1,11 +1,12 @@
+import Banner from '../components/MainPage/Banner.js';
 import ProductCarousel from '../components/MainPage/ProductCarousel.js';
-import ProductItem from '../components/MainPage/ProductItem.js';
 
 const MainPage = () => {
     return (
         <div>
+            <Banner />
             <ProductCarousel />
-            <ProductItem />
+            
         </div>
     );
 };
