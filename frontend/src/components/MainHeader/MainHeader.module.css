@@ -3,6 +3,7 @@
     height: 5rem;
     background-color: #044599;
     padding: 0;
+    padding-top: 20px;
   }
   
   .header nav {
@@ -13,10 +14,10 @@
     height: 100%;
     list-style: none;
     display: flex;
+    justify-content: space-between;
     padding: 0;
     margin: 0;
     align-items: center;
-    justify-content: center;
   }
   
   .header li {
