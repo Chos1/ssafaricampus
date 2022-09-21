@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import styles from './ProductDetail.module.css';
 
 import ProductSummary from '../components/ProductSummary';
+import ProductImage from '../components/ProductDetail/ProductImage';
 import LPBtn from '../components/ui/LPBtn';
 
 const ProductDetail = () => {
@@ -12,9 +13,7 @@ const ProductDetail = () => {
   return (
     <section className={styles.section}>
       <ProductSummary />
-      <div>
-        <p>상품 설명 이미지</p>
-      </div>
+      <ProductImage />
       <div>
         <LPBtn>구매하기</LPBtn>
       </div>
