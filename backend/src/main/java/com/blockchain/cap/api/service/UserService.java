@@ -59,11 +59,6 @@ public class UserService {
 
         return true;
     }
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 
     public boolean update(UserUpdatePutReq updateInfo) {
         User user=userRepository.findByLoginId(updateInfo.getLoginId());
@@ -71,17 +66,6 @@ public class UserService {
             return false;
         }
 
-<<<<<<< Updated upstream
-        if(updateInfo.getChangePassword()!=null) {
-            user.setPassword(passwordEncoder.encode(updateInfo.getChangePassword()));
-        }
-        if(updateInfo.getPhone()!=null) {
-            user.setPhone(updateInfo.getPhone());
-        }
-        if(updateInfo.getEmail()!=null) {
-            user.setEmail(updateInfo.getEmail());
-        }
-=======
         String password = Optional.ofNullable(updateInfo.getChangePassword()).map(passwordEncoder::encode).orElse(user.getPassword());
         user.setPassword(password);
         String phone = Optional.ofNullable(updateInfo.getPhone()).orElse(user.getPhone());
@@ -89,7 +73,6 @@ public class UserService {
         String email = Optional.ofNullable(updateInfo.getEmail()).orElse(user.getEmail());
         user.setEmail(email);
 
->>>>>>> Stashed changes
         userRepository.save(user);
         return true;
     }
@@ -103,8 +86,4 @@ public class UserService {
         userRepository.delete(user);
         return true;
     }
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 }
