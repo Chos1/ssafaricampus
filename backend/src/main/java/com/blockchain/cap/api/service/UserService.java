@@ -1,7 +1,9 @@
 package com.blockchain.cap.api.service;
 
 import com.blockchain.cap.api.request.CompanyRegisterPostReq;
+import com.blockchain.cap.api.request.UserDeleteReq;
 import com.blockchain.cap.api.request.UserRegisterPostReq;
+import com.blockchain.cap.api.request.UserUpdatePutReq;
 import com.blockchain.cap.domain.Auth.RefreshRepository;
 import com.blockchain.cap.domain.User.RoleType;
 import com.blockchain.cap.domain.User.User;
@@ -53,6 +55,35 @@ public class UserService {
                 .companyNumber(registerInfo.getCompanyNumber())
                 .build());
 
+        return true;
+    }
+
+    public boolean update(UserUpdatePutReq updateInfo) {
+        User user=userRepository.findByLoginId(updateInfo.getLoginId());
+        if(!passwordEncoder.matches(updateInfo.getNowPassword(),user.getPassword())) {
+            return false;
+        }
+
+        if(updateInfo.getChangePassword()!=null) {
+            user.setPassword(passwordEncoder.encode(updateInfo.getChangePassword()));
+        }
+        if(updateInfo.getPhone()!=null) {
+            user.setPhone(updateInfo.getPhone());
+        }
+        if(updateInfo.getEmail()!=null) {
+            user.setEmail(updateInfo.getEmail());
+        }
+        userRepository.save(user);
+        return true;
+    }
+
+    public boolean delete(UserDeleteReq deleteInfo) {
+        User user=userRepository.findByLoginId(deleteInfo.getLoginId());
+        if(!passwordEncoder.matches(deleteInfo.getPassword(), user.getPassword())) {
+            return false;
+        }
+
+        userRepository.delete(user);
         return true;
     }
 }
