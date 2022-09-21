@@ -1,0 +1,26 @@
+.summary {
+    display: flex;
+    justify-content: center;
+}
+
+.summary p {
+    font-size: 16rem;
+}
+
+.summary table {
+    border: 1;
+    border-color: black;
+}
+
+.summary p {
+    font-size: 1rem;
+}
+
+.name {
+    font-style: bold;
+}
+
+.price {
+    color: purple;
+    font-size: 50px;
+}
