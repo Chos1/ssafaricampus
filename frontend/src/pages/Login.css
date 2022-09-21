@@ -1,0 +1,12 @@
+.Login_container{
+  max-width: 50rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+}
+
+
+.Login_container h1{
+  display:flex;
+  justify-content: center;
+}
+
