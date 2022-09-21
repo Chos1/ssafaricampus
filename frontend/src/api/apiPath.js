@@ -1,4 +1,4 @@
-const HOST = 'http://j7b105.p.ssafy.io/api/v1/';
+const HOST = 'https://j7b105.p.ssafy.io/api/v1/';
 
 const AUTH = 'auth/';
 const USER = 'user/';
