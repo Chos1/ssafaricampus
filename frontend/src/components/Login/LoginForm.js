@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import apiPath from '../../api/apiPath';
 import LPBtn from '../ui/LPBtn';
-import MPBtnBrd from '../ui/MPBtnBrd';
+import LWBtnPBrd from '../ui/LWBtnPBrd';
 
 import './LoginForm.css';
 
@@ -88,7 +88,7 @@ const LoginForm = () => {
         <br/>
         <LPBtn type='submit' onClick={loginHandler}>로그인</LPBtn>
       </form>
-      <MPBtnBrd>회원가입</MPBtnBrd>
+      <LWBtnPBrd>회원가입</LWBtnPBrd>
     </div>
   );
 };
