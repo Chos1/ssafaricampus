@@ -1,4 +1,14 @@
 .justify_center{
   display: flex;
   justify-content: center;
+  margin-top: 4.5rem;
+}
+
+.justify_center ul{
+  width : 60%;
+}
+
+.justify_center ul li{
+  white-space: nowrap;
+  text-align: center;
 }

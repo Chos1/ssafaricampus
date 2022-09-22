@@ -47,8 +47,7 @@ const ProductCarousel = () =>{
         <SwiperSlide className="border_out">
           1
         </SwiperSlide>
-        {/* 컴포넌트로 해도 되긴함
-        
+        {/* Product Item 부분
         {DBdata.map((item) => (
           <SwiperSlide>
           <div className="card">
