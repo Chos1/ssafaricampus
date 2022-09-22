@@ -1,6 +1,6 @@
 import styles from './LWBtnBrd.module.css';
 
-const LWBtnBrd = (props) => {
+const LWBtnPBrd = (props) => {
   const classes = styles.LPBtn + ' ' + props.className;
 
   return (
@@ -8,4 +8,4 @@ const LWBtnBrd = (props) => {
   );
 };
 
-export default LWBtnBrd;
+export default LWBtnPBrd;

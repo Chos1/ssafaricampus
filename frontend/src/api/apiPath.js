@@ -1,17 +1,17 @@
-const HOST = 'http://j7b105.p.ssafy.io/api/v1/';
+const HOST = 'https://j7b105.p.ssafy.io:9000/api/v1/';
 
 const AUTH = 'auth/';
 const USER = 'user/';
 
 const apiPath = {
   auth: {
-    login: () => HOST + AUTH + 'login/',
-    logout: () => HOST + AUTH + 'logout/',
-    reaccess: () => HOST + AUTH + 'reaccess/',
+    login: () => HOST + AUTH + 'login',
+    logout: () => HOST + AUTH + 'logout',
+    reaccess: () => HOST + AUTH + 'reaccess',
   },
   user: {
-    join: () => HOST + USER + 'register/',
-    delete: () => HOST + USER + 'register/company/',
+    join: () => HOST + USER + 'register',
+    delete: () => HOST + USER + 'register/company',
   },
 };
 

@@ -1,0 +1,20 @@
+.Logo{
+  margin-left: 1.5rem;
+}
+
+.justify_between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.justify_between .inputPosition{
+  margin-left: 8rem;
+}
+
+.justify_between div input {
+  height: 40px;
+  width: 30rem;
+  border-radius: 8px;
+}

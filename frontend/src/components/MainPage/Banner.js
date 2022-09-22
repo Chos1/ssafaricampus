@@ -24,7 +24,6 @@ const Banner = () => {
           disableOnInteraction: false,
         }}
         modules={[Pagination,Autoplay]}
-        className="mySwiper"
       >
         <SwiperSlide>
           <img

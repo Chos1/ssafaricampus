@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import TopMainHeader from './TopMainHeader.js'
 import BottomMainHeader from './BottomMainHeader'
 
@@ -10,8 +9,9 @@ const MainHeader = () => {
     <header className={styles.header}>
       <nav>
         <TopMainHeader />
+        <BottomMainHeader />
       </nav>
-      <BottomMainHeader />
+      
     </header>
   );
 };
