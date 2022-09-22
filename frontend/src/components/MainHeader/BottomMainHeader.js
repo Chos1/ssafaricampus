@@ -4,16 +4,16 @@ const BottomMainHeader = () => {
       <div className={styles.justify_center}>
         <ul>
           <li>
-            전체
+            <a href="#">전체</a>
           </li>
           <li>
-            오늘의 특가
+            <a href="#">오늘의 특가</a>
           </li>
           <li>
-            추천 상품
+            <a href="#">추천 상품</a>
           </li>
           <li>
-            아무튼 검색
+            <a href="#">아무튼 검색</a>
           </li>
         </ul> 
       </div>
