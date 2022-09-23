@@ -1,8 +1,9 @@
+import ProductList from '../../components/ProductManage/ProductList';
 
 const ProductManage = () => {
     return (
         <div>
-            <p>Product Manage</p>
+            <ProductList />
         </div>
     );
 };

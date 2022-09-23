@@ -1,12 +1,29 @@
 .Logo{
-  margin-left: 20px;
+  margin-left: 1.5rem;
 }
 
 .justify_between{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-input{
-  margin: auto;
+
+.justify_between .inputPosition{
+  margin-left: 2rem;
+}
+
+.justify_between div input {
+  height: 40px;
+  width: 30rem;
+  border-radius: 10px;
+  border : #7f5feb solid 2px; 
+  padding-left : 10px;
+  font-size : 15px;
+
+}
+
+.justify_between div input:active,
+.justify_between div input:focus{
+  border : #7f5feb solid 2px; 
 }
