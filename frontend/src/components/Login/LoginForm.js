@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import apiPath from '../../api/apiPath';
 import LPBtn from '../ui/LPBtn';
@@ -13,70 +13,31 @@ const LoginForm = () => {
 
   const loginHandler = (e) => {
     e.preventDefault();
-
     login(loginId, password);
-
-    console.log('login id: ' + loginId);
-    console.log('password: ' + password);
-
     setLoginId('');
     setPassword('');
   }
   const loginIdChangeHandler = (e) => {
     setLoginId(e.target.value);
   }
-  
   const passwordChangeHandler = (e) => {
     setPassword(e.target.value);
   }
 
-  // async function loginHandler2(loginId, password) {
-  //   const response = await fetch(apiPath.auth.login(), {
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       'loginId': loginId,
-  //       'password': password,
-  //     }),
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   });
-  //   const data = await response.json();
-  //   console.log(data);
-  // }
-
-  const login = async (loginId, password) => {
-    try {
-        const { data: {statusCode, accessToken}} = await axios({
-            method: 'post',
-            url: apiPath.auth.login(),
-            data: {
-                loginId,
-                password
-            },
-            withCredentials: true
-        });
-        if (statusCode === 200) {
-            // dispatch(save({
-            //     phone,
-            //     accessToken
-            // }));
-            localStorage.setItem('token', accessToken);
-
-            console.log('로그인 성공');
-            return true;
-        }
-
-    } catch (e) {
-        const { status } = e.response;
-        if (status === 401 || status === 404)
-            console.log('fail')
-        
-        else 
-            console.log(status);
-        return false;
-    }
-}
+  async function login(loginId, password) {
+    const response = await fetch(apiPath.auth.login(), {
+      method: 'POST',
+      body: JSON.stringify({
+        'loginId': loginId,
+        'password': password,
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    localStorage.setItem('token', data.accessToken);
+  }
 
   return (
     <div className="Login_inputgroup">
@@ -88,7 +49,7 @@ const LoginForm = () => {
         <br/>
         <LPBtn type='submit' onClick={loginHandler}>로그인</LPBtn>
       </form>
-      <LWBtnPBrd>회원가입</LWBtnPBrd>
+      <Link to='/signup'><LWBtnPBrd>회원가입</LWBtnPBrd></Link>
     </div>
   );
 };
