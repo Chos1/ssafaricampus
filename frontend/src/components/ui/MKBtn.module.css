@@ -9,6 +9,7 @@
 
   transition: 0.3s;
   cursor: pointer;
+  margin:auto;
   margin-top: 3rem;
   display:block;
 }
