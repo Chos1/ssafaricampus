@@ -1,9 +1,16 @@
 
 import { NavLink } from 'react-router-dom';
-import UserHeader from './UserHeader.js'
-import styles from './TopMainHeader.module.css'
+import { useSelector } from 'react-redux';
+
+import UserHeader from './UserHeader.js';
+import LoginUserHeader from './LoginUserHeader.js';
+import styles from './TopMainHeader.module.css';
 import { ReactComponent as Reservation } from "../../assets/Logo.svg";
+
 const TopMainHeader = () => {
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const userHeader = isAuth ? <LoginUserHeader /> : <UserHeader />
+
   return (
       <div className={styles.justify_between}>
         <div className={styles.Logo}>
@@ -15,7 +22,7 @@ const TopMainHeader = () => {
         <div className={styles.inputPosition}>
           <input type="text" name="searchBar" placeholder="검색어를 입력하세요." />
         </div>
-        <UserHeader />
+        {userHeader}
       </div>
   );
 };

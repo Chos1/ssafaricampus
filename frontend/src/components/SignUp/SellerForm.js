@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import apiPath from '../../api/apiPath';
 
 import MPBtn from '../ui/MPBtn';
@@ -6,6 +8,8 @@ import SWBtnPBrd from '../ui/SWBtnPBrd';
 import './SignUpForm.css';
 
 const SellerForm = () => {
+  const navigate = useNavigate();
+
   const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
@@ -29,6 +33,7 @@ const SellerForm = () => {
     });
     const data = await response.json();
     console.log(data);
+    navigate('/login');
   }
 
   const signUpHandler = (e) => {

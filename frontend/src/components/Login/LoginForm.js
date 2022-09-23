@@ -1,13 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import apiPath from '../../api/apiPath';
 import LPBtn from '../ui/LPBtn';
 import LWBtnPBrd from '../ui/LWBtnPBrd';
+import { authActions } from '../../store/auth';
 
 import './LoginForm.css';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');
 
@@ -35,8 +40,11 @@ const LoginForm = () => {
         'Content-Type': 'application/json'
       }
     });
+    
     const data = await response.json();
     localStorage.setItem('token', data.accessToken);
+    dispatch(authActions.login());
+    navigate('/main');
   }
 
   return (
