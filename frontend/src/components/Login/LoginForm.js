@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 import { useState } from 'react';
 
 import apiPath from '../../api/apiPath';
@@ -14,7 +14,7 @@ const LoginForm = () => {
   const loginHandler = (e) => {
     e.preventDefault();
 
-    loginHandler2(loginId, password);
+    login(loginId, password);
 
     console.log('login id: ' + loginId);
     console.log('password: ' + password);
@@ -30,53 +30,53 @@ const LoginForm = () => {
     setPassword(e.target.value);
   }
 
-  async function loginHandler2(loginId, password) {
-    const response = await fetch(apiPath.auth.login(), {
-      method: 'POST',
-      body: JSON.stringify({
-        'loginId': loginId,
-        'password': password,
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const data = await response.json();
-    console.log(data);
-  }
+  // async function loginHandler2(loginId, password) {
+  //   const response = await fetch(apiPath.auth.login(), {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       'loginId': loginId,
+  //       'password': password,
+  //     }),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   });
+  //   const data = await response.json();
+  //   console.log(data);
+  // }
 
-//   const login = async (loginId, password) => {
-//     try {
-//         const { data: {statusCode, accessToken}} = await axios({
-//             method: 'post',
-//             url: apiPath.auth.login(),
-//             data: {
-//                 loginId,
-//                 password
-//             },
-//             withCredentials: true
-//         });
-//         if (statusCode === 200) {
-//             // dispatch(save({
-//             //     phone,
-//             //     accessToken
-//             // }));
-//             localStorage.setItem('token', accessToken);
+  const login = async (loginId, password) => {
+    try {
+        const { data: {statusCode, accessToken}} = await axios({
+            method: 'post',
+            url: apiPath.auth.login(),
+            data: {
+                loginId,
+                password
+            },
+            withCredentials: true
+        });
+        if (statusCode === 200) {
+            // dispatch(save({
+            //     phone,
+            //     accessToken
+            // }));
+            localStorage.setItem('token', accessToken);
 
-//             console.log('로그인 성공');
-//             return true;
-//         }
+            console.log('로그인 성공');
+            return true;
+        }
 
-//     } catch (e) {
-//         const { status } = e.response;
-//         if (status === 401 || status === 404)
-//             console.log('fail')
+    } catch (e) {
+        const { status } = e.response;
+        if (status === 401 || status === 404)
+            console.log('fail')
         
-//         else 
-//             console.log(status);
-//         return false;
-//     }
-// }
+        else 
+            console.log(status);
+        return false;
+    }
+}
 
   return (
     <div className="Login_inputgroup">
