@@ -49,19 +49,20 @@ public class AuthController {
         User user = userService.getUserByLoginId(loginInfo.getLoginId());
 
         if(user==null) {
-            return ResponseEntity.status(404).body(AuthLoginPostRes.of(404, "Not Exist", null));
+            return ResponseEntity.status(404).body(AuthLoginPostRes.of(404, "Not Exist", null, null));
         }
         if(!passwordEncoder.matches(loginInfo.getPassword(), user.getPassword())) {
-            return ResponseEntity.status(401).body(AuthLoginPostRes.of(401, "Invalid Password", null));
+            return ResponseEntity.status(401).body(AuthLoginPostRes.of(401, "Invalid Password", null,null));
         }
 
         String refreshToken = JwtTokenUtil.getRefreshToken(loginInfo.getLoginId());
+        user.setPassword("");
 
         // DB 나 Redis 에 refreshToken 저장, 현재는 일단 DB
         refreshRepository.save(Refresh.builder().refreshToken(refreshToken).build());
 
         response.addCookie(CreateRefreshCookie(refreshToken)); // 응답 헤더에 쿠키 추가
-        return ResponseEntity.ok(AuthLoginPostRes.of(200, "Success", JwtTokenUtil.getAccessToken(loginInfo.getLoginId())));
+        return ResponseEntity.ok(AuthLoginPostRes.of(200, "Success", JwtTokenUtil.getAccessToken(loginInfo.getLoginId()), user));
     }
 
     @ApiOperation(value = "로그아웃", notes = "로그아웃한다")
