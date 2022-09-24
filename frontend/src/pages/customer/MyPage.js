@@ -1,5 +1,6 @@
 import UserInfo from '../../components/UserInfo/UserInfo'
 import Notion from '../../components/UserInfo/Notion'
+import PurchaseList from '../../components/UserInfo/PurchaseList';
 
 import styles from './Mypage.module.css'
 
@@ -37,10 +38,12 @@ function Mypage() {
     load();
   }, []);
 
+  
   return (
     <div className={styles.mypage}>
       <UserInfo account={account} contacts={contacts} />
-      <Notion />
+      {/* <Notion /> */}
+      <PurchaseList />
     </div>
   );
 }
