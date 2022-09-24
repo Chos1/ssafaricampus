@@ -31,6 +31,19 @@
   margin-left: 2rem;
   margin-right: 0.2rem;
 }
+.inputgroup select{
+    width: 50%;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    background-color: var(--gray);
+    border-radius: 7px;
+    border: 0.125rem solid var(--white);
+    outline: none;
+    margin-top: 0.8rem;
+    margin-left: 2rem;
+    margin-right: 0.2rem;
+}
+
 .inputgroup label {
   display: inline-block;
 

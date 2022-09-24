@@ -1,8 +1,12 @@
+import ProductForm from '../../components/ProductForm';
 
 const ProductRegist = () => {
     return (
-        <div>
-            <p>Product Regist</p>
+        <div className='container'>
+            <h1>상품 등록</h1>
+            <hr />
+            <ProductForm/> 
+            
         </div>
     );
 };

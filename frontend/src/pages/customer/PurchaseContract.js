@@ -1,8 +1,8 @@
-
+import ProductSummary from '../../components/ProductSummary';
 const PurchaseContract = () => {
     return (
         <div>
-            <p>Purchase Contract</p>
+            <ProductSummary />
         </div>
     );
 };
