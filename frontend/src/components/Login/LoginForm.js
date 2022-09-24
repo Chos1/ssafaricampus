@@ -42,9 +42,16 @@ const LoginForm = () => {
     });
     
     const data = await response.json();
-    localStorage.setItem('token', data.accessToken);
-    dispatch(authActions.login());
-    navigate('/main');
+    const { statusCode, accessToken } = data
+    
+    if (statusCode === 200) {
+      localStorage.setItem('token', accessToken);
+      dispatch(authActions.login());
+      navigate('/main');
+    }
+    else {
+      console.log('login fail');
+    }
   }
 
   return (
