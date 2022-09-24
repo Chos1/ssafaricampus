@@ -11,14 +11,7 @@ const UserHeader = () => {
   
   async function logout() {
     const response = await fetch(apiPath.auth.login(), {
-      method: 'POST',
-      // body: JSON.stringify({
-      //   'loginId': loginId,
-      //   'password': password,
-      // }),
-      // headers: {
-        //   'Content-Type': 'application/json'
-        // }
+      method: 'POST'
       });
       
       const data = await response.json();
@@ -35,7 +28,7 @@ const UserHeader = () => {
   return (
     <ul>
       <li>
-        jinhasky
+        <button onClick={() => {navigate('/mypage')}}>username</button>
       </li>
       <li>
         <button onClick={logoutHandler}>Logout</button>

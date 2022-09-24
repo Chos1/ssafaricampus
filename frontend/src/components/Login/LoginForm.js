@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import apiPath from '../../api/apiPath';
 import LPBtn from '../ui/LPBtn';
@@ -12,6 +12,9 @@ import './LoginForm.css';
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  console.log(isAuth);
+  if (isAuth) { navigate('/main') }
 
   const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');

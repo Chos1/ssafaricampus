@@ -1,11 +1,14 @@
 import './ProductItem.css';
+import { useNavigate } from 'react-router-dom';
 
 const ProductItem = () =>{
+  const navigate = useNavigate();
+
   return(
     <div>
       <div className="card">
             <div className="card-top">
-              <img src="{item.img_link}" alt="상품사진" />
+              <img onClick={() => { navigate('') }} src="{item.img_link}" alt="상품사진" />
               <h1>상품 제목</h1>
             </div>
             <div className="card-bottom">

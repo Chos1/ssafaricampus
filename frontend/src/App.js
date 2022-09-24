@@ -35,16 +35,16 @@ function App() {
           <Route path='/signup/customer' element={<SignUpCustomer />} />
           <Route path='/signup/seller' element={<SignUpSeller />} />
 
-          <Route path='/mypage/:userId' element={<MyPage />} />
-          <Route path='/products/:productId/contract' element={<PurchaseContract />} />
-          <Route path='/products/:productId/request' element={<PurchaseRequest />} />
-          <Route path='/mypage/:userId/transactionDetail' element={<TransactionDetail />} />
+          <Route path='/mypage' element={<MyPage />} />
+          <Route path='/productContract/:productId' element={<PurchaseContract />} />
+          <Route path='/productRequest/:productId' element={<PurchaseRequest />} />
+          <Route path='/mypage/transactionDetail' element={<TransactionDetail />} />
           
-          <Route path='/:userId/orderDetail/:orderId' element={<OrderDetail />} />
-          <Route path='/:userId/orderManage' element={<OrderManage />} />
-          <Route path='/:userId/product/:productId/manage' element={<ProductManage />} />
-          <Route path='/:userId/product/:productId/modify' element={<ProductModify />} />
-          <Route path='/:userId/product/regist' element={<ProductRegist />} />
+          <Route path='/orderManage' element={<OrderManage />} />
+          <Route path='/productRegist' element={<ProductRegist />} />
+          <Route path='/orderDetail/:orderId' element={<OrderDetail />} />
+          <Route path='/productManage/:productId' element={<ProductManage />} />
+          <Route path='/productModify/:productId' element={<ProductModify />} />
         </Routes>
       </main>
       <MainFooter />
