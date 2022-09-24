@@ -5,7 +5,7 @@ import styles from './TransactionList.module.css'
 const TransactionList = () => {
 
   const tests = [['2022.09.25','09:51:20','rkd5755','jinhasky','12,900'],['2022.09.25','09:51:20','rkd5755','jinhasky','12,900'],['2022.09.25','09:51:20','rkd5755','jinhasky','12,900']]
-  const transactionItem = tests.map((test) => (<TransactionItem date={test[0]} time={test[1]} from={test[2]} to={test[3]} cost={test[4]}/>))
+  const transactionItem = tests.map((test, idx) => (<TransactionItem key={idx} date={test[0]} time={test[1]} from={test[2]} to={test[3]} cost={test[4]}/>))
 
   return (
       <div className={styles.TransactionList}>
