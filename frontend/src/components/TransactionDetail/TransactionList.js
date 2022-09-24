@@ -17,6 +17,6 @@ const TransactionList = () => {
         {transactionItem}
       </div>
   );
-}; 
+};
 
 export default TransactionList;
