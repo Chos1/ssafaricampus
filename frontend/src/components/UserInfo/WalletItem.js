@@ -1,4 +1,4 @@
-import WalletCarousel from "./WalletCarousel";
+// import WalletCarousel from "./WalletCarousel";
 import AddWalletBtn from "./AddWalletBtn";
 
 import styles from "./WalletItem.module.css";
