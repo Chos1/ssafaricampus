@@ -13,6 +13,9 @@ function Mypage() {
   const [account, setAccount] = useState();
   const [contactList, setContactList] = useState();
   const [contacts, setContacts] = useState([]);
+  
+  const [isWallet, setIsWallet] = useState(true);
+  const item = isWallet ? <PurchaseList /> : <Notion />;
 
   useEffect(() => {
     async function load() {
@@ -42,8 +45,8 @@ function Mypage() {
   return (
     <div className={styles.mypage}>
       <UserInfo account={account} contacts={contacts} />
-      {/* <Notion /> */}
-      <PurchaseList />
+      <button value={isWallet} onClick={() => {setIsWallet(!isWallet)}}>change wallet state</button>
+      {item}
     </div>
   );
 }

@@ -19,9 +19,9 @@ const Banner = () => {
     "https://i.pinimg.com/originals/ab/a4/a7/aba4a7e7cedc3a22664466b15a211a09.jpg"
   ]
 
-  const imageCarousel = imagelist.map((image) => {
+  const imageCarousel = imagelist.map((image, idx) => {
     return (
-      <SwiperSlide>
+      <SwiperSlide key={idx}>
         <img
           className="img-back"
           src={image}

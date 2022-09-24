@@ -1,15 +1,19 @@
+import { useNavigate } from 'react-router-dom';
+
 import styles from './PurchaseItem.module.css';
 // import { ReactComponent as Reservation } from "../assets/Customer.svg";
 
 
 const PurchaseItem = (props) => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className={styles.PurchaseItem}>
-        <div className={styles.PurchaseImg}>
+        <div className={styles.PurchaseImg} onClick={() => {navigate('/mypage/:transactionId/transactionDetail')}}>
           <p>이미지</p>
         </div>
-        <div className={styles.PurchaseTitle}>
+        <div className={styles.PurchaseTitle} onClick={() => {navigate('/mypage/:transactionId/transactionDetail')}}>
           <p>{props.title}</p>
           <p>{props.subtitle}</p>
         </div>

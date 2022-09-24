@@ -38,7 +38,7 @@ function App() {
           <Route path='/mypage' element={<MyPage />} />
           <Route path='/productContract/:productId' element={<PurchaseContract />} />
           <Route path='/productRequest/:productId' element={<PurchaseRequest />} />
-          <Route path='/mypage/transactionDetail' element={<TransactionDetail />} />
+          <Route path='/mypage/:transactionId/transactionDetail' element={<TransactionDetail />} />
           
           <Route path='/orderManage' element={<OrderManage />} />
           <Route path='/productRegist' element={<ProductRegist />} />
