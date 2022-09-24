@@ -1,3 +1,9 @@
+import UserInfo from '../../components/UserInfo/UserInfo'
+import Notion from '../../components/UserInfo/Notion'
+import PurchaseList from '../../components/UserInfo/PurchaseList';
+
+import styles from './Mypage.module.css'
+
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import Web3 from "web3";
@@ -7,6 +13,9 @@ function Mypage() {
   const [account, setAccount] = useState();
   const [contactList, setContactList] = useState();
   const [contacts, setContacts] = useState([]);
+  
+  const [isWallet, setIsWallet] = useState(true);
+  const item = isWallet ? <PurchaseList /> : <Notion />;
 
   useEffect(() => {
     async function load() {
@@ -32,21 +41,12 @@ function Mypage() {
     load();
   }, []);
 
+  
   return (
-    <div>
-      Your account is: {account}
-      <h1>Contacts</h1>
-      <ul>
-        {Object.keys(contacts).map((contact, index) => (
-          <li key={`${contacts[index].name}-${index}`}>
-            <h4>{contacts[index].name}</h4>
-            <span>
-              <b>Phone: </b>
-              {contacts[index].phone}
-            </span>
-          </li>
-        ))}
-      </ul>
+    <div className={styles.mypage}>
+      <UserInfo account={account} contacts={contacts} />
+      <button value={isWallet} onClick={() => {setIsWallet(!isWallet)}}>change wallet state</button>
+      {item}
     </div>
   );
 }

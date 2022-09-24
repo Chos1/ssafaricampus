@@ -1,7 +1,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useNavigate } from "react-router-dom";
+
 import "swiper/css";
-import "swiper/css/free-mode";
 import "swiper/css/navigation";
 
 import './ProductCarousel.css';
@@ -9,6 +10,17 @@ import './ProductCarousel.css';
 import { Navigation } from "swiper";
 
 const ProductCarousel = () =>{
+  const navigate = useNavigate();
+
+  const itemlist = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const itemCarousel = itemlist.map((item, idx) => {
+    return (
+      <SwiperSlide key={idx} onClick={() => navigate('/products/:productId')} className="border_out">
+        {item}
+      </SwiperSlide>
+    )
+  })
+
   return(
     <div className="App">
       <h2 className="ProductList_title">공동 구매 어쩌구</h2>
@@ -20,33 +32,7 @@ const ProductCarousel = () =>{
       navigation={true} 
       modules={[Navigation]}
       >
-        <SwiperSlide className="border_out">
-          1
-        </SwiperSlide>
-        <SwiperSlide className="border_out">
-          1
-        </SwiperSlide>
-        <SwiperSlide className="border_out">
-          1
-        </SwiperSlide>
-        <SwiperSlide className="border_out">
-          1
-        </SwiperSlide>
-        <SwiperSlide className="border_out">
-          1
-        </SwiperSlide>
-        <SwiperSlide className="border_out">
-          1
-        </SwiperSlide>
-        <SwiperSlide className="border_out">
-          1
-        </SwiperSlide>
-        <SwiperSlide className="border_out">
-          1
-        </SwiperSlide>
-        <SwiperSlide className="border_out">
-          1
-        </SwiperSlide>
+        {itemCarousel}
         {/* Product Item 부분
         {DBdata.map((item) => (
           <SwiperSlide>

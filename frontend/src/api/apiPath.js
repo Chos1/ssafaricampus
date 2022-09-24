@@ -10,8 +10,10 @@ const apiPath = {
     reaccess: () => HOST + AUTH + 'reaccess',
   },
   user: {
-    join: () => HOST + USER + 'register',
-    delete: () => HOST + USER + 'register/company',
+    customer: () => HOST + USER + 'register',
+    seller: () => HOST + USER + 'register/company',
+    update: () => HOST + USER + 'update',
+    delete: () => HOST + USER + 'delete',
   },
 };
 

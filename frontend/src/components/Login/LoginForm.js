@@ -1,36 +1,38 @@
-// import axios from 'axios';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import apiPath from '../../api/apiPath';
 import LPBtn from '../ui/LPBtn';
 import LWBtnPBrd from '../ui/LWBtnPBrd';
+import { authActions } from '../../store/auth';
 
 import './LoginForm.css';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  console.log(isAuth);
+  if (isAuth) { navigate('/main') }
+
   const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');
 
   const loginHandler = (e) => {
     e.preventDefault();
-
-    loginHandler2(loginId, password);
-
-    console.log('login id: ' + loginId);
-    console.log('password: ' + password);
-
+    login(loginId, password);
     setLoginId('');
     setPassword('');
   }
   const loginIdChangeHandler = (e) => {
     setLoginId(e.target.value);
   }
-  
   const passwordChangeHandler = (e) => {
     setPassword(e.target.value);
   }
 
-  async function loginHandler2(loginId, password) {
+  async function login(loginId, password) {
     const response = await fetch(apiPath.auth.login(), {
       method: 'POST',
       body: JSON.stringify({
@@ -41,42 +43,19 @@ const LoginForm = () => {
         'Content-Type': 'application/json'
       }
     });
+    
     const data = await response.json();
-    console.log(data);
+    const { statusCode, accessToken } = data
+    
+    if (statusCode === 200) {
+      localStorage.setItem('token', accessToken);
+      dispatch(authActions.login());
+      navigate('/main');
+    }
+    else {
+      console.log('login fail');
+    }
   }
-
-//   const login = async (loginId, password) => {
-//     try {
-//         const { data: {statusCode, accessToken}} = await axios({
-//             method: 'post',
-//             url: apiPath.auth.login(),
-//             data: {
-//                 loginId,
-//                 password
-//             },
-//             withCredentials: true
-//         });
-//         if (statusCode === 200) {
-//             // dispatch(save({
-//             //     phone,
-//             //     accessToken
-//             // }));
-//             localStorage.setItem('token', accessToken);
-
-//             console.log('로그인 성공');
-//             return true;
-//         }
-
-//     } catch (e) {
-//         const { status } = e.response;
-//         if (status === 401 || status === 404)
-//             console.log('fail')
-        
-//         else 
-//             console.log(status);
-//         return false;
-//     }
-// }
 
   return (
     <div className="Login_inputgroup">
@@ -88,7 +67,7 @@ const LoginForm = () => {
         <br/>
         <LPBtn type='submit' onClick={loginHandler}>로그인</LPBtn>
       </form>
-      <LWBtnPBrd>회원가입</LWBtnPBrd>
+      <Link to='/signup'><LWBtnPBrd>회원가입</LWBtnPBrd></Link>
     </div>
   );
 };
