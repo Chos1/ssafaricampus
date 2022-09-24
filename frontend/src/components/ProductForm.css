@@ -17,7 +17,7 @@ text-align: center;
   
 }
 .product_inputgroup input {
-  width: 50%;
+  width: 400px;
   padding: 1rem 2rem;
   font-size: 1rem;
   background-color: var(--gray);
@@ -29,9 +29,25 @@ text-align: center;
   margin-right: 0.2rem;
 
 }
+.product_inputgroup textarea {
+  resize:vertical;
+  width: 400px;
+  height: 5rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  background-color: var(--gray);
+  border-radius: 7px;
+  border: 0.125rem solid var(--white);
+  outline: none;
+  margin-top: 0.8rem;
+  margin-left: 2rem;
+  margin-right: 0.2rem;
+
+}
+
 
 .product_inputgroup select{
-  width: 58.5%;
+  width: 470px;
   padding: 1rem 2rem;
   font-size: 1rem;
   background-color: var(--gray);
@@ -43,16 +59,26 @@ text-align: center;
   margin-right: 0.2rem;
 }
 
+.product_summary{
+  margin-top: 1.1rem;
+  /* margin-bottom: 10rem; */
+  vertical-align: top;
+}
 .product_inputgroup label {
-  display:inline-block;
+display:inline-block;
 text-align: left;
 width:120px;
 font-weight:bold;
+/* vertical-align: middle; */
 }
+
 .product_inputgroup input:focus {
   border: 0.125rem solid black;
 }
 .product_inputgroup select:focus {
+  border: 0.125rem solid black;
+}
+.product_inputgroup textarea:focus {
   border: 0.125rem solid black;
 }
 /* .filebox input[type="file"] { 

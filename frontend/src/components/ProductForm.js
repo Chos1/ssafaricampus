@@ -1,7 +1,6 @@
-
 import { useState } from 'react';         
 import './ProductForm.css';
-
+import MKBtn from '../components/ui/MKBtn';
 
 const ProductForm = () => {
   const [imageSrc, setImageSrc] = useState('');
@@ -82,13 +81,14 @@ const ProductForm = () => {
               <label for="">원산지</label>
               <input placeholder="원산지를 입력해주세요"/>
               <br/>
-              <label for="">상품 설명</label>
-              <input placeholder="상품 설명을 입력해주세요"/>
+              <label for="" className='product_summary'>상품 설명</label>
+              <textarea placeholder="상품 설명을 입력해주세요"/>
               <br/>
        
 
       
-      
+              <MKBtn >등록하기</MKBtn>
+              <MKBtn >수정하기</MKBtn>
        
       </form>
   
