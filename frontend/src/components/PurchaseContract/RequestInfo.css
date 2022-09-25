@@ -6,6 +6,8 @@
 }
 
 .request_item {
+    border-bottom: solid 1px rgb(0, 0, 0, 20%);
+    padding: 7px 0px 8px;
     display: flex;
     justify-content: space-between;
     width: 1000px;

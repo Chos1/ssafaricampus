@@ -28,14 +28,16 @@ const UserHeader = () => {
     }
     
   return (
-    <ul>
-      <li>
-        <button onClick={() => {navigate('/mypage')}} className={styles.username}>username</button>
-      </li>
-      <li>
-        <button onClick={logoutHandler} className={styles.Logout}>Logout</button>
-      </li>
-    </ul>   
+    <div className={styles.Login_ul}>
+      <ul>
+        <li>
+          <button onClick={() => {navigate('/mypage')}} className={styles.username}>username</button>
+        </li>
+        <li>
+          <button onClick={logoutHandler} className={styles.Logout}>Logout</button>
+        </li>
+      </ul>   
+    </div>
   );
 };
 

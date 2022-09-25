@@ -1,8 +1,11 @@
+import styles from './ProductImage.module.css'
+import groom_2 from '../../assets/구름2.jpg';
 
 const ProductImage = () => {
   return (
-      <div>
-          <p>Product Image</p>
+      <div className={styles.ProductImage}>
+        <h1>상품 상세</h1>
+        <img src={groom_2} alt="" className={styles.ProductImg} />
       </div>
   );
 };
