@@ -1,0 +1,28 @@
+.Logo{
+  /* margin-left: 1.5rem; */
+}
+
+.justify_between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.justify_between .inputPosition{
+  /* margin-left: 2rem; */
+}
+
+.justify_between div .Search_input {
+  height: 40px;
+  width: 390px;
+  border-radius: 10px;
+  border : #7f5feb solid 2px; 
+  padding-left : 10px;
+  font-size : 15px;
+
+}
+
+.justify_between div .Search_input:focus{
+  border : #5326e7 solid 2px; 
+}

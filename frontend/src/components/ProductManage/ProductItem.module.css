@@ -1,0 +1,13 @@
+.card{
+  border : black 2px solid;
+  margin: 3rem;
+}
+
+.card .card_top{
+  width : 300px;
+  height: 400px;
+}
+
+.card .card_bottom{
+  
+}
