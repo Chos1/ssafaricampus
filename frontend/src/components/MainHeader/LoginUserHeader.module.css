@@ -1,7 +1,11 @@
-.Logout{
+.Login_ul{
+  width: 250px;
+}
+
+.Login_ul .Logout{
   /* margin-left:20px; */
 }
 
-.username{
-  margin-right:20 px;
+.Login_ul .username{
+  margin-left: 50px;
 }

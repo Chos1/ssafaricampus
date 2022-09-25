@@ -1,5 +1,6 @@
 
-.section > div {
+.section {
     width : 1050px;
     margin: 0 auto;
+    margin-bottom: 50px;
 }
