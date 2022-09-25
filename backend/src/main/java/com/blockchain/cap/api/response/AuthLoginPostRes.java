@@ -22,7 +22,7 @@ public class AuthLoginPostRes extends BaseResponseBody {
 
     public static AuthLoginPostRes of(Integer statusCode, String message, String accessToken, User user) {
         AuthLoginPostRes res = new AuthLoginPostRes();
-        res.setStatueCode(statusCode);
+        res.setStatusCode(statusCode);
         res.setMessage(message);
         res.setAccessToken(accessToken);
         res.setUser(user);

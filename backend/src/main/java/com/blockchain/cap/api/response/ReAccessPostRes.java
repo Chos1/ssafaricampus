@@ -18,7 +18,7 @@ public class ReAccessPostRes extends BaseResponseBody {
 
     public static ReAccessPostRes of(Integer statusCode, String message, String accessToken) {
         ReAccessPostRes res = new ReAccessPostRes();
-        res.setStatueCode(statusCode);
+        res.setStatusCode(statusCode);
         res.setMessage(message);
         res.setAccessToken(accessToken);
         return res;

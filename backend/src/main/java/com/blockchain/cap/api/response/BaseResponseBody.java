@@ -18,15 +18,15 @@ public class BaseResponseBody {
     @ApiModelProperty(name="응답 메시지")
     String message=null;
     @ApiModelProperty(name="응답 코드")
-    Integer statueCode=null;
+    Integer statusCode =null;
 
-    public BaseResponseBody(Integer statueCode) {
-        this.statueCode = statueCode;
+    public BaseResponseBody(Integer statusCode) {
+        this.statusCode = statusCode;
     }
 
     public static BaseResponseBody of(Integer statusCode, String message) {
         BaseResponseBody body=new BaseResponseBody();
-        body.setStatueCode(statusCode);
+        body.setStatusCode(statusCode);
         body.setMessage(message);
         return body;
     }
