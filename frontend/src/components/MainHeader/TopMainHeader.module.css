@@ -13,7 +13,7 @@
   margin-left: 2rem;
 }
 
-.justify_between div input {
+.justify_between div .Search_input {
   height: 40px;
   width: 30rem;
   border-radius: 10px;
@@ -23,7 +23,6 @@
 
 }
 
-.justify_between div input:active,
-.justify_between div input:focus{
-  border : #7f5feb solid 2px; 
+.justify_between div .Search_input:focus{
+  border : #5326e7 solid 2px; 
 }

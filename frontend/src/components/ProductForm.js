@@ -59,7 +59,7 @@ const ProductForm = () => {
               <input id="file" type="file" onChange={(e) => {
                 encodeFileToBase64(e.target.files[0]);}} />
               
-                  {imageSrc && <img src={imageSrc} alt="preview-img" />}
+                  {imageSrc && <img src={imageSrc} alt="preview-img" className='thumbnail_img'/>}
              
 
               <br/>
@@ -67,7 +67,7 @@ const ProductForm = () => {
               <input type="file" multiple onChange={handleAddImages}/>
               {showImages.map((image, id) => (
               <div  key={id}>
-                <img src={image} alt={`${image}-${id}`} />
+                <img src={image} alt={`${image}-${id}`} className='thumbnail_img'/>
           
               </div>
       ))}
