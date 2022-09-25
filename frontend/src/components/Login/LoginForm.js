@@ -21,8 +21,6 @@ const LoginForm = () => {
   const loginHandler = (e) => {
     e.preventDefault();
     login(loginId, password);
-    setLoginId('');
-    setPassword('');
   }
   const loginIdChangeHandler = (e) => {
     setLoginId(e.target.value);
@@ -44,6 +42,7 @@ const LoginForm = () => {
     });
     
     const data = await response.json();
+    console.log(data);
     const { statusCode, accessToken } = data
 
     if (statusCode === 200) {
