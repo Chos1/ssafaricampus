@@ -10,7 +10,7 @@ const UserHeader = () => {
 
   
   async function logout() {
-    const response = await fetch(apiPath.auth.login(), {
+    const response = await fetch(apiPath.auth.logout(), {
       method: 'POST'
       });
       
