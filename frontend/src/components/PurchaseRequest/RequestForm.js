@@ -1,7 +1,11 @@
+import { useNavigate } from 'react-router-dom';
+
 import './RequestForm.css';
 import MPBtn from '../../components/ui/MPBtn';
 import SWBtnPBrd from '../ui/SWBtnPBrd';
 const RequestForm = () => {
+  const navigate = useNavigate();
+
   return (
     
           
@@ -23,7 +27,7 @@ const RequestForm = () => {
           <label for="">비밀번호</label>
           <input placeholder="비밀번호를 입력해주세요"/>
           <br/> 
-          <MPBtn>신청하기</MPBtn>
+          <MPBtn onClick={() => {navigate('/purchaseContract/:transactionId')}}>신청하기</MPBtn>
           </form>
       
   );

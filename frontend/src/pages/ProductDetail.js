@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styles from './ProductDetail.module.css';
 
 import ProductSummary from '../components/ProductSummary';
@@ -9,13 +9,15 @@ const ProductDetail = () => {
   // url parameter 사용
   const params = useParams();
   console.log(params.productId);
+  
+  const navigate = useNavigate();
 
   return (
     <section className={styles.section}>
       <ProductSummary />
       <ProductImage />
       <div>
-        <LPBtn>구매하기</LPBtn>
+        <LPBtn onClick={() => {navigate('/productRequest/:productId')}}>구매하기</LPBtn>
       </div>
     </section>
   );
