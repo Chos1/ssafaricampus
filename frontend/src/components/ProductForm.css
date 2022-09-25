@@ -95,8 +95,8 @@ font-weight:bold;
     display: none;
   }
 
-  img {
+.thumbnail_img {
     margin-left: 150px;
     margin-top: 1.4rem;
-    width:450px;
+    max-width:450px;
   }
