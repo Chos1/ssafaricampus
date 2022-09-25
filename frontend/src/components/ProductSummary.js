@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import  './ProductSummary.css';
 import LPBtn from './ui/LPBtn';
 import groom from '../assets/구름.jpg';
-import MKBtn from './ui/MKBtn';
+// import MKBtn from './ui/MKBtn';
 
 const ProductSummary = () => {
   const navigate = useNavigate();
