@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -6,6 +6,7 @@ import apiPath from '../../api/apiPath';
 import LPBtn from '../ui/LPBtn';
 import LWBtnPBrd from '../ui/LWBtnPBrd';
 import { authActions } from '../../store/auth';
+import { userActions } from '../../store/user';
 
 import './LoginForm.css';
 
@@ -29,6 +30,14 @@ const LoginForm = () => {
     setPassword(e.target.value);
   }
 
+  useEffect(() => {
+    return () => {
+      if (localStorage.getItem('token')) {
+        dispatch(authActions.login());
+      }
+    }
+  });
+
   async function login(loginId, password) {
     const response = await fetch(apiPath.auth.login(), {
       method: 'POST',
@@ -43,11 +52,11 @@ const LoginForm = () => {
     
     const data = await response.json();
     console.log(data);
-    const { statusCode, accessToken } = data
-
+    const { statusCode, accessToken } = data;
+    
     if (statusCode === 200) {
       localStorage.setItem('token', accessToken);
-      dispatch(authActions.login());
+      dispatch(userActions.login(data.user));
       navigate('/main');
     }
     else {

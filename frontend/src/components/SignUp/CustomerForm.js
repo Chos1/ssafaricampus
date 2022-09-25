@@ -69,23 +69,23 @@ const CustomerForm = () => {
       <div>
         <form onSubmit={signUpHandler}>
           <div className="inputgroup">
-              <label for="">아이디</label>
+              <label>아이디</label>
               <input type='text' value={loginId} onChange={loginIdChangeHandler} placeholder="아이디를 입력해주세요"/>
               <br/>
-              <label for="">비밀번호</label>
+              <label>비밀번호</label>
               <input type='password' value={password} onChange={passwordChangeHandler} placeholder="비밀번호를 입력해주세요"/>
               <br/>
-              <label for="">비밀번호 확인</label>
+              <label>비밀번호 확인</label>
               <input type="password" value={passwordCheck} onChange={passwordCheckChangeHandler}  placeholder="비밀번호를 한번 더 입력해주세요"/>
               <br/>
-              <label for="">이름</label>
+              <label>이름</label>
               <input type='text' value={name} onChange={nameChangeHandler} placeholder="이름을 입력해주세요"/>
               <br/>
-              <label for="">학교 이메일</label>
+              <label>학교 이메일</label>
               <input type="email" value={email} onChange={emailChangeHandler} placeholder="학교 이메일을 입력해주세요"/>
               <SWBtnPBrd>이메일 인증</SWBtnPBrd>
               <br/>
-              <label for="">전화번호</label>
+              <label>전화번호</label>
               <input value={phone} onChange={phoneChangeHandler} placeholder="숫자만 입력해주세요"/>
               <br/>
             </div>

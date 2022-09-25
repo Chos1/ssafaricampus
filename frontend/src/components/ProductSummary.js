@@ -1,5 +1,6 @@
 
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import  './ProductSummary.css';
 import LPBtn from './ui/LPBtn';
@@ -8,6 +9,8 @@ import groom from '../assets/구름.jpg';
 
 const ProductSummary = () => {
   const navigate = useNavigate();
+  const myRole = useSelector((state) => state.user.role);
+  
   const nowPath = window.location.pathname.split('/')[1];
   let changeComponent = '';
   console.log(nowPath);
@@ -26,14 +29,6 @@ const ProductSummary = () => {
     case 'purchaseContract':
       changeComponent = <div></div>
       break;
-
-    // case 'productManage':
-    //   changeComponent = 
-    //   <div>
-    //     <MKBtn>등록하기</MKBtn>
-    //     <MKBtn>삭제하기</MKBtn>
-    //   </div>
-    //   break;
 
     default:
       break;
