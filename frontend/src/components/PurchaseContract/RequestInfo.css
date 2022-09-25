@@ -1,0 +1,18 @@
+.request_info{
+   display: flex;
+   justify-content: center;
+   margin-top: 3rem;
+  
+}
+
+.request_item {
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+}
+.request_label{
+    width: 250px;
+}
+.request_content{
+    width: 750px;
+}
