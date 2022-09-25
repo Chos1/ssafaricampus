@@ -1,9 +1,0 @@
-.PurchaseItem{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.PurchaseItem .PurchaseTitle{
-  margin-right: 10rem;
-}
