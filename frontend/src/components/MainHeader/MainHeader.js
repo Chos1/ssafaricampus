@@ -11,6 +11,7 @@ const MainHeader = () => {
         <TopMainHeader />
         <BottomMainHeader />
       </nav>
+      <hr />
     </header>
   );
 };
