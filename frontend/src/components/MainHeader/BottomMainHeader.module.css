@@ -1,11 +1,13 @@
 .justify_center{
-  display: flex;
+  display: flex; 
   justify-content: center;
   margin-top: 1rem;
 }
 
 .justify_center ul{
-  width : 60%;
+  width: 700px;
+  display: flex;
+  justify-content: center;
 }
 
 .justify_center ul li{

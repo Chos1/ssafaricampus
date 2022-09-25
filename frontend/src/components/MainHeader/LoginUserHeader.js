@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import apiPath from '../../api/apiPath';
 import { authActions } from '../../store/auth';
 
+import styles from './LoginUserHeader.module.css'
+
 const UserHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,10 +30,10 @@ const UserHeader = () => {
   return (
     <ul>
       <li>
-        <button onClick={() => {navigate('/mypage')}}>username</button>
+        <button onClick={() => {navigate('/mypage')}} className={styles.username}>username</button>
       </li>
       <li>
-        <button onClick={logoutHandler}>Logout</button>
+        <button onClick={logoutHandler} className={styles.Logout}>Logout</button>
       </li>
     </ul>   
   );

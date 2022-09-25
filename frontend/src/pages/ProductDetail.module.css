@@ -1,5 +1,5 @@
 
 .section > div {
-    display: flex;
-    justify-content: center;
+    width : 1080px;
+    margin: 0 auto;
 }
