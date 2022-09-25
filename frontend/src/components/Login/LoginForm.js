@@ -13,7 +13,6 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
-  console.log(isAuth);
   if (isAuth) { navigate('/main') }
 
   const [loginId, setLoginId] = useState('');
@@ -46,7 +45,7 @@ const LoginForm = () => {
     
     const data = await response.json();
     const { statusCode, accessToken } = data
-    
+
     if (statusCode === 200) {
       localStorage.setItem('token', accessToken);
       dispatch(authActions.login());
@@ -54,6 +53,7 @@ const LoginForm = () => {
     }
     else {
       console.log('login fail');
+      console.log(data)
     }
   }
 
