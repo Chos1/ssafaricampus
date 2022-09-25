@@ -67,7 +67,7 @@ const ProductForm = () => {
               <input type="file" multiple onChange={handleAddImages}/>
               {showImages.map((image, id) => (
               <div  key={id}>
-                <img src={image} alt={`${image}-${id}`} className='thumbnail_img'/>
+                <img src={image} alt={`${image}-${id}`} />
           
               </div>
       ))}
