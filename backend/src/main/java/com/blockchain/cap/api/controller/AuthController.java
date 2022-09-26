@@ -56,7 +56,6 @@ public class AuthController {
         }
 
         String refreshToken = JwtTokenUtil.getRefreshToken(loginInfo.getLoginId());
-        user.setPassword("");
 
         // DB 나 Redis 에 refreshToken 저장, 현재는 일단 DB
         refreshRepository.save(Refresh.builder().refreshToken(refreshToken).build());
