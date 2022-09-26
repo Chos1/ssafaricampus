@@ -12,10 +12,10 @@
 .product_inputgroup {
   position: relative;
   width: 100%;
-display: block;
-text-align: center;
-  
+  display: block;
+  text-align: center;
 }
+
 .product_inputgroup input {
   width: 400px;
   padding: 1rem 2rem;
@@ -102,4 +102,9 @@ font-weight:bold;
     margin-left: 150px;
     margin-top: 1.4rem;
     max-width:450px;
+  }
+
+  .button_position{
+    display: flex;
+    justify-content: center;
   }

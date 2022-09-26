@@ -20,6 +20,7 @@ function Mypage() {
   const email = useSelector((state) => state.user.email);
   const phone = useSelector((state) => state.user.phone);
   const role = useSelector((state) => state.user.role);
+  const companyNumber = useSelector((state) => state.user.companyNumber);
 
   const [isWallet, setIsWallet] = useState(true);
   const item = isWallet ? <PurchaseList /> : <Notion />;
@@ -51,7 +52,7 @@ function Mypage() {
   
   return (
     <div className={styles.mypage}>
-      <UserInfo name={name} loginId={loginId} email={email} phone={phone} role={role} isWallet={isWallet}/>
+      <UserInfo name={name} loginId={loginId} email={email} phone={phone} role={role} isWallet={isWallet} companyNumber={companyNumber}/>
       <button value={isWallet} onClick={() => {setIsWallet(!isWallet)}}>change wallet state</button>
       {item}
     </div>

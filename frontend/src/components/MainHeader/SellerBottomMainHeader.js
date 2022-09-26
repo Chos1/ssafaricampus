@@ -1,19 +1,19 @@
+import { NavLink } from 'react-router-dom';
+
 import styles from './BottomMainHeader.module.css'
 const SellerBottomMainHeader = () => {
   return (
-      <div className={styles.justify_center}>
+      <div className={styles.justify_center_seller}>
         <ul>
           <li>
-            <p>전체</p>
+            <NavLink to='/orderManage'>
+              오더 매니지먼트
+            </NavLink>
           </li>
           <li>
-            <p>오늘의 특가</p>
-          </li>
-          <li>
-            <p>추천 상품</p>
-          </li>
-          <li>
-            <p>아무튼 검색</p>
+            <NavLink to='/productManage/:productId'>
+              상품 확인
+            </NavLink>
           </li>
         </ul> 
       </div>
