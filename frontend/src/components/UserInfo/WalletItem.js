@@ -1,9 +1,14 @@
-// import WalletCarousel from "./WalletCarousel";
+import WalletCarousel from "./WalletCarousel";
 import AddWalletBtn from "./AddWalletBtn";
 
 import styles from "./WalletItem.module.css";
 
-const WalletItem = () => {
+
+
+const WalletItem = (props) => {
+
+  const Wallet = props.isWallet ? <WalletCarousel /> : <AddWalletBtn />;
+
   return (
     <div className={styles.WalletItem}>
       <div className={styles.WalletTitle}>
@@ -11,8 +16,9 @@ const WalletItem = () => {
         <h3> ? </h3>
         <p className={styles.arrow_box}>여기에 지갑 주소?</p>
       </div>
-      {/* <WalletCarousel /> */}
-      <AddWalletBtn />
+      {/* <WalletCarousel />
+      <AddWalletBtn /> */}
+      {Wallet}
     </div>
   );
 };

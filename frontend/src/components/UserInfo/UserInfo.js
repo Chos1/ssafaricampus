@@ -7,7 +7,7 @@ const UserInfo = (props) => {
   return (
       <div className={styles.UserInfo}>
         <UserInfoItem account={props.account} contacts={props.contacts}/>
-        <WalletItem />
+        <WalletItem isWallet={props.isWallet}/>
       </div>
   );
 };

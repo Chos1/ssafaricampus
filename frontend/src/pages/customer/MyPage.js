@@ -44,7 +44,7 @@ function Mypage() {
   
   return (
     <div className={styles.mypage}>
-      <UserInfo account={account} contacts={contacts} />
+      <UserInfo account={account} contacts={contacts} isWallet={isWallet}/>
       <button value={isWallet} onClick={() => {setIsWallet(!isWallet)}}>change wallet state</button>
       {item}
     </div>
