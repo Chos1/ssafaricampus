@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import UserHeader from './UserHeader.js';
 import LoginUserHeader from './LoginUserHeader.js';
 import styles from './TopMainHeader.module.css';
-import { ReactComponent as Reservation } from "../../assets/Logo.svg";
+import { ReactComponent as Reservation } from "../../assets/Logo_company.svg";
 
 const SellerTopMainHeader = () => {
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
@@ -15,7 +15,7 @@ const SellerTopMainHeader = () => {
       <div className={styles.justify_between}>
         <div className={styles.Logo}>
           
-          <NavLink to='/main'>
+          <NavLink to='/orderManage'>
           <Reservation width="18rem" height="6rem" />
             </NavLink>
         </div>

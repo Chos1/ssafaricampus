@@ -18,7 +18,7 @@ const SellerForm = () => {
   const [phone, setPhone] = useState('');
 
   async function signUp(loginId, password, name, companyNumber, phone) {
-    const response = await fetch(apiPath.user.customer(), {
+    const response = await fetch(apiPath.user.seller(), {
       method: 'POST',
       body: JSON.stringify({
         'loginId': loginId,

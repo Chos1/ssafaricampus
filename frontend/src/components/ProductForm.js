@@ -84,12 +84,13 @@ const ProductForm = () => {
               <label for="" className='product_summary'>상품 설명</label>
               <textarea placeholder="상품 설명을 입력해주세요"/>
               <br/>
-       
-
       
-              <MKBtn >등록하기</MKBtn>
-              <MKBtn >수정하기</MKBtn>
-       
+              <div className='button_position'>
+                <MKBtn >등록하기</MKBtn>
+              </div>
+              <div className='button_position'>
+              < MKBtn >수정하기</MKBtn>
+              </div>
       </form>
   
   );

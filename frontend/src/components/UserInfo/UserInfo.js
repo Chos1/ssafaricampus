@@ -9,7 +9,7 @@ const UserInfo = (props) => {
 
   return (
       <div className={UserInfoStyle}>
-        <UserInfoItem name={props.name} loginId={props.loginId} email={props.email} phone={props.phone} role={props.role}/>
+        <UserInfoItem name={props.name} loginId={props.loginId} email={props.email} phone={props.phone} role={props.role} companyNumber={props.companyNumber}/>
         <WalletItem isWallet={props.isWallet}/>
       </div>
   );

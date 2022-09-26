@@ -6,12 +6,13 @@ import styles from './UserInfoItem.module.css';
 const UserInfoItem = (props) => {
 
   const phoneNumber = props.phone.slice(0,3) + '-' + props.phone.slice(3,7) + '-' + props.phone.slice(7,11)
+  const EorN = props.companyNumber ? props.companyNumber : props.email
 
   return (
     <div className={styles.UserInfoItem}>
       <div>
         <h2>{props.name} ({props.loginId}) </h2>
-        <p>{props.email}</p>
+        <p>{EorN}</p>
         <p>{phoneNumber}</p>
       </div>
       <div className={styles.Passchange}>

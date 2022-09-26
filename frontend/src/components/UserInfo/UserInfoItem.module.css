@@ -2,13 +2,13 @@
   background-color: white;
   width : 250px;
   height: 200px;
-  padding-left: 5px;
+  padding-left: 15px;
   line-height: 15px;
 
 }
 
 .UserInfoItem .Passchange{
   position: relative;
-  left:80px;
-  top: 40px;
+  left:120px;
+  top: 45px;
 }
