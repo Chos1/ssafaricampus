@@ -11,11 +11,13 @@
 
 .justify_between .inputPosition{
   /* margin-left: 2rem; */
+  position: relative;
+  width: 390px;
 }
 
-.justify_between div .Search_input {
+.justify_between .inputPosition .Search_input {
   height: 40px;
-  width: 390px;
+  width: 100%;
   border-radius: 10px;
   border : #7f5feb solid 2px; 
   padding-left : 10px;
@@ -23,6 +25,27 @@
 
 }
 
-.justify_between div .Search_input:focus{
+.justify_between .inputPosition .Search_input:focus{
   border : #5326e7 solid 2px; 
+}
+
+.justify_between .inputPosition .inputglass{
+  width: 20px;
+  height: 20px;
+  position : absolute;
+  top: 13px;
+  right: 2px;
+  margin: 0;
+  fill: #7f5feb;
+  cursor: pointer;
+}
+
+.justify_between .inputPosition .inputglass:hover{
+  width: 20px;
+  height: 20px;
+  position : absolute;
+  top: 13px;
+  right: 2px;
+  margin: 0;
+  fill: #5326e7;
 }
