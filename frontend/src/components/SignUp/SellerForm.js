@@ -17,7 +17,7 @@ const SellerForm = () => {
   const [companyNumber, setCompanyNumber] = useState('');
   const [phone, setPhone] = useState('');
 
-  async function signUp(loginId, password) {
+  async function signUp(loginId, password, name, companyNumber, phone) {
     const response = await fetch(apiPath.user.customer(), {
       method: 'POST',
       body: JSON.stringify({
@@ -38,7 +38,7 @@ const SellerForm = () => {
 
   const signUpHandler = (e) => {
     e.preventDefault();
-    signUp(loginId, password);
+    signUp(loginId, password, name, companyNumber, phone);
     setLoginId('');
     setPassword('');
     setPasswordCheck('');
@@ -77,13 +77,13 @@ const SellerForm = () => {
               <input type='password' value={password} onChange={passwordChangeHandler} placeholder="비밀번호를 입력해주세요"/>
               <br/>
               <label>비밀번호 확인</label>
-              <input type="password" value={passwordCheck} onChange={passwordCheckChangeHandler}  placeholder="비밀번호를 한번 더 입력해주세요"/>
+              <input type='password' value={passwordCheck} onChange={passwordCheckChangeHandler}  placeholder="비밀번호를 한번 더 입력해주세요"/>
               <br/>
               <label>업체명</label>
               <input type='text' value={name} onChange={nameChangeHandler} placeholder="업체명을 입력해주세요"/>
               <br/>
               <label>사업체 등록번호</label>
-              <input value={companyNumber} onChange={companyNumberChangeHandler} placeholder="사업체 등록번호을 입력해주세요"/>
+              <input type='email' value={companyNumber} onChange={companyNumberChangeHandler} placeholder="사업체 등록번호을 입력해주세요"/>
               <SWBtnPBrd>사업자 인증</SWBtnPBrd>
               <br/>
               <label>전화번호</label>

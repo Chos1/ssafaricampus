@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import  './ProductSummary.css';
 import LPBtn from './ui/LPBtn';
 import groom from '../assets/구름.jpg';
-// import MKBtn from './ui/MKBtn';
+import MKBtn from './ui/MKBtn';
 
 const ProductSummary = () => {
   const navigate = useNavigate();
@@ -13,26 +13,54 @@ const ProductSummary = () => {
   
   const nowPath = window.location.pathname.split('/')[1];
   let changeComponent = '';
-  console.log(nowPath);
-  switch(nowPath) {
-    case 'products':
-      changeComponent = <LPBtn 
-        onClick={() => {
-          navigate('/productRequest/:productId')
-        }} 
-        className='purchase_btn1'
-      >
-        구매하기
-      </LPBtn>
-      break;
-  
-    case 'purchaseContract':
-      changeComponent = <div></div>
-      break;
 
-    default:
-      break;
+  if (nowPath === 'purchaseContract') {
+    changeComponent = <div></div>
   }
+  else if (nowPath === 'products' && myRole === 'USER') {
+    changeComponent = <LPBtn 
+      onClick={() => {
+        navigate('/productRequest/:productId')
+      }} 
+      className='purchase_btn1'
+    >
+      구매하기
+    </LPBtn>
+  }
+  else {
+    changeComponent = <div>
+        <MKBtn>등록하기</MKBtn>
+        <MKBtn>삭제하기</MKBtn>
+      </div>
+  }
+
+  // switch(nowPath) {
+  //   case 'products':
+  //     changeComponent = <LPBtn 
+  //       onClick={() => {
+  //         navigate('/productRequest/:productId')
+  //       }} 
+  //       className='purchase_btn1'
+  //     >
+  //       구매하기
+  //     </LPBtn>
+  //     break;
+  
+  //   case 'purchaseContract':
+  //     changeComponent = <div></div>
+  //     break;
+
+  //   case 'productManage':
+  //     changeComponent = 
+  //     <div>
+  //       <MKBtn>등록하기</MKBtn>
+  //       <MKBtn>삭제하기</MKBtn>
+  //     </div>
+  //     break;
+
+  //   default:
+  //     break;
+  // }
 
   return (
     <div className='product_summary_center'>

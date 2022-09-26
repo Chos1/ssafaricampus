@@ -6,6 +6,7 @@ import apiPath from '../../api/apiPath';
 import MPBtn from '../ui/MPBtn';
 import SWBtnPBrd from '../ui/SWBtnPBrd';
 import './SignUpForm.css';
+
 const CustomerForm = () => {
   const navigate = useNavigate();
 
@@ -82,7 +83,7 @@ const CustomerForm = () => {
               <input type='text' value={name} onChange={nameChangeHandler} placeholder="이름을 입력해주세요"/>
               <br/>
               <label>학교 이메일</label>
-              <input type="email" value={email} onChange={emailChangeHandler} placeholder="학교 이메일을 입력해주세요"/>
+              <input type='email' value={email} onChange={emailChangeHandler} placeholder="학교 이메일을 입력해주세요"/>
               <SWBtnPBrd>이메일 인증</SWBtnPBrd>
               <br/>
               <label>전화번호</label>
