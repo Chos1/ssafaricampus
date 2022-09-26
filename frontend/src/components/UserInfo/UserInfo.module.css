@@ -7,3 +7,14 @@
   margin-bottom: 4rem;
   background-color: antiquewhite;
 }
+
+.SellerInfo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15rem;
+  width: 100%;
+  margin-bottom: 4rem;
+  background-color: lightgray;
+}
+

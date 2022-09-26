@@ -8,12 +8,20 @@ import styles from './Mypage.module.css'
 import { useEffect, useState } from "react";
 import Web3 from "web3";
 import { CONTACT_ABI, CONTACT_ADDRESS } from "./config";
+import { useSelector } from 'react-redux';
 
 function Mypage() {
   const [account, setAccount] = useState();
   const [contactList, setContactList] = useState();
   const [contacts, setContacts] = useState([]);
   
+  const name = useSelector((state) => state.user.name);
+  const loginId = useSelector((state) => state.user.loginId);
+  const email = useSelector((state) => state.user.email);
+  const phone = useSelector((state) => state.user.phone);
+  const role = useSelector((state) => state.user.role);
+  const companyNumber = useSelector((state) => state.user.companyNumber);
+
   const [isWallet, setIsWallet] = useState(true);
   const item = isWallet ? <PurchaseList /> : <Notion />;
 
@@ -44,7 +52,7 @@ function Mypage() {
   
   return (
     <div className={styles.mypage}>
-      <UserInfo account={account} contacts={contacts} isWallet={isWallet}/>
+      <UserInfo name={name} loginId={loginId} email={email} phone={phone} role={role} isWallet={isWallet} companyNumber={companyNumber}/>
       <button value={isWallet} onClick={() => {setIsWallet(!isWallet)}}>change wallet state</button>
       {item}
     </div>

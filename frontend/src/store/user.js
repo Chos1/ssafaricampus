@@ -4,7 +4,9 @@ const initialUserState = {
   role: '',
   name: '',
   email: '',
-  phone: ''
+  phone: '',
+  loginId: '',
+  companyNumber: ''
 };
 
 const userSlice = createSlice({
@@ -16,12 +18,16 @@ const userSlice = createSlice({
       state.name = context.payload.name;
       state.email = context.payload.email;
       state.phone = context.payload.phone;
+      state.loginId = context.payload.loginId;
+      state.companyNumber = context.payload.companyNumber;
     },
     logout(state) {
       state.role = '';
       state.name = '';
       state.email = '';
       state.phone = '';
+      state.loginId = ''; 
+      state.companyNumber = '';
     },
   },
 });

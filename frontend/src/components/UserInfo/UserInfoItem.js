@@ -4,12 +4,16 @@ import styles from './UserInfoItem.module.css';
 
 
 const UserInfoItem = (props) => {
+
+  const phoneNumber = props.phone.slice(0,3) + '-' + props.phone.slice(3,7) + '-' + props.phone.slice(7,11)
+  const EorN = props.companyNumber ? props.companyNumber : props.email
+
   return (
     <div className={styles.UserInfoItem}>
       <div>
-        <h2>이름(아이디)</h2>
-        <p>이메일</p>
-        <p>010-0000-0000</p>
+        <h2>{props.name} ({props.loginId}) </h2>
+        <p>{EorN}</p>
+        <p>{phoneNumber}</p>
       </div>
       <div className={styles.Passchange}>
         <BtnPTxt >비밀번호 변경</BtnPTxt>
