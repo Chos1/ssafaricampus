@@ -8,4 +8,5 @@
 
 .Login_ul .username{
   margin-left: 50px;
+  white-space:nowrap;
 }
