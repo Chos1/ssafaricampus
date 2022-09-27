@@ -12,7 +12,17 @@ const LoginUserHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const name = useSelector((state) => state.user.name);
-  
+  const role = useSelector((state) => state.user.role)
+  let userName = ''
+
+  if (role==='USER'){
+    userName = 
+    <button onClick={() => {navigate('/mypage')}} className={styles.username}>{name}</button>
+  }else {
+    userName =
+    <button onClick={() => {navigate('/orderManage')}} className={styles.username}>{name}</button>
+  }
+
   async function logout() {
     // eslint-disable-next-line no-unused-vars
     const response = await fetch(apiPath.auth.logout(), {
@@ -40,7 +50,7 @@ const LoginUserHeader = () => {
     <div className={styles.Login_ul}>
       <ul>
         <li>
-          <button onClick={() => {navigate('/mypage')}} className={styles.username}>{name}</button>
+          {userName}
         </li>
         <li>
           <button onClick={logoutHandler} className={styles.Logout}>Logout</button>

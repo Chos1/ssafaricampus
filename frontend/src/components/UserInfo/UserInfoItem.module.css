@@ -1,14 +1,14 @@
 .UserInfoItem{
   background-color: white;
-  width : 250px;
+  width : 400px;
   height: 200px;
   padding-left: 15px;
   line-height: 15px;
-
+  border-radius: 8px;
 }
 
 .UserInfoItem .Passchange{
   position: relative;
-  left:120px;
+  left:270px;
   top: 45px;
 }
