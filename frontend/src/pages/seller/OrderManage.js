@@ -23,7 +23,7 @@ function OrderManage() {
   const companyNumber = useSelector((state) => state.user.companyNumber);
 
   const [isWallet, setIsWallet] = useState(true);
-  const item = isWallet ? <PurchaseList /> : <Notion />;
+  const item = isWallet ? <PurchaseList /> : <Notion role={role}/>;
 
   useEffect(() => {
     async function load() {
