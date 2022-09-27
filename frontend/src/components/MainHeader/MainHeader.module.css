@@ -37,7 +37,7 @@
   .header li {
     text-align : right;
     padding: 0px;
-    width: 5rem;
+    /* width: 5rem; */
   }
   
   .header a {
