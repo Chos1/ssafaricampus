@@ -6,6 +6,7 @@ import { authActions } from '../../store/auth';
 import { userActions } from '../../store/user';
 
 import styles from './LoginUserHeader.module.css'
+import { persistor } from '../../store';
 
 const LoginUserHeader = () => {
   const navigate = useNavigate();
@@ -20,6 +21,10 @@ const LoginUserHeader = () => {
       const data = await response.json();
       console.log(data);
       localStorage.removeItem('token');
+      persistor.pause();
+      persistor.flush().then(() => {
+        return persistor.purge();
+      });
       dispatch(authActions.logout());
       dispatch(userActions.logout());
       navigate('/main');
