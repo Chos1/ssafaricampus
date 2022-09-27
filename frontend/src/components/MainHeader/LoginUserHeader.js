@@ -20,6 +20,7 @@ const LoginUserHeader = () => {
       
       const data = await response.json();
       console.log(data);
+      
       localStorage.removeItem('token');
       persistor.pause();
       persistor.flush().then(() => {
