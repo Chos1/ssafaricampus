@@ -1,0 +1,8 @@
+.postmodal {
+  display: "block";
+  position: "absolute";
+  top: "10%";
+  width: "600px";
+  height: "600px";
+  padding: "7px";
+}
