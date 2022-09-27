@@ -14,10 +14,14 @@ const ProductSummary = () => {
   const nowPath = window.location.pathname.split('/')[1];
   let changeComponent = '';
 
+  const price_component = myRole === "COMPANY" ? "product_price_seller" : "product_price";
+
+
+
   if (nowPath === 'purchaseContract') {
     changeComponent = <div></div>
   }
-  else if (nowPath === 'products' && myRole === 'USER') {
+  else if (nowPath === 'products' && myRole !== 'COMPANY') {
     changeComponent = <LPBtn 
       onClick={() => {
         navigate('/productRequest/:productId')
@@ -74,7 +78,7 @@ const ProductSummary = () => {
 
           <p className='product_title'>충북대 과잠</p>
           <p className='product_subtitle'>아무튼 서브 이름</p>
-          <p className='product_price'>12,900원</p>
+          <p className={price_component}>12,900원</p>
           </div>
           <div>
             <div className='product_mini'>

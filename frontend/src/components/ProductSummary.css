@@ -44,6 +44,15 @@
     font-size: 28px;
     color: #5d33e6;
 }
+
+.product_main .product_price_seller{
+    margin: 0px;
+    padding-top : 19px;
+    padding-bottom: 20px;
+    font-weight: bold;
+    font-size: 28px;
+    color: black;
+}
 .product_mini{
     padding: 7px 0px 8px;
     font-size: 14px;
