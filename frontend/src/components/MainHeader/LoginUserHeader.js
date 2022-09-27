@@ -14,13 +14,12 @@ const LoginUserHeader = () => {
   const name = useSelector((state) => state.user.name);
   
   async function logout() {
+    // eslint-disable-next-line no-unused-vars
     const response = await fetch(apiPath.auth.logout(), {
       method: 'POST'
       });
-      
-      const data = await response.json();
-      console.log(data);
-      
+      // const data = await response.json();
+
       localStorage.removeItem('token');
       persistor.pause();
       persistor.flush().then(() => {
