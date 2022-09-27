@@ -1,4 +1,5 @@
-import { useParams, useNavigate } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './ProductDetail.module.css';
 
 import ProductSummary from '../components/ProductSummary';
@@ -7,8 +8,7 @@ import LPBtn from '../components/ui/LPBtn';
 
 const ProductDetail = () => {
   // url parameter 사용
-  const params = useParams();
-  console.log(params.productId);
+  // const params = useParams();
   
   const navigate = useNavigate();
 
