@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import apiPath from '../../api/apiPath';
@@ -79,7 +79,7 @@ const LoginForm = () => {
         <br/>
         <LPBtn type='submit' onClick={loginHandler}>로그인</LPBtn>
       </form>
-      <Link to='/signup'><LWBtnPBrd>회원가입</LWBtnPBrd></Link>
+      <LWBtnPBrd onClick={()=>{navigate('/signup')}}>회원가입</LWBtnPBrd>
     </div>
   );
 };

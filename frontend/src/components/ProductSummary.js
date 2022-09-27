@@ -14,7 +14,7 @@ const ProductSummary = () => {
   const nowPath = window.location.pathname.split('/')[1];
   let changeComponent = '';
 
-  if (nowPath === 'purchaseContract') {
+  if (nowPath === 'purchaseContract' || nowPath === 'orderDetail') {
     changeComponent = <div></div>
   }
   else if (nowPath === 'products' && myRole === 'USER') {
