@@ -26,6 +26,21 @@ text-align: center;
   margin-right: 0.2rem;
 
 }
+
+.request_inputgroup .shipping_add_1{
+  width: 50%;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  background-color: var(--gray);
+  border-radius: 7px;
+  border: 0.125rem solid var(--white);
+  outline: none;
+  margin-top: 0.8rem;
+  margin-left: 9.6rem;
+  margin-right: 0.2rem;
+
+}
+
 .add_search{
   width: 119px;
   height: 54.67px;
