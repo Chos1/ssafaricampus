@@ -6,8 +6,6 @@ import MPBtn from '../../components/ui/MPBtn';
 import styles from '../ProductDetail.module.css'
 
 const PurchaseContract = () => {
-    console.log(window.location.pathname);
-
     return (
         <section className={styles.section}>
             <ProductSummary />

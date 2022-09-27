@@ -18,6 +18,7 @@ const CustomerForm = () => {
   const [phone, setPhone] = useState('');
 
   async function signUp(loginId, password, name, email, phone) {
+    // eslint-disable-next-line no-unused-vars
     const response = await fetch(apiPath.user.customer(), {
       method: 'POST',
       body: JSON.stringify({
@@ -31,8 +32,7 @@ const CustomerForm = () => {
         'Content-Type': 'application/json'
       }
     });
-    const data = await response.json();
-    console.log(data);
+    // const data = await response.json();
     navigate('/login');
   }
 

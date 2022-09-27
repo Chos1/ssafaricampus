@@ -9,6 +9,7 @@ import LPBtn from '../components/ui/LPBtn';
 const ProductDetail = () => {
   const myRole = useSelector((state) => state.user.role);
   let changeComponent = ''
+
   const navigate = useNavigate();
   if (myRole === "COMPANY") {
     changeComponent = <div></div>
