@@ -1,11 +1,14 @@
 import { NavLink } from 'react-router-dom';
+
+import styles from './UserHeader.module.css'
+
 const UserHeader = () => {
   return (
-    <ul>
-      <li>
+    <ul className={styles.loginUl}>
+      <li className={styles.loginname}>
         <NavLink to='/login'>
           Login
-        </NavLink>
+        </NavLink >
       </li>
       <li>
         <NavLink to='/signup'>

@@ -51,7 +51,6 @@ const LoginForm = () => {
     });
     
     const data = await response.json();
-    console.log(data);
     const { statusCode, accessToken } = data;
     
     if (statusCode === 200) {
@@ -64,8 +63,7 @@ const LoginForm = () => {
       }
     }
     else {
-      console.log('login fail');
-      console.log(data)
+      alert('login fail');
     }
   }
 
