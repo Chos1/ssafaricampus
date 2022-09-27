@@ -1,4 +1,3 @@
-// import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductDetail.module.css';
 import { useSelector } from 'react-redux';
@@ -8,7 +7,6 @@ import ProductImage from '../components/ProductDetail/ProductImage';
 import LPBtn from '../components/ui/LPBtn';
 
 const ProductDetail = () => {
-  const params = useParams();
   const myRole = useSelector((state) => state.user.role);
   let changeComponent = ''
 
