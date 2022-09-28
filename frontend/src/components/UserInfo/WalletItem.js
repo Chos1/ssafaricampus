@@ -2,16 +2,13 @@ import WalletCarousel from "./WalletCarousel";
 import AddWalletBtn from "./AddWalletBtn";
 import ReactTooltip from "react-tooltip";
 
-import {AiOutlineInfoCircle} from "react-icons/ai"
+import { AiOutlineInfoCircle } from "react-icons/ai";
 
 import styles from "./WalletItem.module.css";
 
-
-
 const WalletItem = (props) => {
-  
   const Wallet = props.isWallet ? <WalletCarousel /> : <AddWalletBtn />;
-  const doCopy = text => {
+  const doCopy = (text) => {
     navigator.clipboard
       .writeText(text)
       .then(() => {
@@ -25,10 +22,10 @@ const WalletItem = (props) => {
     <div className={styles.WalletItem}>
       <div className={styles.WalletTitle}>
         <h2>지갑관리</h2>
-        <AiOutlineInfoCircle data-for="walletName" data-tip onClick={() => doCopy("지갑주소12341234")} />
-        <ReactTooltip
-        id="walletName"
-        getContent={dataTip => "지갑주소"}></ReactTooltip>
+        <div>
+          <AiOutlineInfoCircle data-for="walletName" data-tip onClick={() => doCopy("지갑주소12341234")} size="25" className={styles.walletInfo} />
+        </div>
+        <ReactTooltip id="walletName" getContent={(dataTip) => "지갑주소"}></ReactTooltip>
       </div>
       {Wallet}
     </div>

@@ -1,4 +1,4 @@
-.WalletItem{
+.WalletItem {
   width: 655px;
   height: 200px;
   margin-left: 10px;
@@ -6,18 +6,28 @@
   border-radius: 8px;
 }
 
-.WalletItem .WalletTitle{
-  margin-bottom : 0px;
-  margin-top : 10px;
-  margin-left : 10px;
+.WalletItem .WalletTitle {
+  margin-bottom: 0px;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
 }
 
 .WalletItem .WalletTitle h2,
-.WalletItem .WalletTitle h3{
+.WalletItem .WalletTitle h3 {
   display: inline;
-  margin:0px;
+  margin: 0px;
 }
 
-.WalletItem .WalletTitle h3{
+.WalletItem .WalletTitle h3 {
   cursor: pointer;
+}
+.WalletItem .WalletTitle .walletInfo {
+  margin-top: 6px;
+  cursor: pointer;
+}
+.WalletItem .WalletTitle .walletInfo:active,
+.WalletItem .WalletTitle .walletInfo:hover,
+.WalletItem .WalletTitle .walletInfo:focus {
+  outline: none;
 }
