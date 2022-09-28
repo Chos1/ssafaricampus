@@ -55,7 +55,9 @@ const LoginForm = () => {
     
     if (statusCode === 200) {
       localStorage.setItem('token', accessToken);
+      console.log('dispatch start');
       dispatch(userActions.login(data.user));
+      console.log('dispatch finish');
       if (data.user.role === 'USER') {
         navigate('/main');
       } else {

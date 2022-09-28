@@ -31,10 +31,12 @@ const LoginUserHeader = () => {
       // const data = await response.json();
 
       localStorage.removeItem('token');
-      persistor.pause();
-      persistor.flush().then(() => {
-        return persistor.purge();
-      });
+      // persistor.pause();
+      // persistor.flush().then(() => {
+      //   return persistor.purge();
+      // });
+      persistor.purge();
+
       dispatch(authActions.logout());
       dispatch(userActions.logout());
       navigate('/main');
