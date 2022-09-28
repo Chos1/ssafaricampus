@@ -4,6 +4,11 @@
   align-items: center;
 }
 
+.PurchaseItem .PurchaseImg{
+  cursor: pointer;
+}
+
 .PurchaseItem .PurchaseTitle{
   margin-right: 10rem;
+  cursor: pointer;
 }
