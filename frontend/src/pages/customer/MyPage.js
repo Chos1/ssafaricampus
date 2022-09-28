@@ -1,14 +1,15 @@
-import UserInfo from '../../components/UserInfo/UserInfo'
-import Notion from '../../components/UserInfo/Notion'
-import PurchaseList from '../../components/UserInfo/PurchaseList';
-
-import styles from './Mypage.module.css'
-
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 // import Web3 from "web3";
 // import { CONTACT_ABI, CONTACT_ADDRESS } from "./config";
 import { useSelector } from 'react-redux';
+
+import Demo from "../../components/Demo";
+import UserInfo from '../../components/UserInfo/UserInfo'
+import Notion from '../../components/UserInfo/Notion'
+import PurchaseList from '../../components/UserInfo/PurchaseList';
+
+import styles from './Mypage.module.css';
 
 function Mypage() {
  
@@ -27,6 +28,7 @@ function Mypage() {
       <UserInfo name={name} loginId={loginId} email={email} phone={phone} role={role} isWallet={isWallet} companyNumber={companyNumber}/>
       <button value={isWallet} onClick={() => {setIsWallet(!isWallet)}}>change wallet state</button>
       {item}
+      <Demo />
     </div>
   );
 }
