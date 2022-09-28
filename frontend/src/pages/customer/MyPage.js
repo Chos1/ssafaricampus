@@ -7,7 +7,7 @@ import styles from './Mypage.module.css'
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import Web3 from "web3";
-import { CONTACT_ABI, CONTACT_ADDRESS } from "./config";
+// import { CONTACT_ABI, CONTACT_ADDRESS } from "./config";
 import { useSelector } from 'react-redux';
 
 function Mypage() {
@@ -32,7 +32,7 @@ function Mypage() {
       const accounts = await web3.eth.getAccounts();
       setAccount(accounts[0]);
       // Instantiate smart contract using ABI and address.
-      const contactList = new web3.eth.Contract(CONTACT_ABI, CONTACT_ADDRESS);
+      // const contactList = new web3.eth.Contract(CONTACT_ABI, CONTACT_ADDRESS);
       // set contact list to state variable.
       setContactList(contactList);
       // Then we get total number of contacts for iteration
