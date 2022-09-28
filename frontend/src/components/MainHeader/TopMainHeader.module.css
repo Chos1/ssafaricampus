@@ -26,7 +26,13 @@
 }
 
 .justify_between .inputPosition .Search_input:focus{
-  border : #5326e7 solid 2px; 
+  outline: none;
+  border : #5326e7 solid 2px;
+}
+
+.justify_between .inputPosition .Search_input:hover
+{
+  border : #5326e7 solid 2.5px; 
 }
 
 .justify_between .inputPosition .inputglass{
