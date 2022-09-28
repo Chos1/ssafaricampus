@@ -1,6 +1,7 @@
 import './Login.css';
 import SignUpChoice from "../components/SignUp/SignUpChoice";
 import { ReactComponent as Reservation } from "../assets/Signup.svg";
+
 const SignUpMain = () => {
     return (
         <div className="Login_container">

@@ -1,17 +1,21 @@
 import { Link } from 'react-router-dom';
+import  Sazang  from "../../assets/사장.svg";
+import Pandang from "../../assets/판당.svg";
+import './SignUpChoice.css';
 const SignUpChoice = () => {
   return (
-      <div>
-          {/* <p>Sign Up Choice</p> */}
-          <div>
+      <div >
+          <div className='signup_display'>
+            
             <Link to='/signup/customer'>
-            구매자 이미지
+              <img src={Sazang} alt=""/>
             </Link>
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+       
+           
             <Link to='/signup/seller'>
-            판매자 이미지
+              <img src={Pandang} alt=""/>
             </Link>
-            </div>
+          </div>
       
       </div>
   );
