@@ -1,5 +1,6 @@
 .Main-Carousel {
   width: 100%;
+  min-width: 1080px;
 }
 
 .Main-Carousel .img-back {
