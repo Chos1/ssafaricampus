@@ -12,11 +12,8 @@ const ProductList = () => {
     ["제품3", "30000"],
     ["제품4", "40000"],
   ];
-  const goodsList = goods.map((good) => (
-    <ProductItem
-      title={good[0]}
-      price={good[1]}
-    />
+  const goodsList = goods.map((good, idx) => (
+    <ProductItem key={idx} title={good[0]} price={good[1]} />
   ));
 
   return (
