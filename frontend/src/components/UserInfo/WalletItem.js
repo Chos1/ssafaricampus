@@ -8,8 +8,32 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import styles from "./WalletItem.module.css";
 
 const WalletItem = (props) => {
-  const Wallet = props.isWallet ? <WalletCarousel /> : <AddWalletBtn />;
   const { state } = useEth();
+
+  let WalletTitle = (
+    <div>
+      <h2>지갑 연결</h2>
+    </div>
+  );
+
+  if (state.account) {
+    WalletTitle = (
+      <>
+        <h2>지갑 관리</h2>
+        <div>
+          <AiOutlineInfoCircle data-for="walletName" data-tip onClick={() => doCopy(state.account)} size="25" className={styles.walletInfo} />
+        </div>
+        <ReactTooltip id="walletName" getContent={(dataTip) => state.account}></ReactTooltip>
+      </>
+    );
+  }
+
+  let Wallet = <div></div>;
+  if (state.account) {
+    Wallet = <WalletCarousel />;
+  } else {
+    Wallet = <AddWalletBtn />;
+  }
   const doCopy = (text) => {
     navigator.clipboard
       .writeText(text)
@@ -20,15 +44,10 @@ const WalletItem = (props) => {
         alert("복사를 다시 시도해주세요.");
       });
   };
+
   return (
     <div className={styles.WalletItem}>
-      <div className={styles.WalletTitle}>
-        <h2>지갑관리</h2>
-        <div>
-          <AiOutlineInfoCircle data-for="walletName" data-tip onClick={() => doCopy(state.account)} size="25" className={styles.walletInfo} />
-        </div>
-        <ReactTooltip id="walletName" getContent={(dataTip) => "지갑주소"}></ReactTooltip>
-      </div>
+      <div className={styles.WalletTitle}>{WalletTitle}</div>
       {Wallet}
     </div>
   );

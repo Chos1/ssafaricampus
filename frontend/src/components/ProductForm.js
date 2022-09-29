@@ -62,16 +62,14 @@ const ProductForm = () => {
         }}
       />
 
-      {imageSrc && (
-        <img src={imageSrc} alt="preview-img" className="thumbnail_img" />
-      )}
+      {imageSrc && <img src={imageSrc} alt="preview-img" className="thumbnail_img" />}
 
       <br />
       <label>상세 사진</label>
       <input type="file" multiple onChange={handleAddImages} />
       {showImages.map((image, id) => (
         <div key={id}>
-          <img src={image} alt={`${image}-${id}`} />
+          <img src={image} alt={`${image}-${id}`} className="thumbnail_img" />
         </div>
       ))}
       <br />
