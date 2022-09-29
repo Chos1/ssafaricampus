@@ -2,10 +2,8 @@
   --primary-color: #7f5feb;
   --white: #ffffff;
   --gray: #efefef;
-
-
 }
-.regist{
+.regist {
   display: block;
   text-align: center;
 }
@@ -27,10 +25,9 @@
   margin-top: 0.8rem;
   margin-left: 2rem;
   margin-right: 0.2rem;
-
 }
 .product_inputgroup textarea {
-  resize:vertical;
+  resize: vertical;
   width: 400px;
   height: 5rem;
   padding: 1rem 2rem;
@@ -42,11 +39,9 @@
   margin-top: 0.8rem;
   margin-left: 2rem;
   margin-right: 0.2rem;
-
 }
 
-
-.product_inputgroup select{
+.product_inputgroup select {
   width: 470px;
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -59,20 +54,21 @@
   margin-right: 0.2rem;
 }
 
-.product_summary{
+.product_summary {
   /* margin-top: 1.1rem; */
   /* margin-bottom: 10rem; */
+  margin-top: 13px;
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between;
   vertical-align: top;
 }
 .product_inputgroup label {
-display:inline-block;
-text-align: left;
-width:120px;
-font-weight:bold;
-/* vertical-align: middle; */
+  display: inline-block;
+  text-align: left;
+  width: 120px;
+  font-weight: bold;
+  /* vertical-align: middle; */
 }
 
 .product_inputgroup input:focus {
@@ -94,17 +90,17 @@ font-weight:bold;
   clip:rect(0,0,0,0);
   border: 0;
   } */
-  input::file-selector-button {
-    display: none;
-  }
+input::file-selector-button {
+  display: none;
+}
 
-.thumbnail_img {
-    margin-left: 150px;
-    margin-top: 1.4rem;
-    max-width:450px;
-  }
+.product_inputgroup .thumbnail_img {
+  margin-left: 150px;
+  margin-top: 1.4rem;
+  max-width: 450px;
+}
 
-  .button_position{
-    display: flex;
-    justify-content: center;
-  }
+.button_position {
+  display: flex;
+  justify-content: center;
+}

@@ -5,8 +5,10 @@ const Notion = () => {
     <div className={styles.notion}>
       <div className={styles.notionbox}>
         <div>
-          {/* 지갑생성방법 step1. MetaMask.io 접속 step2. MetaMask Chrome 확장 프로그램 설치 step3.  */}
-
+          <h1>지갑생성방법</h1>
+          <h2>step1. + 버튼을 통해 MetaMask.io 접속 </h2>
+          <h2>step2. MetaMask Chrome 확장 프로그램 설치</h2>
+          <h2>step3. MetaMask 지갑 생성</h2>
           <h1>지갑 생성 시 알아두세요!</h1>
           <h2>1. 지갑 비밀키를 잃어버리지 마세요!</h2>
           <p>한 번 잃어버리면 복구 할 수 없습니다.</p>
