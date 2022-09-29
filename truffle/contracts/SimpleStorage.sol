@@ -39,18 +39,27 @@ contract SimpleStorage {
   struct Item {
     uint32 price;
     string title;
+    string lineInfo;
+    string categori;
+    string thumbnail;
+    string detail;
+    string expressDue;
+    string info;
   }
 
-  event NewItem(uint itemId, uint32 price, string title);
+  event NewItem(string title, string lineInfo, uint32 price, 
+                string categori, string thumbnail, string detail, 
+                string expressDue, string info);
 
   Item[] public items;
   mapping(address => Item) ownerToItem;
 
-  function registItem(uint32 price, string calldata title) public {
-    items.push(Item(price, title));
-    ownerToItem[msg.sender] = Item(price, title);
-    uint itemId = items.length;
-    emit NewItem(itemId, price, title);
+  function registItem(string memory title, string memory lineInfo, uint32 price, 
+                      string memory categori, string memory thumbnail, string memory detail, 
+                      string memory expressDue, string memory info) public {
+    items.push(Item(price, lineInfo, title, categori, thumbnail, detail, expressDue, info));
+    ownerToItem[msg.sender] = Item(price, lineInfo, title, categori, thumbnail, detail, expressDue, info);
+    emit NewItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, info);
   }
 
   function readItem(address _address) public view returns(Item memory) {

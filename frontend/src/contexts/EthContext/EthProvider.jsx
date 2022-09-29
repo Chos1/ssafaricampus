@@ -3,7 +3,7 @@ import Web3 from "web3";
 import EthContext from "./EthContext";
 import { reducer, actions, initialState } from "./state";
 
-function EthProvider({ children }) {
+function EthProvider({ contract, children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const getRequestAccounts = async () => {
@@ -36,7 +36,9 @@ function EthProvider({ children }) {
               {
                 chainId: _chainId,
                 chainName: "goerli",
-                rpcUrls: ["https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb"],
+                rpcUrls: [
+                  "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb",
+                ],
                 nativeCurrency: {
                   name: "Ethereum",
                   symbol: "ETH", // 통화 단위
@@ -59,7 +61,10 @@ function EthProvider({ children }) {
       // const chainId = await window.ethereum.request({ method: "eth_chainId" });
       // console.log("체인아이디" + chainId);
 
-      const web3 = new Web3(Web3.givenProvider || "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb");
+      const web3 = new Web3(
+        Web3.givenProvider ||
+          "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb"
+      );
       // const web3 = new Web3("https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb");
       // const signer = web3.eth.accounts.privateKeyToAccount("649be48b389e86f84348b66bf3bcf8feb0bb4b401ea5c37a05e4c5c3b27d7c5f");
       // web3.eth.accounts.wallet.add(signer);
@@ -90,7 +95,15 @@ function EthProvider({ children }) {
       }
       dispatch({
         type: actions.init,
-        data: { artifact, web3, accounts, networkID, contract, account, balance },
+        data: {
+          artifact,
+          web3,
+          accounts,
+          networkID,
+          contract,
+          account,
+          balance,
+        },
       });
     }
   }, []);
@@ -98,7 +111,7 @@ function EthProvider({ children }) {
   useEffect(() => {
     const tryInit = async () => {
       try {
-        const artifact = require("../../contracts/SimpleStorage.json");
+        const artifact = require("../../contracts/" + contract + ".json");
         init(artifact);
       } catch (err) {
         console.error(err);

@@ -11,7 +11,7 @@ import PurchaseList from "../../components/UserInfo/PurchaseList";
 
 import styles from "./Mypage.module.css";
 import useEth from "../../contexts/EthContext/useEth";
-
+// import EthProvider from "../../contexts/EthContext/EthProvider";
 function Mypage() {
   const name = useSelector((state) => state.user.name);
   const loginId = useSelector((state) => state.user.loginId);
@@ -27,7 +27,9 @@ function Mypage() {
     <div className={styles.mypage}>
       <UserInfo name={name} loginId={loginId} email={email} phone={phone} role={role} companyNumber={companyNumber} />
       {item}
-      {/* <Demo /> */}
+      {/* <EthProvider contract="SimpleStorage">
+        <Demo />
+      </EthProvider> */}
     </div>
   );
 }
