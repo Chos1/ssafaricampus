@@ -5,6 +5,7 @@ import { Provider, useSelector } from "react-redux";
 import RouteApp from "./RouteApp";
 import MainHeader from "./components/MainHeader/MainHeader";
 import MainFooter from "./components/MainFooter/MainFooter";
+import EthProvider from "./contexts/EthContext/EthProvider";
 
 function App() {
   try {
@@ -13,13 +14,15 @@ function App() {
   } catch {}
 
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <MainHeader />
-        <RouteApp />
-        <MainFooter />
-      </PersistGate>
-    </Provider>
+    <EthProvider contract="SimpleStorage">
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <MainHeader />
+          <RouteApp />
+          <MainFooter />
+        </PersistGate>
+      </Provider>
+    </EthProvider>
   );
 }
 
