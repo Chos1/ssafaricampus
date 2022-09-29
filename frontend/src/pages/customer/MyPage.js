@@ -10,7 +10,7 @@ import Notion from "../../components/UserInfo/Notion";
 import PurchaseList from "../../components/UserInfo/PurchaseList";
 
 import styles from "./Mypage.module.css";
-import useEth from "../../contexts/EthContext/useEth";
+import EthProvider from "../../contexts/EthContext/EthProvider";
 
 function Mypage() {
   const name = useSelector((state) => state.user.name);
@@ -20,14 +20,32 @@ function Mypage() {
   const role = useSelector((state) => state.user.role);
   const companyNumber = useSelector((state) => state.user.companyNumber);
 
-  const { state } = useEth();
-  const item = state.account !== null ? <PurchaseList /> : <Notion role={role} />;
+  const [isWallet, setIsWallet] = useState(true);
+  const item = isWallet ? <PurchaseList /> : <Notion />;
 
   return (
     <div className={styles.mypage}>
-      <UserInfo name={name} loginId={loginId} email={email} phone={phone} role={role} companyNumber={companyNumber} />
+      <UserInfo
+        name={name}
+        loginId={loginId}
+        email={email}
+        phone={phone}
+        role={role}
+        isWallet={isWallet}
+        companyNumber={companyNumber}
+      />
+      <button
+        value={isWallet}
+        onClick={() => {
+          setIsWallet(!isWallet);
+        }}
+      >
+        change wallet state
+      </button>
       {item}
-      <Demo />
+      <EthProvider contract="SimpleStorage">
+        <Demo />
+      </EthProvider>
     </div>
   );
 }
