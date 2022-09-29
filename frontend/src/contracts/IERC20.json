@@ -194,7 +194,7 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n\nimport \"./SafeMath.sol\";\n\ninterface IERC20 {\n\n    function totalSupply() external view returns (uint256);\n    function balanceOf(address account) external view returns (uint256);\n    function transfer(address recipient, uint256 amount) external returns (bool);\n    function allowance(address owner, address spender) external view returns (uint256);\n    function approve(address spender, uint256 amount) external returns (bool);\n    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);\n\n    event Transfer(address indexed from, address indexed to, uint256 value);\n    event Approval(address indexed owner, address indexed spender, uint256 value);\n}\n\n/** \n * @author doey\n * @title Cash\n * @notice Cash follows the erc20 standard and is used in the ecommerce service.\n */\ncontract Cash is IERC20{\n    \n    using SafeMath for uint256;\n    \n    string public constant name = \"Cash\";\t\t\n    string public constant symbol = \"C\";\t\t\t\n    uint8 public constant decimals = 0;\t\n    \n    address payable public minter;\n    mapping (address => uint256) private balances;\n    mapping (address => mapping(address => uint256)) private allowed;  \n    uint256 public totalSupply;\n\n    /**\n     * @notice constructor\n     * totalSupply(inital supply), minter(owner)\n     */\n    constructor() {\n        totalSupply = 10 ** 7; // initial supply\n        minter = payable(msg.sender);\n        balances[minter] = totalSupply;\n    }\n    \n    /**\n     * @notice mint\n     * @param _receiver the receiver's address\n     * @param _amount the amount of tokens\n     */\n    function mint(address _receiver, uint256 _amount) external {\n        require(msg.sender == minter);\n        require(_amount < 1e60);\n        balances[_receiver] = balances[_receiver].add(_amount);\n        totalSupply = totalSupply.add(_amount);\n    }\n    \n    /**\n     * @notice retrieves the balance that the account has\n     * @param _account address\n     * @return balance \n     */\n    function balanceOf(address _account) external view returns (uint)\t\t\n    {\n         return balances[_account];\n    }\n    \n    /**\n     * @notice transfers the amount of token to the recipient\n     * @param _recipient the receiver's address\n     * @param _amount the amount of tokens\n     * @return success or failure\n     */\n    function transfer(address _recipient, uint _amount) external returns (bool)\n    {\n        require(_amount > 0 && balances[msg.sender] >=_amount, \"Insufficient balance.\");\n        balances[msg.sender] = balances[msg.sender].sub(_amount);\t\t \n        balances[_recipient] = balances[_recipient].add(_amount);\t\n        emit Transfer(msg.sender, _recipient, _amount);\t  \n        return true;\n    }\n\n    /**\n     * @notice retrieves the delegated balance \n     * @param _owner the onwer's address\n     * @param _spender the delegator's address\n     * @return the amount of allownace\n     */\n    function allowance(address _owner, address _spender) external view returns (uint)\n    {\n        return allowed[_owner][_spender];\t\n    }  \n\n    /**\n     * @notice delegate the transfer\n     * @param _spender the delegator's address\n     * @param _amount the allowed amount of tokens\n     * @return success or failure\n     */    \n    function approve(address _spender, uint _amount) external returns (bool)\n    {\n        require(_amount > 0 && balances[msg.sender] >=_amount, \"Insufficient balance.\");\n        allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_amount);\t\t\t\t\n        emit Approval(msg.sender, _spender, _amount);\t\t\t\n        return true;\n    }\n    \n    /**\n     * @notice transfers the amount of token on behalf of the owner\n     * @param _sender the sender's address\n     * @param _recipient the receiver's address\n     * @param _amount the amount of tokens\n     * @return success of failure\n     */     \n    function transferFrom(address _sender, address _recipient, uint _amount) external returns (bool)\n    {\n        require(_amount > 0, \"Wrong amount of cash.\");\n        require(balances[_sender] >=_amount, \"Insufficient balance.\");\n        require(allowed[_sender][msg.sender] >= _amount, \"Insufficient allowance\");\n        \n        allowed[_sender][msg.sender] = allowed[_sender][msg.sender].sub(_amount);\t\t\t    \n        balances[_sender] = balances[_sender].sub(_amount);\t\t\t\t\t                    \n        balances[_recipient] = balances[_recipient].add(_amount);\t\t\t\t                            \n        emit Transfer(msg.sender, _recipient, _amount);\t\t\t\t\t\n        return true;\n    }\n\n    /**\n     * @notice buy tokens\n     * msg.value should be greater than or equal to 0.1 ether\n     * 1 eth = 100,000 cash\n     * @return success or failure\n     */      \n    function buy() public payable returns(bool){\n        require(msg.sender != minter);\n        require(msg.value >= 0.1 ether, \"greater than or equal to 0.1 ether\");\n \n        uint _amount = (msg.value * 100000)/(10 ** 18);\t\n        \n        require(balances[minter] >= _amount, \"Insufficient balance\");\n        \n        minter.transfer(msg.value);\n        balances[minter] = balances[minter].sub(_amount);\t\n        balances[msg.sender] = balances[msg.sender].add(_amount);\n        emit Transfer(minter, msg.sender, _amount);\n        \n        return true;\n    }\n    \n}",
-  "sourcePath": "C:\\Users\\multicampus\\Desktop\\SSAFY_2학기\\SSAFY_특화\\TEST_React_truffle_sol\\truffle\\contracts\\Cash.sol",
+  "sourcePath": "C:\\Users\\multicampus\\Desktop\\S07P22B105\\truffle\\contracts\\Cash.sol",
   "ast": {
     "absolutePath": "project:/contracts/Cash.sol",
     "exportedSymbols": {
@@ -205,7 +205,7 @@
         69
       ],
       "SafeMath": [
-        1678
+        1676
       ]
     },
     "id": 477,
@@ -233,7 +233,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 477,
-        "sourceUnit": 1679,
+        "sourceUnit": 1677,
         "src": "66:24:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1116,7 +1116,7 @@
               "id": 73,
               "name": "SafeMath",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1678,
+              "referencedDeclaration": 1676,
               "src": "921:8:0"
             },
             "nodeType": "UsingForDirective",
@@ -2033,7 +2033,7 @@
                         "lValueRequested": false,
                         "memberName": "add",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1511,
+                        "referencedDeclaration": 1509,
                         "src": "1816:23:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -2127,7 +2127,7 @@
                         "lValueRequested": false,
                         "memberName": "add",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1511,
+                        "referencedDeclaration": 1509,
                         "src": "1872:15:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -2750,7 +2750,7 @@
                         "lValueRequested": false,
                         "memberName": "sub",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1528,
+                        "referencedDeclaration": 1526,
                         "src": "2572:24:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -2894,7 +2894,7 @@
                         "lValueRequested": false,
                         "memberName": "add",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1511,
+                        "referencedDeclaration": 1509,
                         "src": "2641:24:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -3769,7 +3769,7 @@
                         "lValueRequested": false,
                         "memberName": "add",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1511,
+                        "referencedDeclaration": 1509,
                         "src": "3500:33:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -4650,7 +4650,7 @@
                         "lValueRequested": false,
                         "memberName": "sub",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1528,
+                        "referencedDeclaration": 1526,
                         "src": "4259:32:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -4794,7 +4794,7 @@
                         "lValueRequested": false,
                         "memberName": "sub",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1528,
+                        "referencedDeclaration": 1526,
                         "src": "4337:21:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -4938,7 +4938,7 @@
                         "lValueRequested": false,
                         "memberName": "add",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1511,
+                        "referencedDeclaration": 1509,
                         "src": "4425:24:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -5989,7 +5989,7 @@
                         "lValueRequested": false,
                         "memberName": "sub",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1528,
+                        "referencedDeclaration": 1526,
                         "src": "5130:20:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -6161,7 +6161,7 @@
                         "lValueRequested": false,
                         "memberName": "add",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1511,
+                        "referencedDeclaration": 1509,
                         "src": "5193:24:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -6390,7 +6390,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.10",
-  "updatedAt": "2022-09-27T11:21:49.305Z",
+  "updatedAt": "2022-09-29T02:43:34.942Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
