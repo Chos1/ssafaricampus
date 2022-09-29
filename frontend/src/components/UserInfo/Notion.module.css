@@ -1,8 +1,9 @@
 .notion {
   /* margin-top: 10rem; */
   width: 1080px;
-  height: 630px;
+  height: 1000px;
   margin: auto;
+  margin-bottom: 50px;
   background-color: #efefef;
 
   /* text-align: center; */

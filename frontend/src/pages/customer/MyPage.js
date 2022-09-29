@@ -4,7 +4,7 @@ import { useState } from "react";
 // import { CONTACT_ABI, CONTACT_ADDRESS } from "./config";
 import { useSelector } from "react-redux";
 
-import Demo from "../../components/Demo";
+// import Demo from "../../components/Demo";
 import UserInfo from "../../components/UserInfo/UserInfo";
 import Notion from "../../components/UserInfo/Notion";
 import PurchaseList from "../../components/UserInfo/PurchaseList";
@@ -27,7 +27,7 @@ function Mypage() {
     <div className={styles.mypage}>
       <UserInfo name={name} loginId={loginId} email={email} phone={phone} role={role} companyNumber={companyNumber} />
       {item}
-      <Demo />
+      {/* <Demo /> */}
     </div>
   );
 }
