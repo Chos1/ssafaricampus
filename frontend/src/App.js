@@ -7,10 +7,7 @@ import MainHeader from "./components/MainHeader/MainHeader";
 import MainFooter from "./components/MainFooter/MainFooter";
 
 function App() {
-  try {
-    const userType = useSelector((state) => state.user.role);
-    console.log("user type : " + userType);
-  } catch {}
+  console.log("a");
 
   return (
     <Provider store={store}>
