@@ -67,9 +67,9 @@ function EthProvider({ children }) {
       // const accounts = [signer.address];
       // console.log(acc);
       // const accounts = await web3.eth.getAccounts();
-
       // 위의 함수와 같이 계좌를 가져올 수 있음.
       const accounts = await getRequestAccounts();
+      const account = accounts[0]; // for state set
       console.log(accounts);
       // 잔액 조회하는 법.
       const balance = await web3.eth.getBalance(accounts[0]);
@@ -90,7 +90,7 @@ function EthProvider({ children }) {
       }
       dispatch({
         type: actions.init,
-        data: { artifact, web3, accounts, networkID, contract },
+        data: { artifact, web3, accounts, networkID, contract, account, balance },
       });
     }
   }, []);
