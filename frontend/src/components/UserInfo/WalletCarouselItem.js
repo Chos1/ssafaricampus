@@ -30,8 +30,8 @@ const WalletCarouselItem = (props) => {
   let balance = state.balance;
   let unit = "";
   if (props.title === "ETH") {
-    balance = (state.balance / 1e18).toFixed(5);
-    unit = "SFC";
+    balance = (state.balance / 1e18).toFixed(4);
+    unit = "eth";
   } else {
     balance = "20000";
     unit = "won";
