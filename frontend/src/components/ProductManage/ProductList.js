@@ -23,8 +23,8 @@ const ProductList = () => {
   useEffect(() => {
     const readItem = async () => {
       const item = await contract.methods.readItem(account).call({ from: account });
-      setTitle(item.title);
-      setPrice(item.price);
+      setTitle(item[2]);
+      setPrice(item[0]);
     };
     readItem();
   }, [account, contract]);
