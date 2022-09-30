@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import useEth from "../../contexts/EthContext/useEth";
 import styles from "./ProductItem.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ProductItem = (props) => {
+  const [url, setUrl] = useState("");
   const navigate = useNavigate();
   const {
     state: { contract, account },
@@ -13,7 +14,8 @@ const ProductItem = (props) => {
     const readItem = async () => {
       console.log("전송시작");
       const item = await contract.methods.readItem(account).call({ from: account });
-      console.log(item);
+      console.log(item.detail);
+      setUrl(item.detail);
       console.log("전송끝");
     };
     readItem();
@@ -28,7 +30,7 @@ const ProductItem = (props) => {
     >
       <div className={styles.card}>
         <div className={styles.card_top}>
-          <img src="" alt="상품사진" />
+          <img src={url} alt="상품사진" />
           <h1>{props.title}</h1>
         </div>
         <div className={styles.card_bottom}>
