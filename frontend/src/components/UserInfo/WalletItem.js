@@ -47,22 +47,7 @@ const WalletItem = (props) => {
 
   return (
     <div className={styles.WalletItem}>
-      <div className={styles.WalletTitle}>
-        <h2>지갑관리</h2>
-        <div>
-          <AiOutlineInfoCircle
-            data-for="walletName"
-            data-tip
-            onClick={() => doCopy(state.account)}
-            size="25"
-            className={styles.walletInfo}
-          />
-        </div>
-        <ReactTooltip
-          id="walletName"
-          getContent={(dataTip) => "지갑주소"}
-        ></ReactTooltip>
-      </div>
+      <div className={styles.WalletTitle}>{WalletTitle}</div>
       {Wallet}
     </div>
   );
