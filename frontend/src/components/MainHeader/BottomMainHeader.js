@@ -1,8 +1,8 @@
-import styles from './BottomMainHeader.module.css'
+import styles from "./BottomMainHeader.module.css";
 const BottomMainHeader = () => {
   return (
-      <div className={styles.justify_center}>
-        <ul>
+    <div className={styles.justify_center}>
+      {/* <ul>
           <li>
             <p>전체</p>
           </li>
@@ -15,8 +15,8 @@ const BottomMainHeader = () => {
           <li>
             <p>아무튼 검색</p>
           </li>
-        </ul> 
-      </div>
+        </ul>  */}
+    </div>
   );
 };
 
