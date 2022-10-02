@@ -12,7 +12,7 @@
 .ProductList_container .gridList{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 2.5em;
+  column-gap: 1.7em;
   row-gap: 3em;
 }
 

@@ -1,6 +1,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
+import ProductItem from './ProductItem'
+
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -16,7 +18,7 @@ const ProductCarousel = () =>{
   const itemCarousel = itemlist.map((item, idx) => {
     return (
       <SwiperSlide key={idx} onClick={() => navigate('/products/:productId')} className="border_out">
-        {item}
+        <ProductItem />
       </SwiperSlide>
     )
   })
@@ -28,7 +30,7 @@ const ProductCarousel = () =>{
       grabCursor={true}
       className="mySwiper"
       slidesPerView={4}
-      spaceBetween={10}
+      spaceBetween={5}
       navigation={true} 
       modules={[Navigation]}
       >
