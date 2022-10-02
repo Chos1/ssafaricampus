@@ -38,9 +38,8 @@ const WalletItem = (props) => {
     if (TimeCheck === true) {
       setTimeout(() => {
         setTimeCheck(false);
-      }, 700);
-      Wallet = <Loading className={styles.LoadingCircle} role={props.role}/>;
-
+      }, 1000);
+      Wallet = <Loading className={styles.LoadingCircle} />;
     } else {
       Wallet = <AddWalletBtn />;
     }

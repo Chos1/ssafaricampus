@@ -1,27 +1,27 @@
 @font-face {
-  font-family: 'GangwonEdu_OTFBoldA';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+  font-family: "GangwonEdu_OTFBoldA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
-.ProductList_title{
+.ProductList_title {
   margin-top: 100px;
-  font-family:'GangwonEdu_OTFBoldA';
+  font-family: "GangwonEdu_OTFBoldA";
   font-size: 35px;
   /* text-align: center; */
-  -ms-user-select: none; 
+  -ms-user-select: none;
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
 }
 .App {
-  width : 1080px;
-  margin : 0 auto;
+  width: 1080px;
+  margin: 0 auto;
   margin-bottom: 100px;
 }
-.border_out{
+.border_out {
   width: 250px;
   border: 1px solid #fff;
   /* background-color:  black; */
@@ -36,13 +36,13 @@
   outline: 0px;
   width: 60px;
   height: 60px;
-  top:150px;
-  right:-20px;
-  color: blue;
+  top: 150px;
+  right: -20px;
+  color: #7f5feb;
   /* background-color: red;  */
   border-radius: 50px;
 }
-.swiper-button-next::after{
+.swiper-button-next::after {
   /* font-size: 10px; */
 }
 
@@ -52,9 +52,9 @@
   outline: 0px;
   width: 60px;
   height: 60px;
-  top:150px;
-  left : -10px;
-  color: blue;
+  top: 150px;
+  left: -10px;
+  color: #7f5feb;
   /* background-color: red;  */
   border-radius: 50px;
 }
