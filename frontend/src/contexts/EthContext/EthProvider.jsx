@@ -79,7 +79,8 @@ function EthProvider({ contract, children }) {
       const setChainId = addNetwork1(web3.utils.toHex(0x05));
       console.log(setChainId);
 
-      const networkID = await web3.eth.net.getId();
+      // const networkID = await web3.eth.net.getId();
+      const networkID = 5;
       const { abi } = artifact;
       let address, contract;
       try {

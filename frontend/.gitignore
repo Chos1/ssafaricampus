@@ -29,10 +29,10 @@ node_modules
 .pnp
 .pnp.js
 
-# Production
-build
-src/contracts
-*/src/contracts
+# # Production
+# build
+# src/contracts
+# */src/contracts
 
 # Testing
 coverage
