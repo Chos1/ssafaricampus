@@ -30,12 +30,12 @@ const ProductItem = (props) => {
     >
       <div className={styles.card}>
         <div className={styles.card_top}>
-          <img src={url} alt="상품사진" />
-          <h1>{props.title}</h1>
+          {/* <img src={url} alt="상품사진" /> */}
+          <img src="https://dimg.donga.com/ugc/CDB/WOMAN/Article/62/aa/bd/43/62aabd4312a1d2738250.jpg" alt={url} />
         </div>
         <div className={styles.card_bottom}>
+          <h1>{props.title}</h1>
           <h3>{props.price}</h3>
-          <p>한줄 설명</p>
         </div>
       </div>
       {/* <div className="card">
