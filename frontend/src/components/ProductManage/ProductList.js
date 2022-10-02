@@ -10,26 +10,28 @@ const ProductList = () => {
   } = useEth();
   const [title, setTitle] = useState();
   const [price, setPrice] = useState();
-  const [url, setUrl] = useState();
+
+  const [tUrl, setTurl] = useState("");
+  const [dUrl, setDurl] = useState("");
+
   const navigate = useNavigate();
   const goods = [
-    [title, price, url],
-    ["제품1", "20000",""],
-    ["제품3", "30000",""],
-    ["제품4", "40000",""],
-    ["제품5", "50000",""]
+    [title, price, tUrl, dUrl],
+    ["제품1", "20000"],
+    ["제품3", "30000"],
+    ["제품4", "40000"],
   ];
-  const goodsList = goods.map((good, idx) => <ProductItem key={idx} title={good[0]} price={good[1]} url={good[2]}/>);
+  const goodsList = goods.map((good, idx) => <ProductItem key={idx} title={good[0]} price={good[1]} tUrl={good[2]} dUrl={good[3]} />);
 
   useEffect(() => {
-    const readItem = async () => {
+    const displayItem = async () => {
       const item = await contract.methods.readItem(account).call({ from: account });
       setTitle(item[2]);
       setPrice(item[0]);
-      console.log(item)
-      setUrl("")
+      setTurl(item[4]);
+      setDurl(item[5]);
     };
-    readItem();
+    displayItem();
   }, [account, contract]);
 
   return (
