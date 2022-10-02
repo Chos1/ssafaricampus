@@ -9,7 +9,7 @@
   margin-top: 100px;
   font-family:'GangwonEdu_OTFBoldA';
   font-size: 50px;
-  text-align: center;
+  /* text-align: center; */
   -ms-user-select: none; 
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
@@ -24,7 +24,7 @@
 .border_out{
   width: 264.75px;
   border: 1px solid #fff;
-  background-color:  black;
+  /* background-color:  black; */
   border-radius: 8px;
   overflow: hidden;
   height: 400px;
@@ -36,7 +36,9 @@
     outline: 0px;
     width: 60px;
     height: 60px;
+    color: black;
     background-color: white; 
+    box-shadow: 3px 3px 3px 3px #000000;
     border-radius: 50px;
 }
 
@@ -46,6 +48,7 @@
   outline: 0px;
   width: 60px;
   height: 60px;
+  color: black;
   background-color: white; 
   border-radius: 50px;
 }

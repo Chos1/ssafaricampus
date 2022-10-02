@@ -1,4 +1,4 @@
-import './ProductItem.css';
+import styles from './ProductItem.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const ProductItem = () =>{
@@ -6,14 +6,13 @@ const ProductItem = () =>{
 
   return(
     <div>
-      <div className="card">
-            <div className="card-top">
-              <img onClick={() => { navigate('') }} src="{item.img_link}" alt="상품사진" />
-              <h1>상품 제목</h1>
+      <div className={styles.card}>
+            <div className={styles.card_top}>
+              <img src="https://www.busan.com/nas/wcms/wcms_data/photos/2022/06/14/2022061410260748570_m.jpg"onClick={() => { navigate('') }} alt="상품사진" />
             </div>
-            <div className="card-bottom">
+            <div className={styles.card_bottom}>
+              <h1>상품 제목</h1>
               <h3>가격</h3>
-              <p>한줄 설명</p>
             </div>
           </div>
       {/* <div className="card">
