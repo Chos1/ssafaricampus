@@ -15,13 +15,26 @@ const ProductCarousel = () =>{
   const navigate = useNavigate();
 
   const itemlist = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+
   const itemCarousel = itemlist.map((item, idx) => {
+    let link = '/products/' + item
+
+    const move = () => {
+      navigate(link, {
+        state: {
+          itemNo : item,
+        }
+      });
+    };
     return (
-      <SwiperSlide key={idx} onClick={() => navigate('/products/:productId')} className="border_out">
+      <SwiperSlide key={idx} onClick={move} className="border_out">
         <ProductItem />
       </SwiperSlide>
     )
   })
+
+
 
   return(
     <div className="App">

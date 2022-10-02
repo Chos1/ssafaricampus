@@ -1,11 +1,11 @@
 import styles from "./ProductImage.module.css";
-import groom_2 from "../../assets/구름2.jpg";
+// import groom_2 from "../../assets/구름2.jpg";
 
-const ProductImage = () => {
+const ProductImage = (props) => {
   return (
     <div className={styles.ProductImage}>
       <h1>상품 상세</h1>
-      <img src={groom_2} alt="" className={styles.ProductImg} />
+      <img src={props.dUrl} alt="" className={styles.ProductImg} />
     </div>
   );
 };

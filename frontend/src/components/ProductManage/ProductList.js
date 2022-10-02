@@ -13,24 +13,26 @@ const ProductList = () => {
 
   const [tUrl, setTurl] = useState("");
   const [dUrl, setDurl] = useState("");
+  const [itemNo, setitemNo] = useState("");
 
   const navigate = useNavigate();
   const goods = [
-    [title, price, tUrl, dUrl],
+    [title, price, tUrl, dUrl, itemNo],
     ["제품1", "20000"],
     ["제품3", "30000"],
     ["제품4", "40000"],
   ];
-  const goodsList = goods.map((good, idx) => <ProductItem key={idx} title={good[0]} price={good[1]} tUrl={good[2]} dUrl={good[3]} />);
+  const goodsList = goods.map((good, idx) => <ProductItem key={idx} title={good[0]} price={good[1]} tUrl={good[2]} dUrl={good[3]} itemNo={good[4]} />);
 
   useEffect(() => {
     const displayItem = async () => {
       const item = await contract.methods.viewSellerToItem(account).call({ from: account });
       console.log(item);
-      setTitle(item[2]);
+      setTitle(item[1]);
       setPrice(item[3]);
       setTurl(item[5]);
       setDurl(item[6]);
+      setitemNo(item[0])
     };
     displayItem();
   }, [account, contract]);
