@@ -8,8 +8,6 @@ import MainFooter from "./components/MainFooter/MainFooter";
 import EthProvider from "./contexts/EthContext/EthProvider";
 
 function App() {
-  console.log("a");
-
   return (
     <EthProvider contract="SsfariFactory">
       <Provider store={store}>

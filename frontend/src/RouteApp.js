@@ -49,7 +49,7 @@ function RouteApp() {
         path="/purchaseContract/:transactionId"
         element={<PurchaseContract />}
       />
-      <Route path="/productRequest/:productId" element={<PurchaseRequest />} />
+      <Route path="/product/:productId/request" element={<PurchaseRequest />} />
       <Route
         path="/mypage/:transactionId/transactionDetail"
         element={<TransactionDetail />}
