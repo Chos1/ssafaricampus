@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./ProductForm.css";
 import MKBtn from "../components/ui/MKBtn";
 import useEth from "../contexts/EthContext/useEth";
@@ -19,20 +19,28 @@ const ProductForm = () => {
   const [inputInfo, setInputInfo] = useState(""); // 상품 설명
   const [imageSrc, setImageSrc] = useState("");
 
-  const [url, setUrl] = useState("");
-
   // 파이어베이스
-  const [fileList, setFileList] = useState([]); // 파일 리스트
+  const [tfileList, setTFileList] = useState([]); // 썸네일 파일 리스트
+  const [dfileList, setDFileList] = useState([]); // 상세사진 파일 리스트
 
-  const encodeFileToBase64 = (fileBlob) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(fileBlob);
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setImageSrc(reader.result);
-        resolve();
-      };
-    });
+  const [showThumbnail, setShowThumbnail] = useState([]);
+  const encodeFileToBase64 = (event) => {
+    for (const image of event.target.files) {
+      setTFileList((prevState) => [...prevState, image]);
+    }
+    const imageLists = event.target.files;
+
+    let imageUrlLists = [...showImages];
+    for (let i = 0; i < imageLists.length; i++) {
+      const currentImageUrl = URL.createObjectURL(imageLists[i]);
+      imageUrlLists.push(currentImageUrl);
+    }
+
+    if (imageUrlLists.length > 10) {
+      imageUrlLists = imageUrlLists.slice(0, 10);
+    }
+    setInputThumbnail(event.target.value);
+    setShowThumbnail(imageUrlLists);
   };
 
   const [showImages, setShowImages] = useState([]);
@@ -58,7 +66,7 @@ const ProductForm = () => {
   // 이미지 상대경로 저장
   const handleAddImages = (event) => {
     for (const image of event.target.files) {
-      setFileList((prevState) => [...prevState, image]);
+      setDFileList((prevState) => [...prevState, image]);
     }
     const imageLists = event.target.files;
 
@@ -77,19 +85,28 @@ const ProductForm = () => {
 
   const registItem = async (e) => {
     e.preventDefault();
-    console.log(fileList);
-    if (e.target.tagName === "INPUT") {
-      return;
-    }
-    if (inputTitle === "" || inputLineInfo === "" || inputPrice === "" || inputCategori === "" || inputThumbnail === "" || inputDetail === "" || inputExpressDue === "" || inputInfo === "") {
-      alert("Please enter a value to write.");
-      return;
-    }
+    console.log(dfileList);
+    // if (e.target.tagName === "INPUT") {
+    //   return;
+    // }
+    // if (inputTitle === "" || inputLineInfo === "" || inputPrice === "" || inputCategori === "" || inputThumbnail === "" || inputDetail === "" || inputExpressDue === "" || inputInfo === "") {
+    //   alert("Please enter a value to write.");
+    //   return;
+    // }
 
+    let d = ""; // 상세이미지 전달 변수
+    let t = ""; // 썸네일 전달 변수
     try {
       // 업로드의 순서는 상관없으니 Promise.all로 이미지 업로드후 저장된 url 받아오기
-      const urls = Promise.all(
-        fileList?.map((file) => {
+      const tUrls = Promise.resolve(
+        tfileList?.map((file) => {
+          const storageRef = ref(storage, `thumbnails/${accounts[0]}`);
+          uploadBytesResumable(storageRef, file);
+          return getDownloadURL(storageRef);
+        })
+      );
+      const dUrls = Promise.resolve(
+        dfileList?.map((file) => {
           const storageRef = ref(storage, `detailImages/${accounts[0]}`);
           uploadBytesResumable(storageRef, file);
           return getDownloadURL(storageRef);
@@ -97,33 +114,42 @@ const ProductForm = () => {
       );
       // 업로드된 이미지 링크 상태로 지정 (보통은 해당 링크를 데이터베이스(파이어스토어)에 저장)
       const getData = () => {
-        console.log("check");
-        urls.then((appData) => {
-          setUrl(appData[0]);
+        tUrls.then((tData) => {
+          tData[0]
+            .then((tUrlData) => {
+              t = tUrlData;
+            })
+            .then(() => {
+              dUrls.then((dData) => {
+                dData[0].then((dUrlData) => {
+                  d = dUrlData;
+                });
+              });
+            })
+            .then(() => {
+              console.log("썸네일: " + t);
+              console.log("상세사진: " + d);
+              const title = inputTitle;
+              const lineInfo = inputLineInfo;
+              const price = parseInt(inputPrice);
+              const categori = inputCategori;
+              const thumbnail = t;
+              const detail = d;
+              const expressDue = inputExpressDue;
+              const info = inputInfo;
+              console.log("전송시작");
+              contract.methods.registItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, info).send({ from: accounts[0], gas: 4120400 });
+              console.log("전송끝");
+            });
         });
       };
-      console.log("url: " + url);
-      setInputDetail(url);
-      console.log("input: " + inputDetail);
       getData();
       alert("성공적으로 업로드 되었습니다");
     } catch (err) {
       console.error(err);
     }
-
-    const title = inputTitle;
-    const lineInfo = inputLineInfo;
-    const price = parseInt(inputPrice);
-    const categori = inputCategori;
-    const thumbnail = inputThumbnail;
-    const detail = inputDetail;
-    const expressDue = inputExpressDue;
-    const info = inputInfo;
-
-    console.log("전송시작");
-    await contract.methods.registItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, info).send({ from: accounts[0], gas: 4120400 });
-    console.log("전송끝");
   };
+
   const handleChangeSelect = (e) => {
     setInputCategori(e.target.value);
     setSelected(e.target.value);
@@ -156,23 +182,18 @@ const ProductForm = () => {
       </select>
       <br />
       <label>썸네일 사진</label>
-      <input
-        id="file"
-        type="file"
-        onChange={(e) => {
-          encodeFileToBase64(e.target.files[0]);
-          setInputThumbnail(e.target.value);
-          console.log(typeof e.target.value);
-        }}
-        value={inputThumbnail}
-      />
-      {imageSrc && <img src={imageSrc} alt="preview-img" className="thumbnail_img" />}
+      <input type="file" multiple onChange={encodeFileToBase64} value={inputThumbnail} />
+      {showThumbnail.map((image, id) => (
+        <div key={id}>
+          <img src={image} alt={`${image}-${id}`} className="thumbnail_img" />
+        </div>
+      ))}
       <br />
       <label>상세 사진</label>
       <input type="file" multiple onChange={handleAddImages} value={inputDetail} />
       {showImages.map((image, id) => (
         <div key={id}>
-          <img src={image} alt={`${image}-${id}`} className="thumbnail_img" />
+          <img src={image} alt={`${image}-${id}`} className="detail_img" />
         </div>
       ))}
       <br />
