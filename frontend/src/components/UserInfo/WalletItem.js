@@ -2,13 +2,15 @@ import WalletCarousel from "./WalletCarousel";
 import AddWalletBtn from "./AddWalletBtn";
 import ReactTooltip from "react-tooltip";
 import useEth from "../../contexts/EthContext/useEth";
-
+import Loading from "../ui/Loading.js";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { useState } from "react";
 
 import styles from "./WalletItem.module.css";
 
 const WalletItem = (props) => {
   const { state } = useEth();
+  const [TimeCheck, setTimeCheck] = useState(true);
 
   let WalletTitle = (
     <div>
@@ -32,7 +34,14 @@ const WalletItem = (props) => {
   if (state.account) {
     Wallet = <WalletCarousel />;
   } else {
-    Wallet = <AddWalletBtn />;
+    if (TimeCheck === true) {
+      setTimeout(() => {
+        setTimeCheck(false);
+      }, 700);
+      Wallet = <Loading className={styles.LoadingCircle} />;
+    } else {
+      Wallet = <AddWalletBtn />;
+    }
   }
   const doCopy = (text) => {
     navigator.clipboard
