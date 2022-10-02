@@ -1,5 +1,9 @@
 .Loading {
   display: flex;
   justify-content: center;
-  /* margin: 20px; */
+  color:#5d33e6;
+}
+
+.black_loading{
+  color:black
 }

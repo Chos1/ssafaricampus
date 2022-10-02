@@ -31,6 +31,7 @@ const WalletItem = (props) => {
   }
 
   let Wallet = <div></div>;
+
   if (state.account) {
     Wallet = <WalletCarousel />;
   } else {
@@ -38,7 +39,8 @@ const WalletItem = (props) => {
       setTimeout(() => {
         setTimeCheck(false);
       }, 700);
-      Wallet = <Loading className={styles.LoadingCircle} />;
+      Wallet = <Loading className={styles.LoadingCircle} role={props.role}/>;
+
     } else {
       Wallet = <AddWalletBtn />;
     }

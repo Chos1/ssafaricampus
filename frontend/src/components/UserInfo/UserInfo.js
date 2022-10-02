@@ -18,7 +18,7 @@ const UserInfo = (props) => {
         companyNumber={props.companyNumber}
       />
       <EthProvider contract="SimpleStorage">
-        <WalletItem isWallet={props.isWallet} />
+        <WalletItem isWallet={props.isWallet} role={props.role}/>
       </EthProvider>
     </div>
   );
