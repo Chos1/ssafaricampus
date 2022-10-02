@@ -26,6 +26,7 @@ const ProductList = () => {
   useEffect(() => {
     const displayItem = async () => {
       const item = await contract.methods.readItem(account).call({ from: account });
+      console.log(item);
       setTitle(item[2]);
       setPrice(item[0]);
       setTurl(item[4]);

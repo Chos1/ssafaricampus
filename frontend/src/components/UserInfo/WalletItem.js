@@ -37,7 +37,7 @@ const WalletItem = (props) => {
     if (TimeCheck === true) {
       setTimeout(() => {
         setTimeCheck(false);
-      }, 700);
+      }, 1000);
       Wallet = <Loading className={styles.LoadingCircle} />;
     } else {
       Wallet = <AddWalletBtn />;

@@ -13,7 +13,6 @@ const ProductItem = (props) => {
       <div className={styles.card}>
         <div className={styles.card_top}>
           <img src={props.tUrl} alt="상품사진" />
-          <h1>{props.title}</h1>
         </div>
         <div className={styles.card_bottom}>
           <h1>{props.title}</h1>
