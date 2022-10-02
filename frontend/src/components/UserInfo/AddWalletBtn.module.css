@@ -1,6 +1,6 @@
-.AddWalletBtn{
-  width : 400px;
-  height: 100px; 
+.AddWalletBtn {
+  width: 400px;
+  height: 100px;
   margin: auto;
   margin-top: 20px;
   border: 2px solid black;
@@ -9,7 +9,7 @@
   justify-content: center;
 }
 
-.AddWalletBtn button{
+.AddWalletBtn button {
   font-size: 80px;
   background-color: transparent;
   border: none;

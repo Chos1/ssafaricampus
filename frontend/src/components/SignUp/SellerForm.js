@@ -76,7 +76,11 @@ const SellerForm = () => {
     if (e.target.value.length === 0) {
       setIsValidPassword(null);
     } else if (!pattern1.test(e.target.value) || !pattern2.test(e.target.value) || !pattern3.test(e.target.value) || e.target.value.length < 8) {
-      setIsValidPassword("비밀번호는 8자리 이상 문자, 숫자, 특수문자로 구성되어야 합니다");
+      setIsValidPassword(
+        <div className="inputvalid">
+          <p>비밀번호는 8자리 이상 문자, 숫자, 특수문자로 구성되어야 합니다</p>
+        </div>
+      );
     } else {
       setIsValidPassword(null);
     }
@@ -86,7 +90,11 @@ const SellerForm = () => {
     if (e.target.value.length === 0) {
       setIsValidPasswordCheck(null);
     } else if (e.target.value !== password) {
-      setIsValidPasswordCheck("비밀번호가 일치하지 않습니다");
+      setIsValidPasswordCheck(
+        <div className="inputvalid">
+          <p>비밀번호와 일치하지 않습니다</p>
+        </div>
+      );
     } else {
       setIsValidPasswordCheck(null);
     }
@@ -97,9 +105,17 @@ const SellerForm = () => {
     if (e.target.value.length === 0) {
       setIsValidPhone(null);
     } else if (!pattern.test(e.target.value)) {
-      setIsValidPhone(<p>숫자만 입력해 주세요</p>);
+      setIsValidPhone(
+        <div className="inputvalid">
+          <p>숫자만 입력해 주세요</p>
+        </div>
+      );
     } else if (e.target.value.length !== 11 || e.target.value.substring(0, 3) !== "010") {
-      setIsValidPhone(<p>올바른 전화번호를 입력해주세요</p>);
+      setIsValidPhone(
+        <div className="inputvalid">
+          <p>올바른 전화번호를 입력해주세요</p>
+        </div>
+      );
     } else {
       setIsValidPhone(null);
     }
@@ -110,9 +126,17 @@ const SellerForm = () => {
     if (e.target.value.length === 0) {
       setIsValidCompanyNumber(null);
     } else if (!pattern.test(e.target.value)) {
-      setIsValidCompanyNumber(<p>숫자만 입력해 주세요</p>);
+      setIsValidCompanyNumber(
+        <div className="inputvalid">
+          <p>숫자만 입력해 주세요</p>
+        </div>
+      );
     } else if (e.target.value.length !== 10) {
-      setIsValidCompanyNumber(<p>올바른 번호를 입력해주세요</p>);
+      setIsValidCompanyNumber(
+        <div className="inputvalid">
+          <p>올바른 번호를 입력해주세요</p>
+        </div>
+      );
     } else {
       setIsValidCompanyNumber(null);
     }
@@ -169,7 +193,7 @@ const SellerForm = () => {
           {isValidCompanyNumber}
           <br />
           <label>전화번호</label>
-          <input value={phone} onChange={phoneChangeHandler} placeholder="숫자만 입력해주세요" maxLength="13" />
+          <input value={phone} type="text" onChange={phoneChangeHandler} placeholder="숫자만 입력해주세요" maxLength="11" />
           {isValidPhone}
           <br />
         </div>
