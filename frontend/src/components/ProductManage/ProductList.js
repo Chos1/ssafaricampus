@@ -26,13 +26,26 @@ const ProductList = () => {
   useEffect(() => {
     const displayItem = async () => {
       const item = await contract.methods.viewSellerToItem(account).call({ from: account });
-      console.log(item);
+      // console.log(item);
       setTitle(item[2]);
       setPrice(item[3]);
       setTurl(item[5]);
       setDurl(item[6]);
     };
     displayItem();
+
+    const displayItems = async () => {
+      const items = await contract.methods.viewItems().call({ from: account });
+      // console.log(typeof items);
+      // console.log(items);
+      for (let i = 0; i < items.length; i++) {
+        const seller = parseInt(items[i].seller_address, 16);
+        if (seller === parseInt(account, 16)) {
+          console.log(items[i]);
+        }
+      }
+    };
+    displayItems();
   }, [account, contract]);
 
   return (
