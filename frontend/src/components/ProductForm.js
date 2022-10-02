@@ -103,18 +103,19 @@ const ProductForm = () => {
 
     let d = ""; // 상세이미지 전달 변수
     let t = ""; // 썸네일 전달 변수
+    let count = 0;
     try {
       // 업로드의 순서는 상관없으니 Promise.all로 이미지 업로드후 저장된 url 받아오기
       const tUrls = Promise.resolve(
         tfileList?.map(async (file) => {
-          const storageRef = ref(storage, `thumbnails/${accounts[0]}`);
+          const storageRef = ref(storage, `thumbnails/${accounts[0]}/${count}`);
           await uploadBytesResumable(storageRef, file);
           return getDownloadURL(storageRef);
         })
       );
       const dUrls = Promise.resolve(
         dfileList?.map(async (file) => {
-          const storageRef = ref(storage, `detailImages/${accounts[0]}`);
+          const storageRef = ref(storage, `detailImages/${accounts[0]}/${count}`);
           await uploadBytesResumable(storageRef, file);
           return getDownloadURL(storageRef);
         })

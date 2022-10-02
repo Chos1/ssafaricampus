@@ -8,48 +8,25 @@ const ProductList = () => {
   const {
     state: { contract, account },
   } = useEth();
-  const [title, setTitle] = useState();
-  const [price, setPrice] = useState();
-
-  const [tUrl, setTurl] = useState("");
-  const [dUrl, setDurl] = useState("");
-  const [itemNo, setitemNo] = useState("");
+  const [goods, setGoods] = useState([]);
 
   const navigate = useNavigate();
-  const goods = [
-    [title, price, tUrl, dUrl, itemNo],
-    ["제품1", "20000"],
-    ["제품3", "30000"],
-    ["제품4", "40000"],
-  ];
-  const goodsList = goods.map((good, idx) => <ProductItem key={idx} title={good[0]} price={good[1]} tUrl={good[2]} dUrl={good[3]} itemNo={good[4]} />);
+  const goodsList = goods.map((good, idx) => <ProductItem key={idx} good={good} />);
 
   useEffect(() => {
-    const displayItem = async () => {
-      const item = await contract.methods.viewSellerToItem(account).call({ from: account });
-
-      console.log(item);
-      setTitle(item[1]);
-      setPrice(item[3]);
-      setTurl(item[5]);
-      setDurl(item[6]);
-      setitemNo(item[0]);
-    };
-    displayItem();
-
     const displayItems = async () => {
       const items = await contract.methods.viewItems().call({ from: account });
-      // console.log(typeof items);
-      // console.log(items);
+      const itemArray = [];
       for (let i = 0; i < items.length; i++) {
         const seller = parseInt(items[i].seller_address, 16);
         if (seller === parseInt(account, 16)) {
-          console.log(items[i]);
+          itemArray.push(items[i]);
         }
       }
+      setGoods(itemArray);
     };
     displayItems();
-  }, [account, contract]);
+  }, [account, contract, goods]);
 
   return (
     <div className={styles.ProductList_container}>

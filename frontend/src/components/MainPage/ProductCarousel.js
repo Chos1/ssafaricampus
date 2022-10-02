@@ -1,72 +1,59 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
-import ProductItem from './ProductItem'
-
+import ProductItem from "./ProductItem";
+import { useEffect, useState } from "react";
+import useEth from "../../contexts/EthContext/useEth";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
-import './ProductCarousel.css';
+import "./ProductCarousel.css";
 
 import { Navigation } from "swiper";
 
-const ProductCarousel = () =>{
+const ProductCarousel = () => {
+  const {
+    state: { contract, account },
+  } = useEth();
+  const [items, setItems] = useState([]);
+
   const navigate = useNavigate();
 
-  const itemlist = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  useEffect(() => {
+    const displayItems = async () => {
+      const itemArray = await contract.methods.viewItems().call({ from: account });
+      setItems(itemArray);
+    };
 
+    displayItems();
+  }, [account, contract, items]);
 
-  const itemCarousel = itemlist.map((item, idx) => {
-    let link = '/products/' + item
+  const itemCarousel = items.map((item, idx) => {
+    let link = "/products/" + item.item_No;
 
     const move = () => {
       navigate(link, {
         state: {
-          itemNo : item,
-        }
+          itemNo: item.item_No,
+        },
       });
     };
     return (
       <SwiperSlide key={idx} onClick={move} className="border_out">
-        <ProductItem />
+        <ProductItem item={item} />
       </SwiperSlide>
-    )
-  })
+    );
+  });
 
-
-
-  return(
+  return (
     <div className="App">
       <h2 className="ProductList_title">공동 구매 어쩌구</h2>
-      <Swiper
-      grabCursor={true}
-      className="mySwiper"
-      slidesPerView={4}
-      // spaceBetween={10}
-      navigation={true} 
-      modules={[Navigation]}
-      >
+      <Swiper grabCursor={true} className="mySwiper" slidesPerView={4} navigation={true} modules={[Navigation]}>
         {itemCarousel}
-        {/* Product Item 부분
-        {DBdata.map((item) => (
-          <SwiperSlide>
-          <div className="card">
-            <div className="card-top">
-              <img src="{item.img_link}" alt="{item.title}" />
-              <h1>{item.title}</h1>
-            </div>
-            <div className="card-bottom">
-              <h3>{item.price}</h3>
-              <p>{item.한줄 설명}</p>
-            </div>
-          </div>
-          </SwiperSlide>
-        ))} 
-        */}
       </Swiper>
     </div>
   );
-}
+};
 
 export default ProductCarousel;
