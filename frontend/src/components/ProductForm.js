@@ -106,48 +106,51 @@ const ProductForm = () => {
     try {
       // 업로드의 순서는 상관없으니 Promise.all로 이미지 업로드후 저장된 url 받아오기
       const tUrls = Promise.resolve(
-        tfileList?.map((file) => {
+        tfileList?.map(async (file) => {
           const storageRef = ref(storage, `thumbnails/${accounts[0]}`);
-          uploadBytesResumable(storageRef, file);
+          await uploadBytesResumable(storageRef, file);
           return getDownloadURL(storageRef);
         })
       );
       const dUrls = Promise.resolve(
-        dfileList?.map((file) => {
+        dfileList?.map(async (file) => {
           const storageRef = ref(storage, `detailImages/${accounts[0]}`);
-          uploadBytesResumable(storageRef, file);
+          await uploadBytesResumable(storageRef, file);
           return getDownloadURL(storageRef);
         })
       );
       // 업로드된 이미지 링크 상태로 지정 (보통은 해당 링크를 데이터베이스(파이어스토어)에 저장)
       const getData = () => {
         tUrls.then((tData) => {
-          tData[0].then((tUrlData) => {
-            t = tUrlData;
-            console.log(t);
-            dUrls
-              .then((dData) => {
-                dData[0].then((dUrlData) => {
-                  d = dUrlData;
-                  console.log(d);
-                });
-              })
-              .then(() => {
-                const title = inputTitle;
-                const lineInfo = inputLineInfo;
-                const price = parseInt(inputPrice);
-                const categori = inputCategori;
-                const thumbnail = t;
-                const detail = d;
-                const expressDue = inputExpressDue;
-                const unit = parseInt(inputUnit);
-                const origin = inputOrigin;
-                const info = inputInfo;
-                console.log("전송시작");
-                contract.methods.registerItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, unit, origin, info, accounts[0]).send({ from: accounts[0], gas: 5020400 });
-                console.log("전송끝");
+          tData[0]
+            .then((tUrlData) => {
+              t = tUrlData;
+              console.log(t);
+            })
+            .then(() => {
+              dUrls.then((dData) => {
+                dData[0]
+                  .then((dUrlData) => {
+                    d = dUrlData;
+                    console.log(d);
+                  })
+                  .then(() => {
+                    const title = inputTitle;
+                    const lineInfo = inputLineInfo;
+                    const price = parseInt(inputPrice);
+                    const categori = inputCategori;
+                    const thumbnail = t;
+                    const detail = d;
+                    const expressDue = inputExpressDue;
+                    const unit = parseInt(inputUnit);
+                    const origin = inputOrigin;
+                    const info = inputInfo;
+                    console.log("전송시작");
+                    contract.methods.registerItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, unit, origin, info, accounts[0]).send({ from: accounts[0], gas: 5020400 });
+                    console.log("전송끝");
+                  });
               });
-          });
+            });
         });
       };
       getData();
