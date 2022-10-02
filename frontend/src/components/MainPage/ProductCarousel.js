@@ -30,7 +30,7 @@ const ProductCarousel = () =>{
       grabCursor={true}
       className="mySwiper"
       slidesPerView={4}
-      spaceBetween={5}
+      // spaceBetween={10}
       navigation={true} 
       modules={[Navigation]}
       >

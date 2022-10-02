@@ -5,7 +5,7 @@ const ProductItem = () =>{
   const navigate = useNavigate();
 
   return(
-    <div>
+    <div className={styles.product_item}>
       <div className={styles.card}>
             <div className={styles.card_top}>
               <img src="https://www.busan.com/nas/wcms/wcms_data/photos/2022/06/14/2022061410260748570_m.jpg"onClick={() => { navigate('') }} alt="상품사진" />
