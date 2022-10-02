@@ -25,11 +25,12 @@ const ProductList = () => {
 
   useEffect(() => {
     const displayItem = async () => {
-      const item = await contract.methods.readItem(account).call({ from: account });
+      const item = await contract.methods.viewSellerToItem(account).call({ from: account });
+      console.log(item);
       setTitle(item[2]);
-      setPrice(item[0]);
-      setTurl(item[4]);
-      setDurl(item[5]);
+      setPrice(item[3]);
+      setTurl(item[5]);
+      setDurl(item[6]);
     };
     displayItem();
   }, [account, contract]);

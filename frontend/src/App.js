@@ -11,7 +11,7 @@ function App() {
   console.log("a");
 
   return (
-    <EthProvider contract="SimpleStorage">
+    <EthProvider contract="SsfariFactory">
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <MainHeader />

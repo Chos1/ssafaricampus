@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./ProductForm.css";
 import MKBtn from "../components/ui/MKBtn";
 import useEth from "../contexts/EthContext/useEth";
@@ -16,8 +16,9 @@ const ProductForm = () => {
   const [inputThumbnail, setInputThumbnail] = useState(""); // 썸네일 사진
   const [inputDetail, setInputDetail] = useState(""); // 상세 사진
   const [inputExpressDue, setInputExpressDue] = useState(""); // 배송 기간
+  const [inputUnit, setInputUnit] = useState(""); // 판매 단위
+  const [inputOrigin, setInputOrigin] = useState(""); // 원산지
   const [inputInfo, setInputInfo] = useState(""); // 상품 설명
-  const [imageSrc, setImageSrc] = useState("");
 
   // 파이어베이스
   const [tfileList, setTFileList] = useState([]); // 썸네일 파일 리스트
@@ -56,6 +57,12 @@ const ProductForm = () => {
   };
   const handleExpressDueChange = (e) => {
     setInputExpressDue(e.target.value);
+  };
+  const handleUnitChange = (e) => {
+    setInputUnit(e.target.value);
+  };
+  const handleOriginChange = (e) => {
+    setInputOrigin(e.target.value);
   };
   const handleInfoChange = (e) => {
     setInputInfo(e.target.value);
@@ -115,32 +122,32 @@ const ProductForm = () => {
       // 업로드된 이미지 링크 상태로 지정 (보통은 해당 링크를 데이터베이스(파이어스토어)에 저장)
       const getData = () => {
         tUrls.then((tData) => {
-          tData[0]
-            .then((tUrlData) => {
-              t = tUrlData;
-            })
-            .then(() => {
-              dUrls.then((dData) => {
+          tData[0].then((tUrlData) => {
+            t = tUrlData;
+            console.log(t);
+            dUrls
+              .then((dData) => {
                 dData[0].then((dUrlData) => {
                   d = dUrlData;
+                  console.log(d);
                 });
+              })
+              .then(() => {
+                const title = inputTitle;
+                const lineInfo = inputLineInfo;
+                const price = parseInt(inputPrice);
+                const categori = inputCategori;
+                const thumbnail = t;
+                const detail = d;
+                const expressDue = inputExpressDue;
+                const unit = parseInt(inputUnit);
+                const origin = inputOrigin;
+                const info = inputInfo;
+                console.log("전송시작");
+                contract.methods.registerItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, unit, origin, info, accounts[0]).send({ from: accounts[0], gas: 5020400 });
+                console.log("전송끝");
               });
-            })
-            .then(() => {
-              console.log("썸네일: " + t);
-              console.log("상세사진: " + d);
-              const title = inputTitle;
-              const lineInfo = inputLineInfo;
-              const price = parseInt(inputPrice);
-              const categori = inputCategori;
-              const thumbnail = t;
-              const detail = d;
-              const expressDue = inputExpressDue;
-              const info = inputInfo;
-              console.log("전송시작");
-              contract.methods.registItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, info).send({ from: accounts[0], gas: 4120400 });
-              console.log("전송끝");
-            });
+          });
         });
       };
       getData();
@@ -201,10 +208,10 @@ const ProductForm = () => {
       <input placeholder="배송 기간을 입력해주세요" value={inputExpressDue} onChange={handleExpressDueChange} />
       <br />
       <label>판매 단위</label>
-      <input placeholder="판매 단위를 입력해주세요" />
+      <input placeholder="판매 단위를 입력해주세요" value={inputUnit} onChange={handleUnitChange} />
       <br />
       <label>원산지</label>
-      <input placeholder="원산지를 입력해주세요" />
+      <input placeholder="원산지를 입력해주세요" value={inputOrigin} onChange={handleOriginChange} />
       <br />
       <label className="product_summary">상품 설명</label>
       <textarea placeholder="상품 설명을 입력해주세요" value={inputInfo} onChange={handleInfoChange} />
