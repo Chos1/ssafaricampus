@@ -25,15 +25,13 @@ const ProductSummary = (props) => {
   } = useEth();
   const [itemDetail, setItemDetail] = useState("");
   useEffect(() => {
-    if (nowPath === "purchaseContract") {
-      const getContractDetails = async () => {
-        const contractDetail = await contract.methods
-          .viewItemByItemNo(item_No)
-          .call({ from: account });
-        setItemDetail(contractDetail);
-      };
-      getContractDetails();
-    }
+    const getItemDetails = async () => {
+      const contractDetail = await contract.methods
+        .viewItemByItemNo(item_No)
+        .call({ from: account });
+      setItemDetail(contractDetail);
+    };
+    getItemDetails();
   }, [account, contract, item_No, nowPath]);
   console.log("itemDetail: " + itemDetail);
   console.log("props: " + props.period);
@@ -67,41 +65,28 @@ const ProductSummary = (props) => {
     <div className="product_summary_center">
       <div className="product_summary">
         <div>
-          <img src={props.tUrl || itemDetail.thumbnail_picture} alt="" />
+          <img src={itemDetail.thumbnail_picture} alt="" />
         </div>
         <div className="product_summary_de">
           <div className="product_main">
-            <p className="product_title">
-              {props.title || itemDetail.item_name}
-            </p>
-            <p className="product_subtitle">
-              {props.subtitle || itemDetail.oneline_description}
-            </p>
+            <p className="product_title">{itemDetail.item_name}</p>
+            <p className="product_subtitle">{itemDetail.oneline_description}</p>
             <p className={price_component}>
-              {((props.price || itemDetail.item_price) * 1).toLocaleString(
-                "ko-KR"
-              )}
-              원
+              {(itemDetail.item_price * 1).toLocaleString("ko-KR")}원
             </p>
           </div>
           <div>
             <div className="product_mini">
               <p className="product_label">배송</p>
-              <p className="product_content">
-                {props.period || itemDetail.delivery_period}
-              </p>
+              <p className="product_content">{itemDetail.delivery_period}</p>
             </div>
             <div className="product_mini">
               <p className="product_label">판매자</p>
-              <p className="product_content">
-                {props.seller_name || itemDetail.seller_name}
-              </p>
+              <p className="product_content">{itemDetail.seller_name}</p>
             </div>
             <div className="product_mini_last">
               <p className="product_label">상품설명</p>
-              <p className="product_content">
-                {props.descript || itemDetail.detail_description}
-              </p>
+              <p className="product_content">{itemDetail.detail_description}</p>
             </div>
           </div>
           <br />
