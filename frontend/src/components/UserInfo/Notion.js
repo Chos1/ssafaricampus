@@ -1,4 +1,5 @@
-import styles from "./Notion.module.css";
+// css
+import styles from "./css/Notion.module.css";
 
 const Notion = () => {
   return (
@@ -13,7 +14,10 @@ const Notion = () => {
           <h2>1. 지갑 비밀키를 잃어버리지 마세요!</h2>
           <p>한 번 잃어버리면 복구 할 수 없습니다.</p>
           <h2>2. 공유하지 마세요!</h2>
-          <p>비밀키가 악위적인 사이트에 노출되면 당신의 자산이 유실될 수 있습니다.</p>
+          <p>
+            비밀키가 악위적인 사이트에 노출되면 당신의 자산이 유실될 수
+            있습니다.
+          </p>
           <h2>3. 백업을 만들어 두세요!</h2>
           <p>종이에 적어서 오프라인으로 관리하세요.</p>
         </div>

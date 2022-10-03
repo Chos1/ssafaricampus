@@ -1,12 +1,13 @@
-import WalletCarouselItem from "./WalletCarouselItem";
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+// packages
 import "swiper/css";
 import "swiper/css/navigation";
-
-import styles from "./WalletCarousel.module.css"
-
+import React from "react";
 import { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+// components
+import WalletCarouselItem from "./WalletCarouselItem";
+// css
+import styles from "./css/WalletCarousel.module.css";
 
 const WalletCarousel = () => {
   return (

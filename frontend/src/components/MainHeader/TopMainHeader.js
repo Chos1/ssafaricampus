@@ -1,10 +1,13 @@
+// packages
 import { useState } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import { useNavigate, NavLink } from "react-router-dom";
+// components
 import UserHeader from "./UserHeader.js";
 import LoginUserHeader from "./LoginUserHeader.js";
-import styles from "./TopMainHeader.module.css";
+// css
+import styles from "./css/TopMainHeader.module.css";
+// assets
 import { ReactComponent as Reservation } from "../../assets/Logo.svg";
 
 const TopMainHeader = () => {
