@@ -89,7 +89,7 @@ const RequestForm = () => {
       .send({
         from: account,
         gas: 812040,
-        value: web3.utils.toWei("0.00001", "ether"),
+        value: web3.utils.toWei("0.000000000000000001", "ether"),
       })
       .then(async () => {
         console.log("전송끝");
