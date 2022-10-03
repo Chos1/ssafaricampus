@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Web3 from "web3";
 
 import useEth from "../../contexts/EthContext/useEth";
@@ -11,7 +11,7 @@ import AddressModal from "./AddressModal";
 import Postcode from "react-daum-postcode";
 
 const RequestForm = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isModal, setModal] = useState(false);
   const [ethAddress, setEthAddress] = useState("");
   const [detailAddress, setDetailAddress] = useState("");
@@ -45,7 +45,8 @@ const RequestForm = () => {
         _extraAddress += data.bname;
       }
       if (data.buildingName !== "") {
-        _extraAddress += _extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+        _extraAddress +=
+          _extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
       _fullAddress += _extraAddress !== "" ? ` (${_extraAddress})` : "";
     }
@@ -78,33 +79,77 @@ const RequestForm = () => {
 
   const createPurchaseContract = async (e) => {
     e.preventDefault();
-    const web3 = new Web3(Web3.givenProvider || "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb");
-    const contractId = await contract.methods.purchaseItem(item_No, ethAddress, "[" + zipCode + "] " + address + " " + detailAddress, people, 0, false).send({
-      from: account,
-      gas: 812040,
-      value: web3.utils.toWei("0.001", "ether"),
-    });
-    // navigate("/purchaseContract/:transactionId");
-    console.log(contractId);
+    const web3 = new Web3(
+      Web3.givenProvider ||
+        "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb"
+    );
+    const contractId = await contract.methods
+      .purchaseItem(
+        item_No,
+        ethAddress,
+        "[" + zipCode + "] " + address + " " + detailAddress,
+        people,
+        0,
+        false
+      )
+      .send({
+        from: account,
+        gas: 812040,
+        value: web3.utils.toWei("0.001", "ether"),
+      });
+    navigate("/purchaseContract/" + contractId);
   };
 
   return (
     <>
       <form className="request_inputgroup">
         <label>배송 주소</label>
-        <input placeholder="우편 번호" className="shipping_add" type="text" name="address" value={zipCode} onChange={onChange} readOnly />
+        <input
+          placeholder="우편 번호"
+          className="shipping_add"
+          type="text"
+          name="address"
+          value={zipCode}
+          onChange={onChange}
+          readOnly
+        />
         <SWBtnPBrd className="add_search" onClick={openModal}>
           검색
         </SWBtnPBrd>
-        <input placeholder="주소를 입력해주세요" className="shipping_add_1" type="text" name="address" value={address} onChange={onChange} readOnly />
+        <input
+          placeholder="주소를 입력해주세요"
+          className="shipping_add_1"
+          type="text"
+          name="address"
+          value={address}
+          onChange={onChange}
+          readOnly
+        />
         <br />
-        <input placeholder="상세 주소 입력해주세요" className="shipping_add_1" type="text" value={detailAddress} onChange={detailAddressChangeHandler} />
+        <input
+          placeholder="상세 주소 입력해주세요"
+          className="shipping_add_1"
+          type="text"
+          value={detailAddress}
+          onChange={detailAddressChangeHandler}
+        />
         <br />
         <label>지갑 주소</label>
-        <input placeholder="지갑 주소를 입력해주세요" type="text" value={ethAddress} onChange={ethAddressChangeHandler} />
+        <input
+          placeholder="지갑 주소를 입력해주세요"
+          type="text"
+          value={ethAddress}
+          onChange={ethAddressChangeHandler}
+        />
         <br />
         <label>총 인원</label>
-        <input placeholder="총 인원을 입력해주세요" type="number" min="1" value={people} onChange={peopleChangeHandler} />
+        <input
+          placeholder="총 인원을 입력해주세요"
+          type="number"
+          min="1"
+          value={people}
+          onChange={peopleChangeHandler}
+        />
         <br />
         {/* <label>첨부 파일</label>
         <input type="file" placeholder="총 인원을 입력해주세요" className="add_file" />
