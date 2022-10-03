@@ -24,8 +24,7 @@ const ProductDetail = () => {
   const [dUrl, setDurl] = useState("");
   const [itemNo, setItemNo] = useState("");
   const [descript, setDescript] = useState("");
-  const [origin, setOrigin] = useState("");
-  const [sales_unit, setSales_unit] = useState();
+  const [seller, setSeller] = useState("");
   const [period, setPeriod] = useState("");
   const [list, setList] = useState("");
 
@@ -40,9 +39,8 @@ const ProductDetail = () => {
       setTitle(item[1]);
       setSubtitle(item[2]);
       setCategory(item[4]);
-      setDescript(item[10]);
-      setOrigin(item[9]);
-      setSales_unit(item[8]);
+      setDescript(item[8]);
+      setSeller(item[10]);
       setPeriod(item[7]);
       setPrice(item[3]);
       setTurl(item[5]);
@@ -79,7 +77,7 @@ const ProductDetail = () => {
   }
   return (
     <section className={styles.section}>
-      <ProductSummary itemNo={itemNo} title={title} subtitle={subtitle} category={category} descript={descript} origin={origin} sales_unit={sales_unit} period={period} price={price} tUrl={tUrl} />
+      <ProductSummary itemNo={itemNo} title={title} subtitle={subtitle} category={category} descript={descript} seller={seller} period={period} price={price} tUrl={tUrl} />
       <ProductImage dUrl={dUrl} />
       {changeComponent}
     </section>

@@ -76,15 +76,7 @@ const ProductSummary = (props) => {
             </div>
             <div className="product_mini">
               <p className="product_label">판매자</p>
-              <p className="product_content">판매자 이름 넣어야해</p>
-            </div>
-            <div className="product_mini">
-              <p className="product_label">판매단위</p>
-              <p className="product_content">{props.sales_unit || itemDetail.sales_unit}개</p>
-            </div>
-            <div className="product_mini">
-              <p className="product_label">원산지</p>
-              <p className="product_content">{props.origin || itemDetail.item_origin}</p>
+              <p className="product_content">{props.seller || itemDetail.seller}</p>
             </div>
             <div className="product_mini_last">
               <p className="product_label">상품설명</p>
