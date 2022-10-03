@@ -7,6 +7,8 @@ import MPBtn from "../../components/ui/MPBtn";
 import useEth from "../../contexts/EthContext/useEth";
 import styles from "../ProductDetail.module.css";
 
+import ModalBasic from "../../components/PurchaseContract/ModalBasic";
+
 const PurchaseContract = () => {
   const {
     state: { contract, account },
@@ -14,20 +16,33 @@ const PurchaseContract = () => {
   const [contractDetail, setContractDetail] = useState("");
   const contract_No = window.location.pathname.split("/")[2];
 
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   useEffect(() => {
     const getContractDetails = async () => {
-      const contractDetail = await contract.methods.viewPurchaseContractByPurchaseNod(contract_No).call({ from: account });
+      const contractDetail = await contract.methods
+        .viewPurchaseContractByPurchaseNod(contract_No)
+        .call({ from: account });
       setContractDetail(contractDetail);
     };
 
     getContractDetails();
   }, [account, contract, contract_No]);
-  console.log(contractDetail);
+
   return (
     <section className={styles.section}>
       <ProductSummary itemNo={contractDetail.item_No} />
       <RequestInfo contractDetail={contractDetail} />
-      <MPBtn>결제하기</MPBtn>
+      <MPBtn onClick={openModal}>결제하기</MPBtn>
+      <ModalBasic open={modalOpen} close={closeModal} header="Modal heading" cont_pass={contractDetail.password}>
+      </ModalBasic>
     </section>
   );
 };
