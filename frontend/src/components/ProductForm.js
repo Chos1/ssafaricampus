@@ -142,8 +142,10 @@ const ProductForm = () => {
                     const sellerName = inputSellerName;
                     console.log("전송시작");
                     await contract.methods.registerItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, info, accounts[0], sellerName).send({ from: accounts[0], gas: 5020400 });
-                    const itemNo = await contract.methods.viewItemNo().call();
                     console.log("전송끝");
+                  })
+                  .then(async () => {
+                    const itemNo = await contract.methods.viewItemNo().call();
                     console.log(itemNo);
                   });
               });

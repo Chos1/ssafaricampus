@@ -83,13 +83,20 @@ const RequestForm = () => {
   const createPurchaseContract = async (e) => {
     e.preventDefault();
     const web3 = new Web3(Web3.givenProvider || "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb");
-    const contractId = await contract.methods.purchaseItem(item_No, account, buyer, "[" + zipCode + "] " + address + " " + detailAddress, people, 0, false, password).send({
-      from: account,
-      gas: 812040,
-      value: web3.utils.toWei("0.00001", "ether"),
-    });
-    console.log(contractId);
-    navigate("/purchaseContract/" + contractId);
+    console.log("전송시작");
+    await contract.methods
+      .purchaseItem(item_No, account, buyer, "[" + zipCode + "] " + address + " " + detailAddress, people, 0, false, password)
+      .send({
+        from: account,
+        gas: 812040,
+        value: web3.utils.toWei("0.00001", "ether"),
+      })
+      .then(async () => {
+        console.log("전송끝");
+        const contractId = await contract.methods.viewPurchaseNo().call();
+        console.log(contractId);
+        navigate("/purchaseContract/" + contractId);
+      });
   };
 
   return (
