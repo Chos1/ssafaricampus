@@ -218,9 +218,9 @@ const ProductForm = () => {
       <div className="button_position">
         <MKBtn onClick={registItem}>등록하기</MKBtn>
       </div>
-      <div className="button_position">
+      {/* <div className="button_position">
         <MKBtn>수정하기</MKBtn>
-      </div>
+      </div> */}
     </form>
   );
 };
