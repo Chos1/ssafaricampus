@@ -27,11 +27,10 @@ const ProductSummary = (props) => {
         const contractDetail = await contract.methods.viewItemByItemNo(item_No).call({ from: account });
         setItemDetail(contractDetail);
       };
-
       getContractDetails();
     }
   }, [account, contract, item_No, nowPath]);
-
+  console.log(itemDetail);
   // 버튼 형태 결정
   let changeComponent = "";
   const price_component = myRole === "COMPANY" ? "product_price_seller" : "product_price";
@@ -76,7 +75,7 @@ const ProductSummary = (props) => {
             </div>
             <div className="product_mini">
               <p className="product_label">판매자</p>
-              <p className="product_content">{props.seller || itemDetail.seller}</p>
+              <p className="product_content">{props.seller_name || itemDetail.seller_name}</p>
             </div>
             <div className="product_mini_last">
               <p className="product_label">상품설명</p>

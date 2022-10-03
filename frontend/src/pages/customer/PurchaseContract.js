@@ -16,14 +16,13 @@ const PurchaseContract = () => {
 
   useEffect(() => {
     const getContractDetails = async () => {
-      const contractDetail = await contract.methods
-        .viewPurchaseContractByPurchaseNod(contract_No)
-        .call({ from: account });
+      const contractDetail = await contract.methods.viewPurchaseContractByPurchaseNod(contract_No).call({ from: account });
       setContractDetail(contractDetail);
     };
 
     getContractDetails();
   }, [account, contract, contract_No]);
+  console.log(contractDetail);
   return (
     <section className={styles.section}>
       <ProductSummary itemNo={contractDetail.item_No} />
