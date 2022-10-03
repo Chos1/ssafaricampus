@@ -5,6 +5,7 @@ import ProductItem from "./ProductItem";
 import { useEffect, useState } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 
+import BannerImg from "../../assets/Banner.jpg";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -31,25 +32,26 @@ const ProductCarousel = () => {
     const FoodDummy = [];
     const Setting_itemsDummy = [];
     const displayItems = async () => {
-      const itemArray = await contract.methods.viewItems().call({ from: account });
-      for (let i = 0; i < itemArray.length ; i++){
-        if (parseInt(itemArray[i][0]) >= 0){
+      const itemArray = await contract.methods
+        .viewItems()
+        .call({ from: account });
+      for (let i = 0; i < itemArray.length; i++) {
+        if (parseInt(itemArray[i][0]) >= 0) {
           // ItemDummy.push(itemArray[i])
-          if (itemArray[i][4] === "준비물"){
-            Setting_itemsDummy.push(itemArray[i])
-          }else if(itemArray[i][4] === "의류"){
-            ClothDummy.push(itemArray[i])
-          }else if(itemArray[i][4] === "식료품"){
-            FoodDummy.push(itemArray[i])
-        }
+          if (itemArray[i][4] === "준비물") {
+            Setting_itemsDummy.push(itemArray[i]);
+          } else if (itemArray[i][4] === "의류") {
+            ClothDummy.push(itemArray[i]);
+          } else if (itemArray[i][4] === "식료품") {
+            FoodDummy.push(itemArray[i]);
+          }
         }
       }
       // setItems(ItemDummy);
-      setClothes(ClothDummy)
-      setFoods(FoodDummy)
-      setSetting_items(Setting_itemsDummy)
+      setClothes(ClothDummy);
+      setFoods(FoodDummy);
+      setSetting_items(Setting_itemsDummy);
     };
-    
 
     displayItems();
   }, [account, contract, Clothes, Foods, setting_items]);
@@ -120,7 +122,14 @@ const ProductCarousel = () => {
       </SwiperSlide>
     );
   });
-
+  // let link = "/products/6" ;
+  // const move = () => {
+  //   navigate(link, {
+  //     state: {
+  //       itemNo: 6,
+  //     },
+  //   });
+  // };
   return (
     <div className="App">
       {/* <div className="Product_div">
@@ -130,21 +139,42 @@ const ProductCarousel = () => {
         </Swiper>
       </div> */}
       <div className="Product_div">
-        <h2 className="ProductList_title">옷</h2>
-        <Swiper grabCursor={true} className="mySwiper" slidesPerView={4} navigation={true} modules={[Navigation]}>
-          {ClothesCarousel}
+        <h2 className="ProductList_title">식품</h2>
+        <Swiper
+          grabCursor={true}
+          className="mySwiper"
+          slidesPerView={4}
+          navigation={true}
+          modules={[Navigation]}
+        >
+          {FoodCarousel}
         </Swiper>
       </div>
 
       <div className="Product_div">
-        <h2 className="ProductList_title">식품</h2>
-        <Swiper grabCursor={true} className="mySwiper" slidesPerView={4} navigation={true} modules={[Navigation]}>
-          {FoodCarousel}
+        <img className="Event_Banner" src={BannerImg} alt=""  />
+      </div>
+      <div className="Product_div">
+        <h2 className="ProductList_title">옷</h2>
+        <Swiper
+          grabCursor={true}
+          className="mySwiper"
+          slidesPerView={4}
+          navigation={true}
+          modules={[Navigation]}
+        >
+          {ClothesCarousel}
         </Swiper>
       </div>
       <div className="Product_div">
         <h2 className="ProductList_title">그 외 것</h2>
-        <Swiper grabCursor={true} className="mySwiper" slidesPerView={4} navigation={true} modules={[Navigation]}>
+        <Swiper
+          grabCursor={true}
+          className="mySwiper"
+          slidesPerView={4}
+          navigation={true}
+          modules={[Navigation]}
+        >
           {SettingCarousel}
         </Swiper>
       </div>

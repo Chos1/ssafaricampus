@@ -18,12 +18,15 @@
 }
 
 .card .card_bottom h1{
+  font-size : 16px;
   margin: 0px;
   margin-bottom: 8px;
 }
 
 .card .card_bottom h3{
+  font-size : 16px;
   margin: 0px;
+  font-weight: bold;
 }
 
 .ProductItem{
