@@ -23,12 +23,13 @@ const ProductCarousel = () => {
 
   const navigate = useNavigate();
   // const ItemDummy = [];
-  const ClothDummy = [];
-  const FoodDummy = [];
-  const Setting_itemsDummy = [];
+
   // console.log(typeof(account))
   // 컴포 따로 만들어야하는데 안댐 ㅜ
   useEffect(() => {
+    const ClothDummy = [];
+    const FoodDummy = [];
+    const Setting_itemsDummy = [];
     const displayItems = async () => {
       const itemArray = await contract.methods.viewItems().call({ from: account });
       for (let i = 0; i < itemArray.length ; i++){
