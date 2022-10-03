@@ -14,7 +14,10 @@ const ProductSummary = (props) => {
   const myRole = useSelector((state) => state.user.role);
 
   const nowPath = window.location.pathname.split("/")[1];
-  const item_No = nowPath === "purchaseContract" ? props.itemNo : window.location.pathname.split("/")[2];
+  const item_No =
+    nowPath === "purchaseContract"
+      ? props.itemNo
+      : window.location.pathname.split("/")[2];
 
   // purchaseContract 페이지일 경우 info data 결정
   const {
@@ -24,16 +27,20 @@ const ProductSummary = (props) => {
   useEffect(() => {
     if (nowPath === "purchaseContract") {
       const getContractDetails = async () => {
-        const contractDetail = await contract.methods.viewItemByItemNo(item_No).call({ from: account });
+        const contractDetail = await contract.methods
+          .viewItemByItemNo(item_No)
+          .call({ from: account });
         setItemDetail(contractDetail);
       };
       getContractDetails();
     }
   }, [account, contract, item_No, nowPath]);
-  console.log(itemDetail);
+  console.log("itemDetail: " + itemDetail);
+  console.log("props: " + props.period);
   // 버튼 형태 결정
   let changeComponent = "";
-  const price_component = myRole === "COMPANY" ? "product_price_seller" : "product_price";
+  const price_component =
+    myRole === "COMPANY" ? "product_price_seller" : "product_price";
   if (nowPath === "purchaseContract" || nowPath === "orderDetail") {
     changeComponent = <div></div>;
   } else if (nowPath === "products" && myRole !== "COMPANY") {
@@ -64,22 +71,37 @@ const ProductSummary = (props) => {
         </div>
         <div className="product_summary_de">
           <div className="product_main">
-            <p className="product_title">{props.title || itemDetail.item_name}</p>
-            <p className="product_subtitle">{props.subtitle || itemDetail.oneline_description}</p>
-            <p className={price_component}>{props.price || itemDetail.item_price}원</p>
+            <p className="product_title">
+              {props.title || itemDetail.item_name}
+            </p>
+            <p className="product_subtitle">
+              {props.subtitle || itemDetail.oneline_description}
+            </p>
+            <p className={price_component}>
+              {((props.price || itemDetail.item_price) * 1).toLocaleString(
+                "ko-KR"
+              )}
+              원
+            </p>
           </div>
           <div>
             <div className="product_mini">
               <p className="product_label">배송</p>
-              <p className="product_content">{props.period || itemDetail.delivery_period}</p>
+              <p className="product_content">
+                {props.period || itemDetail.delivery_period}
+              </p>
             </div>
             <div className="product_mini">
               <p className="product_label">판매자</p>
-              <p className="product_content">{props.seller_name || itemDetail.seller_name}</p>
+              <p className="product_content">
+                {props.seller_name || itemDetail.seller_name}
+              </p>
             </div>
             <div className="product_mini_last">
               <p className="product_label">상품설명</p>
-              <p className="product_content">{props.descript || itemDetail.detail_description}</p>
+              <p className="product_content">
+                {props.descript || itemDetail.detail_description}
+              </p>
             </div>
           </div>
           <br />
