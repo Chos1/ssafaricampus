@@ -24,25 +24,21 @@ const PurchaseContract = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
-
   useEffect(() => {
     const getContractDetails = async () => {
-      const contractDetail = await contract.methods
-        .viewPurchaseContractByPurchaseNod(contract_No)
-        .call({ from: account });
+      const contractDetail = await contract.methods.viewPurchaseContractByPurchaseNod(contract_No).call({ from: account });
       setContractDetail(contractDetail);
     };
 
     getContractDetails();
   }, [account, contract, contract_No]);
-
+  console.log(contractDetail);
   return (
     <section className={styles.section}>
       <ProductSummary itemNo={contractDetail.item_No} />
       <RequestInfo contractDetail={contractDetail} />
       <MPBtn onClick={openModal}>결제하기</MPBtn>
-      <ModalBasic open={modalOpen} close={closeModal} header="Modal heading" cont_pass={contractDetail.password}>
-      </ModalBasic>
+      <ModalBasic open={modalOpen} close={closeModal} header="Modal heading" cont_pass={contractDetail.password} itemNo={contractDetail.item_No} contract_No={contract_No}></ModalBasic>
     </section>
   );
 };
