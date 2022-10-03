@@ -11,9 +11,9 @@ import { Pagination, Autoplay } from "swiper";
 const Banner = () => {
   const navigate = useNavigate();
   const imagelist = [
-    "https://vlee.kr/wp-content/uploads/2020/03/%EC%95%84%EC%9D%B4%EC%9C%A0_01_3840.jpg",
-    "https://windowsforum.kr/files/attach/images/2966154/140/357/013/82ead915aec3eb937803eebfeabe7c77.jpg",
-    "https://t1.daumcdn.net/cfile/tistory/9958783F5EDE12B00E",
+    "https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/193dd05d-7b23-4bf2-8623-b8608252d64a.jpg",
+    "https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/ba7d0d94-b231-421f-996e-c8968107f14a.jpg",
+    "https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/54561bc5-697e-4249-a6dd-27d29dec732f.jpg",
     // "https://svrforum.com/files/attach/images/2022/01/30/b417e9aef0f5f46b6f972f4fa5fbbbbf.jpg",
     // "https://t1.daumcdn.net/cfile/tistory/251D663957D6C93D05",
     // "https://i.pinimg.com/originals/ab/a4/a7/aba4a7e7cedc3a22664466b15a211a09.jpg"
