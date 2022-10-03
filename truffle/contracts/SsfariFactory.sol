@@ -11,18 +11,16 @@ contract SsfariFactory {
     string thumbnail_picture;
     string detail_picture;
     string delivery_period;
-    uint32 sales_unit;
-    string item_origin;
     string detail_description;
     address seller_address;
+    string seller_name;
   }
 
   // 아이템 event
   event NewItem(uint item_No, string item_name, string oneline_description, 
                         uint32 item_price, string category,
                         string thumbnail_picture, string detail_picture, 
-                        string delivery_period, uint32 sales_unit, 
-                        string item_origin, string detail_description, address seller_address);
+                        string delivery_period, string detail_description, address seller_address, string seller_name);
 
   // 아이템 variable
   uint public itemPk;
@@ -38,26 +36,28 @@ contract SsfariFactory {
   // 구매계약 map
   mapping(uint => PurchaseContract) purchaseNoToPurchaseContract;
   mapping(address => PurchaseContract) paidToPurchaseContract;
+  // 지불 variable
+  uint public paid_Pk;
+  PaidContract[] public paidcontracts;
+  // 지불 map
+
   
-
-
-
   // 함수 : 아이템 등록 
   function registerItem(string memory item_name, string memory oneline_description, 
                         uint32 item_price, string memory category,
                         string memory thumbnail_picture, string memory detail_picture, 
-                        string memory delivery_period, uint32 sales_unit, 
-                        string memory item_origin, string memory detail_description, address seller_address) public returns (uint){
+                        string memory delivery_period, string memory detail_description, 
+                        address seller_address, string memory seller_name) public returns (uint){
     itemPk = items.length;
     Item memory item = Item(itemPk, item_name, oneline_description, 
                         item_price, category, thumbnail_picture,detail_picture, 
-                        delivery_period ,sales_unit , item_origin,detail_description, seller_address);
+                        delivery_period ,detail_description, 
+                        seller_address, seller_name);
     items.push(item);
     emit NewItem(itemPk, item_name, oneline_description, 
                   item_price, category,
                   thumbnail_picture, detail_picture, 
-                  delivery_period, sales_unit, 
-                  item_origin, detail_description, seller_address);
+                  delivery_period, detail_description, seller_address, seller_name);
     itemNoToItem[itemPk]= item;
     sellerToItem[seller_address] = item;
     return itemPk;
@@ -103,11 +103,11 @@ contract SsfariFactory {
   }
 
   // 함수 : 구매자 대표 전용 > 아이템 구매(계약 생성)
-  function purchaseItem(uint _item_No, address _purchase_address, string memory _shipping_address, uint32 _total_people, uint32 _paid_people, bool _completed) payable public returns (uint){
+  function purchaseItem(uint _item_No, address _purchase_address, string memory _purchase_name, string memory _shipping_address, uint32 _total_people, uint32 _paid_people, bool _completed, uint _password) payable public returns (uint){
     PurchasePk = purchasecontracts.length;
     uint32 puchaseContractPrice = items[_item_No].item_price;
     uint _total_price = puchaseContractPrice * _total_people;
-    PurchaseContract memory purchaseContract = PurchaseContract(PurchasePk, _item_No, _purchase_address, _shipping_address, _total_people,  _paid_people, _total_price, _completed);
+    PurchaseContract memory purchaseContract = PurchaseContract(PurchasePk, _item_No, _purchase_address, _purchase_name, _shipping_address, _total_people,  _paid_people, _total_price, _completed, _password);
     purchasecontracts.push(purchaseContract);
     
     // Item memory item = items[_item_No];
@@ -119,11 +119,20 @@ contract SsfariFactory {
     uint purchase_No;
     uint item_No;
     address purchase_address;
+    string purchase_name;
     string shipping_address;
     uint32 total_people;
     uint32 paid_people;
     uint total_price;
     bool completed;
+    uint password;
+  }
+
+  struct PaidContract {
+    uint paid_No;
+    uint item_No;
+    uint purchase_No;
+    address paid_address;
   }
 
   // 함수 : 전체 구매계약조회
@@ -134,13 +143,23 @@ contract SsfariFactory {
   function viewPurchaseContractByPurchaseNod(uint purchase_No) public view returns (PurchaseContract memory) {
     return purchaseNoToPurchaseContract[purchase_No];
   }
-  // 함수 : 계약 가입 (대표자 제외 다수) from으로 정해진 금액 송금 해야함.
-  function paidContract(uint _purchase_No) payable public returns (uint32) {
+  // 함수 : 계약 지불 (대표자 제외 다수) from으로 정해진 금액 송금 해야함.
+  function paidContract(uint _item_No, uint _purchase_No, address _paid_address) payable external returns (uint) {
+    paid_Pk = paidcontracts.length;
+    PaidContract memory paidcontract = PaidContract(paid_Pk, _item_No, _purchase_No, _paid_address);
+    paidcontracts.push(paidcontract);
     
     PurchaseContract memory purchasContract = purchaseNoToPurchaseContract[_purchase_No];
     require(purchasContract.completed == false);
     purchasContract.paid_people = purchasContract.paid_people + 1;
-    return purchasContract.paid_people;
+    return paid_Pk;
+  }
+  // 함수 : 계약 취소 ( 구매자들 )
+  function paidcancel(uint _paid_No, address _my_address) payable public returns (bool) {
+    uint32 amount = items[paidcontracts[_paid_No].item_No].item_price;
+    payable(_my_address).transfer(amount);
+    delete paidcontracts[_paid_No];
+    return true;
   }
   // 함수 : 계약 확정 (대표자가 확정) => (셀러에게 돈보냄) 
   function confirmContract(uint _purchase_No) payable external returns (bool) {
@@ -151,11 +170,17 @@ contract SsfariFactory {
     address selleradd = items[purchasContract.item_No].seller_address;
     uint sellerprice = purchasContract.total_price;    
     payable(selleradd).transfer(sellerprice);
+    delete items[purchasContract.item_No];
+
     return true;
   }
-  // 함수 : 주문 리스트 조회
-  function viewOrderList() public view { }
+  // 함수 : 전체 지불 리스트 조회
+  function viewPaidContract() public view returns (PaidContract[] memory) {
+    return paidcontracts;
+   }
 
-  // 함수 : 거래내역 조회
-  function transactionHistory() public view { }
+  // 함수 : 거래완료 후 거래내역 조회
+  // function transactionHistory() public view returns (PaidContract[] memory){
+  //   return paidcontracts;
+  //  }
 }
