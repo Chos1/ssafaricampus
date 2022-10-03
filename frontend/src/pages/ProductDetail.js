@@ -15,6 +15,7 @@ const ProductDetail = () => {
   const {
       state: { contract,account },
     } = useEth();
+
     const itemNo_param = location.state.itemNo;
   
     const [title, setTitle] = useState();
