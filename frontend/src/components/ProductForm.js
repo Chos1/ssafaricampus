@@ -155,6 +155,7 @@ const ProductForm = () => {
         });
       };
       getData();
+      count++;
       alert("성공적으로 업로드 되었습니다");
     } catch (err) {
       console.error(err);
