@@ -26,8 +26,6 @@ function RouteApp() {
 
   const Pages = (
     <Fragment>
-      <Route path="/firstmain" element={<FirstMain />} />
-
       <Route path="/main" element={<MainPage />} />
       <Route path="/products/:productId" element={<ProductDetail />} />
     </Fragment>
@@ -35,7 +33,7 @@ function RouteApp() {
 
   const GuestPages = (
     <Fragment>
-      <Route path="*" element={<MainPage />} />
+      <Route path="*" element={<FirstMain />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUpMain />} />
       <Route path="/signup/customer" element={<SignUpCustomer />} />

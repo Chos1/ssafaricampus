@@ -12,7 +12,7 @@ const MainHeader = () => {
   const TopHeader = role === "COMPANY" ? <SellerTopMainHeader /> : <TopMainHeader />;
   const BottomHeader = role === "COMPANY" ? <SellerBottomMainHeader /> : <BottomMainHeader />;
   const HeaderSize = role === "COMPANY" ? styles.HeaderCompany : styles.header;
-  if (window.location.pathname === "/firstmain") return null;
+  if (window.location.pathname === "/") return null;
   return (
     <header className={HeaderSize}>
       <nav>
