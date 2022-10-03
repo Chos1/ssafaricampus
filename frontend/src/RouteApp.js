@@ -19,13 +19,15 @@ import OrderManage from "./pages/seller/OrderManage";
 import ProductManage from "./pages/seller/ProductManage";
 import ProductModify from "./pages/seller/ProductModify";
 import ProductRegist from "./pages/seller/ProductRegist";
-
+import FirstMain from "./pages/FirstMain";
 function RouteApp() {
   const userType = useSelector((state) => state.user.role);
   const isLogin = useSelector((state) => state.auth.isAuthenticated);
 
   const Pages = (
     <Fragment>
+      <Route path="/firstmain" element={<FirstMain />} />
+
       <Route path="/main" element={<MainPage />} />
       <Route path="/products/:productId" element={<ProductDetail />} />
     </Fragment>
@@ -45,15 +47,9 @@ function RouteApp() {
     <Fragment>
       <Route path="*" element={<MainPage />} />
       <Route path="/mypage" element={<MyPage />} />
-      <Route
-        path="/purchaseContract/:transactionId"
-        element={<PurchaseContract />}
-      />
+      <Route path="/purchaseContract/:transactionId" element={<PurchaseContract />} />
       <Route path="/productRequest/:productId" element={<PurchaseRequest />} />
-      <Route
-        path="/mypage/:transactionId/transactionDetail"
-        element={<TransactionDetail />}
-      />
+      <Route path="/mypage/:transactionId/transactionDetail" element={<TransactionDetail />} />
     </Fragment>
   );
 

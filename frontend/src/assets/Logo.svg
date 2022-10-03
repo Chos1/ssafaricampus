@@ -6,7 +6,7 @@
 	.st0{opacity:0.99;}
 	.st1{fill:#7f5feb;stroke:#7f5feb;stroke-miterlimit:10;}
 	.st2{fill:#000000;}
-	.st3{fill:#FFFFFF;}
+	.st3{fill:#FFFFFF; opacity:0}
 </style>
 <g class="st0">
 	<path class="st1" d="M41.39,15.7l-0.67-0.8l-0.21,0.12c-1.16,0.69-3.23,3.06-3.23,5.29c0,1.52,1.83,2.07,3.07,2.07

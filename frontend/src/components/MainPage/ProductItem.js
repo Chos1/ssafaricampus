@@ -1,20 +1,26 @@
-import styles from './ProductItem.module.css';
-import { useNavigate } from 'react-router-dom';
+import styles from "./ProductItem.module.css";
+import { useNavigate } from "react-router-dom";
 
-const ProductItem = () =>{
+const ProductItem = (props) => {
   const navigate = useNavigate();
-
-  return(
-    <div className={styles.product_item}>
+  // const product_item = styles.product_item + props
+  return (
+    <div className={styles.product_item} style={props.style}>
       <div className={styles.card}>
-            <div className={styles.card_top}>
-              <img src="https://www.busan.com/nas/wcms/wcms_data/photos/2022/06/14/2022061410260748570_m.jpg"onClick={() => { navigate('') }} alt="상품사진" />
-            </div>
-            <div className={styles.card_bottom}>
-              <h1>상품 제목</h1>
-              <h3>가격</h3>
-            </div>
-          </div>
+        <div className={styles.card_top}>
+          <img
+            src="https://www.busan.com/nas/wcms/wcms_data/photos/2022/06/14/2022061410260748570_m.jpg"
+            onClick={() => {
+              navigate("");
+            }}
+            alt="상품사진"
+          />
+        </div>
+        <div className={styles.card_bottom}>
+          <h1>상품 제목</h1>
+          <h3>가격</h3>
+        </div>
+      </div>
       {/* <div className="card">
             <div className="card-top">
               <img src="{item.img_link}" alt="{item.title}" />
@@ -27,6 +33,6 @@ const ProductItem = () =>{
           </div> */}
     </div>
   );
-}
+};
 
 export default ProductItem;
