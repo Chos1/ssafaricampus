@@ -46,9 +46,16 @@ function RouteApp() {
     <Fragment>
       <Route path="*" element={<MainPage />} />
       <Route path="/mypage" element={<MyPage />} />
-      <Route path="/purchaseContract/:transactionId" element={<PurchaseContract />} />
-      <Route path="/productRequest/:productId" element={<PurchaseRequest />} />
-      <Route path="/mypage/:transactionId/transactionDetail" element={<TransactionDetail />} />
+      <Route
+        path="/purchaseContract/:transactionId"
+        element={<PurchaseContract />}
+      />
+      <Route path="/product/:productId/request" element={<PurchaseRequest />} />
+      <Route
+        path="/mypage/:transactionId/transactionDetail"
+        element={<TransactionDetail />}
+      />
+
     </Fragment>
   );
 
