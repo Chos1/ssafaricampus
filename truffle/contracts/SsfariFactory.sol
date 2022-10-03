@@ -62,6 +62,10 @@ contract SsfariFactory {
     sellerToItem[seller_address] = item;
     return itemPk;
   }
+  // 함수 : 방금 만든 아이템 번호 조회
+  function viewItemNo() public view returns (uint) {
+    return itemPk;
+  }
   // 함수 : 아이템 전체 조회
   function viewItems() public view returns (Item[] memory) {
     return items;
@@ -112,6 +116,11 @@ contract SsfariFactory {
     
     // Item memory item = items[_item_No];
     purchaseNoToPurchaseContract[PurchasePk] = purchaseContract;
+    return PurchasePk;
+  }
+
+  // 함수 : 방금만든 계약 번호 조회
+  function viewPurchaseNo() public view returns (uint) {
     return PurchasePk;
   }
   // 구조체 : 구매계약 / 추후 거래내역
