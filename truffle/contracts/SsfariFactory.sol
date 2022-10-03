@@ -163,6 +163,10 @@ contract SsfariFactory {
     purchasContract.paid_people = purchasContract.paid_people + 1;
     return paid_Pk;
   }
+  // 함수 : 방금 낸 지불 No
+  function viewPaidNo() public view returns (uint) {
+    return paid_Pk;
+  }
   // 함수 : 계약 취소 ( 구매자들 )
   function paidcancel(uint _paid_No, address _my_address) payable public returns (bool) {
     uint32 amount = items[paidcontracts[_paid_No].item_No].item_price;
@@ -178,8 +182,7 @@ contract SsfariFactory {
     purchasContract.completed = true;
     address selleradd = items[purchasContract.item_No].seller_address;
     uint sellerprice = purchasContract.total_price;    
-    payable(selleradd).transfer(sellerprice);
-    delete items[purchasContract.item_No];
+    payable(selleradd).transfer(sellerprice/20000000);
 
     return true;
   }
