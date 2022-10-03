@@ -130,7 +130,7 @@ const ProductForm = () => {
                     d = dUrlData;
                     console.log(d);
                   })
-                  .then(() => {
+                  .then(async () => {
                     const title = inputTitle;
                     const lineInfo = inputLineInfo;
                     const price = parseInt(inputPrice);
@@ -141,8 +141,10 @@ const ProductForm = () => {
                     const info = inputInfo;
                     const sellerName = inputSellerName;
                     console.log("전송시작");
-                    contract.methods.registerItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, info, accounts[0], sellerName).send({ from: accounts[0], gas: 5020400 });
+                    await contract.methods.registerItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, info, accounts[0], sellerName).send({ from: accounts[0], gas: 5020400 });
+                    const itemNo = await contract.methods.viewItemNo().call();
                     console.log("전송끝");
+                    console.log(itemNo);
                   });
               });
             });

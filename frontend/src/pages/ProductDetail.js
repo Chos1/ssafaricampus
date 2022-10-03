@@ -26,13 +26,13 @@ const ProductDetail = () => {
   const [descript, setDescript] = useState("");
   const [seller, setSeller] = useState("");
   const [period, setPeriod] = useState("");
-  const [list, setList] = useState("");
+  // const [list, setList] = useState("");
 
   useEffect(() => {
     const displayItem = async () => {
       const item = await contract.methods.viewItemByItemNo(itemNo_param).call({ from: account });
       const contractList = await contract.methods.viewPurchaseContract().call({ from: account });
-      setList(contractList);
+      // setList(contractList);
       console.log(item);
       console.log(contractList);
       setItemNo(item[0]);
@@ -49,13 +49,13 @@ const ProductDetail = () => {
     displayItem();
   }, [account, contract, itemNo_param]);
 
-  let thisItemContract = [];
-  for (let i = 0; i < list.length; i++) {
-    if (list[i].item_No * 1 === itemNo_param) {
-      thisItemContract.push(list[i]);
-    }
-  }
-  console.log(thisItemContract);
+  // let thisItemContract = [];
+  // for (let i = 0; i < list.length; i++) {
+  //   if (list[i].item_No * 1 === itemNo_param) {
+  //     thisItemContract.push(list[i]);
+  //   }
+  // }
+  // console.log(thisItemContract);
   const myRole = useSelector((state) => state.user.role);
   let changeComponent = "";
 
