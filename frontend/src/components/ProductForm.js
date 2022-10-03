@@ -16,8 +16,7 @@ const ProductForm = () => {
   const [inputThumbnail, setInputThumbnail] = useState(""); // 썸네일 사진
   const [inputDetail, setInputDetail] = useState(""); // 상세 사진
   const [inputExpressDue, setInputExpressDue] = useState(""); // 배송 기간
-  const [inputUnit, setInputUnit] = useState(""); // 판매 단위
-  const [inputOrigin, setInputOrigin] = useState(""); // 원산지
+  const [inputSellerName, setInputSellerName] = useState(""); // 판매자 이름
   const [inputInfo, setInputInfo] = useState(""); // 상품 설명
 
   // 파이어베이스
@@ -58,11 +57,8 @@ const ProductForm = () => {
   const handleExpressDueChange = (e) => {
     setInputExpressDue(e.target.value);
   };
-  const handleUnitChange = (e) => {
-    setInputUnit(e.target.value);
-  };
-  const handleOriginChange = (e) => {
-    setInputOrigin(e.target.value);
+  const handleSellerNameChange = (e) => {
+    setInputSellerName(e.target.value);
   };
   const handleInfoChange = (e) => {
     setInputInfo(e.target.value);
@@ -103,19 +99,18 @@ const ProductForm = () => {
 
     let d = ""; // 상세이미지 전달 변수
     let t = ""; // 썸네일 전달 변수
-    let count = 0;
     try {
       // 업로드의 순서는 상관없으니 Promise.all로 이미지 업로드후 저장된 url 받아오기
       const tUrls = Promise.resolve(
         tfileList?.map(async (file) => {
-          const storageRef = ref(storage, `thumbnails/${accounts[0]}/${count}`);
+          const storageRef = ref(storage, `thumbnails/${accounts[0]}/${inputLineInfo}`);
           await uploadBytesResumable(storageRef, file);
           return getDownloadURL(storageRef);
         })
       );
       const dUrls = Promise.resolve(
         dfileList?.map(async (file) => {
-          const storageRef = ref(storage, `detailImages/${accounts[0]}/${count}`);
+          const storageRef = ref(storage, `detailImages/${accounts[0]}/${inputLineInfo}`);
           await uploadBytesResumable(storageRef, file);
           return getDownloadURL(storageRef);
         })
@@ -143,11 +138,10 @@ const ProductForm = () => {
                     const thumbnail = t;
                     const detail = d;
                     const expressDue = inputExpressDue;
-                    const unit = parseInt(inputUnit);
-                    const origin = inputOrigin;
                     const info = inputInfo;
+                    const sellerName = inputSellerName;
                     console.log("전송시작");
-                    contract.methods.registerItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, unit, origin, info, accounts[0]).send({ from: accounts[0], gas: 5020400 });
+                    contract.methods.registerItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, info, accounts[0], sellerName).send({ from: accounts[0], gas: 5020400 });
                     console.log("전송끝");
                   });
               });
@@ -155,7 +149,6 @@ const ProductForm = () => {
         });
       };
       getData();
-      count++;
       alert("성공적으로 업로드 되었습니다");
     } catch (err) {
       console.error(err);
@@ -212,11 +205,8 @@ const ProductForm = () => {
       <label>배송 기간</label>
       <input placeholder="배송 기간을 입력해주세요" value={inputExpressDue} onChange={handleExpressDueChange} />
       <br />
-      <label>판매 단위</label>
-      <input placeholder="판매 단위를 입력해주세요" value={inputUnit} onChange={handleUnitChange} />
-      <br />
-      <label>원산지</label>
-      <input placeholder="원산지를 입력해주세요" value={inputOrigin} onChange={handleOriginChange} />
+      <label>판매자 이름</label>
+      <input placeholder="판매자 이름를 입력해주세요" value={inputSellerName} onChange={handleSellerNameChange} />
       <br />
       <label className="product_summary">상품 설명</label>
       <textarea placeholder="상품 설명을 입력해주세요" value={inputInfo} onChange={handleInfoChange} />
