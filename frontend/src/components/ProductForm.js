@@ -102,20 +102,14 @@ const ProductForm = () => {
       // 업로드의 순서는 상관없으니 Promise.all로 이미지 업로드후 저장된 url 받아오기
       const tUrls = Promise.resolve(
         tfileList?.map(async (file) => {
-          const storageRef = ref(
-            storage,
-            `thumbnails/${accounts[0]}/${inputLineInfo}`
-          );
+          const storageRef = ref(storage, `thumbnails/${accounts[0]}/${inputLineInfo}`);
           await uploadBytesResumable(storageRef, file);
           return getDownloadURL(storageRef);
         })
       );
       const dUrls = Promise.resolve(
         dfileList?.map(async (file) => {
-          const storageRef = ref(
-            storage,
-            `detailImages/${accounts[0]}/${inputLineInfo}`
-          );
+          const storageRef = ref(storage, `detailImages/${accounts[0]}/${inputLineInfo}`);
           await uploadBytesResumable(storageRef, file);
           return getDownloadURL(storageRef);
         })
@@ -146,20 +140,7 @@ const ProductForm = () => {
                     const info = inputInfo;
                     const sellerName = inputSellerName;
                     console.log("전송시작");
-                    await contract.methods
-                      .registerItem(
-                        title,
-                        lineInfo,
-                        price,
-                        categori,
-                        thumbnail,
-                        detail,
-                        expressDue,
-                        info,
-                        accounts[0],
-                        sellerName
-                      )
-                      .send({ from: accounts[0], gas: 5020400 });
+                    await contract.methods.registerItem(title, lineInfo, price, categori, thumbnail, detail, expressDue, info, accounts[0], sellerName).send({ from: accounts[0], gas: 5020400 });
                     console.log("전송끝");
                   })
                   .then(async () => {
@@ -191,33 +172,16 @@ const ProductForm = () => {
   return (
     <form className="product_inputgroup">
       <label>상품명</label>
-      <input
-        placeholder="상품명을 입력해주세요"
-        value={inputTitle}
-        onChange={handleTitleChange}
-      />
+      <input placeholder="상품명을 입력해주세요" value={inputTitle} onChange={handleTitleChange} />
       <br />
       <label>한 줄 설명</label>
-      <input
-        placeholder="한 줄 설명을 입력해주세요"
-        value={inputLineInfo}
-        onChange={handleLineInfoChange}
-      />
+      <input placeholder="한 줄 설명을 입력해주세요" value={inputLineInfo} onChange={handleLineInfoChange} />
       <br />
       <label>상품 가격</label>
-      <input
-        placeholder="상품 가격을 입력해주세요"
-        value={inputPrice}
-        onChange={handlePriceChange}
-      />
+      <input placeholder="상품 가격을 입력해주세요" value={inputPrice} onChange={handlePriceChange} />
       <br />
       <label>카테고리</label>
-      <select
-        name="카테고리"
-        id=""
-        onChange={handleChangeSelect}
-        value={selected}
-      >
+      <select name="카테고리" id="" onChange={handleChangeSelect} value={selected}>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.text}
@@ -226,12 +190,7 @@ const ProductForm = () => {
       </select>
       <br />
       <label>썸네일 사진</label>
-      <input
-        type="file"
-        multiple
-        onChange={encodeFileToBase64}
-        value={inputThumbnail}
-      />
+      <input type="file" multiple onChange={encodeFileToBase64} value={inputThumbnail} />
       {showThumbnail.map((image, id) => (
         <div key={id}>
           <img src={image} alt={`${image}-${id}`} className="thumbnail_img" />
@@ -239,12 +198,7 @@ const ProductForm = () => {
       ))}
       <br />
       <label>상세 사진</label>
-      <input
-        type="file"
-        multiple
-        onChange={handleAddImages}
-        value={inputDetail}
-      />
+      <input type="file" multiple onChange={handleAddImages} value={inputDetail} />
       {showImages.map((image, id) => (
         <div key={id}>
           <img src={image} alt={`${image}-${id}`} className="detail_img" />
@@ -252,18 +206,10 @@ const ProductForm = () => {
       ))}
       <br />
       <label>배송 기간</label>
-      <input
-        placeholder="배송 기간을 입력해주세요"
-        value={inputExpressDue}
-        onChange={handleExpressDueChange}
-      />
+      <input placeholder="배송 기간을 입력해주세요" value={inputExpressDue} onChange={handleExpressDueChange} />
       <br />
       <label className="product_summary">상품 설명</label>
-      <textarea
-        placeholder="상품 설명을 입력해주세요"
-        value={inputInfo}
-        onChange={handleInfoChange}
-      />
+      <textarea placeholder="상품 설명을 입력해주세요" value={inputInfo} onChange={handleInfoChange} />
       <br />
       <div className="button_position">
         <MKBtn onClick={registItem}>등록하기</MKBtn>
