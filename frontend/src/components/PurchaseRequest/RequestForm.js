@@ -98,12 +98,11 @@ const RequestForm = () => {
         navigate("/purchaseContract/" + contractId);
       });
   };
-
   return (
     <>
       <form className="request_inputgroup">
         <label>배송 주소</label>
-        <input placeholder="우편 번호" className="shipping_add" type="text" name="address" value={zipCode} onChange={onChange} readOnly />
+        <input placeholder="우편 번호" id="focus" className="shipping_add" type="text" name="address" value={zipCode} onChange={onChange} readOnly autoFocus />
         <SWBtnPBrd className="add_search" onClick={openModal}>
           검색
         </SWBtnPBrd>

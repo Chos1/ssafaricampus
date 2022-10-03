@@ -62,10 +62,10 @@ const ProductDetail = () => {
       <div>
         <LPBtn
           onClick={() => {
-            navigate("/productRequest/:productId");
+            navigate("/product/" + itemNo_param + "/request");
           }}
         >
-          구매하기
+          구매신청
         </LPBtn>
       </div>
     );
