@@ -27,6 +27,7 @@ function RouteApp() {
   const Pages = (
     <Fragment>
       <Route path="/main" element={<MainPage />} />
+      <Route path="/main/search/:word" element={<MainPage />} />
       <Route path="/products/:productId" element={<ProductDetail />} />
     </Fragment>
   );
