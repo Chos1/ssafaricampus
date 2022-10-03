@@ -29,19 +29,16 @@ const WalletCarouselItem = (props) => {
   }
   let balance = state.balance;
   let unit = "";
-  if (props.title === "ETH") {
-    balance = (state.balance / 1e18).toFixed(4);
-    unit = "eth";
-  } else {
-    balance = "20000";
-    unit = "won";
-  }
+
+  balance = (state.balance / 1e18).toFixed(4);
+  unit = "eth";
+  let cash = (balance * 20000000).toLocaleString("ko-KR");
 
   return (
     <div className={styles.WalletCarouselItem}>
       <h2>{props.title}</h2>
       <p>
-        {balance} {unit}
+        {balance} {unit} ({cash}) 원
       </p>
       {UserInfoStyle}
     </div>
