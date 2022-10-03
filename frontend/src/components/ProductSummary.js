@@ -75,7 +75,7 @@ const ProductSummary = (props) => {
             </div>
             <div className="product_mini">
               <p className="product_label">판매자</p>
-              <p className="product_content">{props.seller_name || itemDetail.seller_name}</p>
+              <p className="product_content">{props.seller || itemDetail.seller_name}</p>
             </div>
             <div className="product_mini_last">
               <p className="product_label">상품설명</p>
