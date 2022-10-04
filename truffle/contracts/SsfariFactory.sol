@@ -182,6 +182,7 @@ contract SsfariFactory {
   function confirmContract(uint _purchase_No) payable public returns (bool) {
     require(purchasecontracts[_purchase_No].paid_people >= purchasecontracts[_purchase_No].total_people);
     purchasecontracts[_purchase_No].completed = true;
+    purchaseNoToPurchaseContract[_purchase_No].completed = true;
     address selleradd = items[purchasecontracts[_purchase_No].item_No].seller_address;
     uint sellerprice = purchasecontracts[_purchase_No].total_price;    
     payable(selleradd).transfer(sellerprice * 5 * 1e10);
@@ -195,7 +196,7 @@ contract SsfariFactory {
   // 함수 : 전체 지불 리스트 조회
   function viewPaidContract() public view returns (PaidContract[] memory) {
     return paidcontracts;
-   }
+  }
 
   // 함수 : 거래완료 후 거래내역 조회
   // function transactionHistory() public view returns (PaidContract[] memory){
