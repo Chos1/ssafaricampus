@@ -158,9 +158,9 @@ contract SsfariFactory {
     PaidContract memory paidcontract = PaidContract(paid_Pk, _item_No, _purchase_No, _paid_address);
     paidcontracts.push(paidcontract);
     
-    PurchaseContract memory purchasContract = purchaseNoToPurchaseContract[_purchase_No];
-    require(purchasContract.completed == false);
-    purchasContract.paid_people = purchasContract.paid_people + 1;
+    PurchaseContract storage purchaseContract = purchaseNoToPurchaseContract[_purchase_No];
+    require(purchaseContract.completed == false);
+    purchaseContract.paid_people = purchaseContract.paid_people + 1;
     return paid_Pk;
   }
   // 함수 : 방금 낸 지불 No
