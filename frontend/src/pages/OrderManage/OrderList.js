@@ -12,25 +12,35 @@ const OrderList = (props) => {
     state: { contract, account },
   } = useEth();
   const [contractDetails, setContractDetails] = useState("");
-  const tests = [
-    ["충북대 과잠", "아무튼 서브 이름", "12,900"],
-    ["충남대 과잠", "아무튼 서브 이름", "13,900"],
-  ];
 
   useEffect(() => {
     const getContractDetails = async () => {
+      const contractList = [];
+      let contractItem = [];
       const contractDetails = await contract.methods
         .viewPurchaseContract()
         .call({ from: account });
+      let nowItem = "";
+      console.log(contractDetails);
+      contractItem.push();
+      for (let i = 0; i < contractDetails.length; i++) {
+        nowItem = await contract.methods
+          .viewItemByItemNo(contractDetails[i].item_No)
+          .call({ from: account });
+        console.log(nowItem);
+        contractItem.push(nowItem[1], nowItem[2]);
+        console.log(contractItem);
+      }
       setContractDetails(contractDetails);
     };
     getContractDetails();
   }, [account, contract]);
+
   console.log(contractDetails);
 
-  const orderItem = tests.map((test, idx) => (
-    <OrderItem key={idx} title={test[0]} subtitle={test[1]} price={test[2]} />
-  ));
+  // const orderItem = contractDetails.map((test, idx) => (
+  //   <OrderItem key={idx} title={test[0]} subtitle={test[1]} price={test[2]} />
+  // ));
 
   let ListTitle = "";
   if (props.role === "COMPANY") {
@@ -44,7 +54,7 @@ const OrderList = (props) => {
         {ListTitle}
         <hr />
       </div>
-      {orderItem}
+      {/* {orderItem} */}
     </div>
   );
 };

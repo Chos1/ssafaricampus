@@ -10,7 +10,9 @@ const UserInfoItem = (props) => {
     "-" +
     props.phone.slice(7, 11);
   const EorN = props.companyNumber ? props.companyNumber : props.email;
-
+  const passwordChange = () => {
+    alert("변경되었습니다!");
+  };
   return (
     <div className={styles.UserInfoItem}>
       <div>
@@ -21,7 +23,7 @@ const UserInfoItem = (props) => {
         <p>{phoneNumber}</p>
       </div>
       <div className={styles.Passchange}>
-        <BtnPTxt>비밀번호 변경</BtnPTxt>
+        <BtnPTxt onClick={passwordChange}>비밀번호 변경</BtnPTxt>
       </div>
       {/* Your account is: {props.account}
       <h1>Contacts</h1>
