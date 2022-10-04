@@ -29,6 +29,7 @@ const ContractItem = () => {
   console.log(contractDetails);
   const processingItem = contractDetails
     .filter((contractDetail) => contractDetail.item_No === keyword && contractDetail.paid_people < contractDetail.total_people)
+    .reverse()
     .map((contractDetail, idx) => (
       <>
         {/* item_no === params일 때만 뜬다 */}
