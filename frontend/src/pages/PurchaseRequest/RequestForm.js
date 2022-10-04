@@ -92,7 +92,9 @@ const RequestForm = () => {
     setPeople(e.target.value);
   };
   const passwordChangeHandler = (e) => {
-    setPassword(e.target.value);
+    const { value } = e.target;
+    const onlyNumber = value.replace(/[^0-9]/g, "");
+    setPassword(onlyNumber);
   };
 
   const createPurchaseContract = async (e) => {
@@ -182,8 +184,7 @@ const RequestForm = () => {
         <label>거래 비밀번호</label>
         <input
           placeholder="비밀번호를 입력해주세요"
-          type="number"
-          min="1"
+          type="text"
           value={password}
           onChange={passwordChangeHandler}
         />
