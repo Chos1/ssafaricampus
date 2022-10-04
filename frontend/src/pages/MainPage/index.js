@@ -1,18 +1,45 @@
 // packages
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 // components
 import Banner from "./Banner.js";
 import ProductCarousel from "./ProductCarousel.js";
+import Loading from "../../components/ui/Loading.js";
+
+import useEth from "../../contexts/EthContext/useEth";
+
+import styles from "./css/MainHeader.module.css"
 
 const MainPage = () => {
-  const banner = useLocation().pathname.split("/")[2] ? null : <Banner />;
+  const { state } = useEth();
+  const navigate = useNavigate();
+  const [TimeCheck, setTimeCheck] = useState(true);
 
-  return (
-    <div>
-      {banner}
-      <ProductCarousel />
-    </div>
-  );
+  let MainCompo = <></>;
+
+  if (state.account) {
+    MainCompo = (
+      <>
+        <Banner />
+        <ProductCarousel />
+      </>
+    );
+  } else {
+    if (TimeCheck === true) {
+      setTimeout(() => {
+        setTimeCheck(false);
+      }, 1000);
+      MainCompo = 
+      <div className={styles.loading_center}>
+        <Loading />
+      </div>
+    } else {
+      alert("MyPage에서 지갑을 연결하세요")
+      navigate('/mypage')
+    }
+  }
+
+  return <div>{MainCompo}</div>;
 };
 
 export default MainPage;

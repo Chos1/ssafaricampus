@@ -36,11 +36,23 @@ const PurchaseContract = () => {
     getContractDetails();
   }, [account, contract, contract_No]);
   console.log(contractDetail);
+
+  let Btn = <></>
+
+  if (contractDetail.paid_people
+    >= contractDetail.total_people){
+      if(parseInt(contractDetail.purchase_address) === parseInt(account)){
+        Btn = <MPBtn >결제 확정하기 </MPBtn>
+      }
+  }else{
+      Btn = <MPBtn onClick={openModal}>{contractDetail.paid_people}/{contractDetail.total_people}</MPBtn>
+  }
+  
   return (
     <section className={styles.section}>
       <ProductSummary itemNo={contractDetail.item_No} />
       <RequestInfo contractDetail={contractDetail} />
-      <MPBtn onClick={openModal}>결제하기</MPBtn>
+      {Btn}
       <ModalBasic
         open={modalOpen}
         close={closeModal}
