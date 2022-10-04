@@ -154,13 +154,11 @@ contract SsfariFactory {
   }
   // 함수 : 계약 지불 (대표자 제외 다수) from으로 정해진 금액 송금 해야함.
   function paidContract(uint _item_No, uint _purchase_No, address _paid_address) payable external returns (uint) {
+    require(purchasecontracts[_purchase_No].completed == false);
     paid_Pk = paidcontracts.length;
     PaidContract memory paidcontract = PaidContract(paid_Pk, _item_No, _purchase_No, _paid_address);
     paidcontracts.push(paidcontract);
-    
-    PurchaseContract storage purchaseContract = purchaseNoToPurchaseContract[_purchase_No];
-    require(purchaseContract.completed == false);
-    purchaseContract.paid_people = purchaseContract.paid_people + 1;
+    purchasecontracts[_purchase_No].paid_people++;
     return paid_Pk;
   }
   // 함수 : 방금 낸 지불 No
@@ -176,12 +174,11 @@ contract SsfariFactory {
   }
   // 함수 : 계약 확정 (대표자가 확정) => (셀러에게 돈보냄) 
   function confirmContract(uint _purchase_No) payable external returns (bool) {
-    PurchaseContract memory purchasContract = purchaseNoToPurchaseContract[_purchase_No];
-    require(purchasContract.paid_people == purchasContract.total_people);
-    require(purchasContract.completed != false);
-    purchasContract.completed = true;
-    address selleradd = items[purchasContract.item_No].seller_address;
-    uint sellerprice = purchasContract.total_price;    
+    require(purchasecontracts[_purchase_No].paid_people == purchasecontracts[_purchase_No].total_people);
+    require(purchasecontracts[_purchase_No].completed != false);
+    purchasecontracts[_purchase_No].completed = true;
+    address selleradd = items[purchasecontracts[_purchase_No].item_No].seller_address;
+    uint sellerprice = purchasecontracts[_purchase_No].total_price;    
     payable(selleradd).transfer(sellerprice/20000000);
 
     return true;
