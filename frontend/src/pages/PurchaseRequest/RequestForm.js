@@ -1,7 +1,7 @@
 // packages
 import Web3 from "web3";
 import Postcode from "react-daum-postcode";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // utils
 import useEth from "../../contexts/EthContext/useEth";
@@ -28,7 +28,19 @@ const RequestForm = () => {
   } = useEth();
 
   const { zipCode, address } = inputs;
+  const [itemDetail, setItemDetail] = useState("");
   const item_No = window.location.pathname.split("/")[2];
+
+  useEffect(() => {
+    const getItemDetails = async () => {
+      const itemDetail = await contract.methods
+        .viewItemByItemNo(item_No)
+        .call({ from: account });
+      setItemDetail(itemDetail);
+    };
+    getItemDetails();
+  }, [account, contract, item_No]);
+  const sellerAddress = itemDetail[9];
 
   const openModal = (e) => {
     e.preventDefault();
@@ -99,7 +111,8 @@ const RequestForm = () => {
         people,
         0,
         false,
-        password
+        password,
+        sellerAddress
       )
       .send({
         from: account,

@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 // utils
 import useEth from "../../contexts/EthContext/useEth";
 // components
+import ContractItem from "./ContractItem";
 import ProductImage from "./ProductImage";
 import ProductSummary from "../../components/ProductSummary/ProductSummary";
 // css
@@ -88,6 +89,7 @@ const ProductDetail = () => {
         price={price}
         tUrl={tUrl}
       />
+      <ContractItem />
       <ProductImage dUrl={dUrl} />
       {changeComponent}
     </section>

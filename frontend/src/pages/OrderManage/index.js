@@ -5,9 +5,9 @@ import useEth from "../../contexts/EthContext/useEth";
 // components
 import Notion from "../../components/UserInfo/Notion";
 import UserInfo from "../../components/UserInfo";
-import PurchaseList from "../../components/UserInfo/PurchaseList";
+import PurchaseList from "./OrderList";
 // css
-import styles from "./index.module.css";
+import styles from "./css/index.module.css";
 
 function OrderManage() {
   const name = useSelector((state) => state.user.name);

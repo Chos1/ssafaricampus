@@ -1,0 +1,14 @@
+.OrderItem{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.OrderItem .OrderImg{
+  cursor: pointer;
+}
+
+.OrderItem .OrderTitle{
+  margin-right: 10rem;
+  cursor: pointer;
+}
