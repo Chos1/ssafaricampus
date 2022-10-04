@@ -5,18 +5,20 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
+
+import meetbanner from "../../assets/고기배너.jpg"
+import exambanner from "../../assets/시험배너.jpg"
+import eggbanner from "../../assets/달걀배너.jpg"
+
 // css
 import "./css/Banner.css";
 
 const Banner = () => {
   const navigate = useNavigate();
   const imagelist = [
-    "https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/193dd05d-7b23-4bf2-8623-b8608252d64a.jpg",
-    "https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/ba7d0d94-b231-421f-996e-c8968107f14a.jpg",
-    "https://product-image.kurly.com/cdn-cgi/image/format=auto/banner/main/pc/img/54561bc5-697e-4249-a6dd-27d29dec732f.jpg",
-    // "https://svrforum.com/files/attach/images/2022/01/30/b417e9aef0f5f46b6f972f4fa5fbbbbf.jpg",
-    // "https://t1.daumcdn.net/cfile/tistory/251D663957D6C93D05",
-    // "https://i.pinimg.com/originals/ab/a4/a7/aba4a7e7cedc3a22664466b15a211a09.jpg"
+    meetbanner,
+    exambanner,
+    eggbanner
   ];
 
   const imageCarousel = imagelist.map((image, idx) => {
