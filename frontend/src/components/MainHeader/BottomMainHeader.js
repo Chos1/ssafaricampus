@@ -1,4 +1,6 @@
-import styles from "./BottomMainHeader.module.css";
+// css
+import styles from "./css/BottomMainHeader.module.css";
+
 const BottomMainHeader = () => {
   return (
     <div className={styles.justify_center}>

@@ -1,0 +1,30 @@
+// packages
+import { useSelector } from "react-redux";
+// components
+import TopMainHeader from "./TopMainHeader.js";
+import BottomMainHeader from "./BottomMainHeader";
+import SellerTopMainHeader from "./SellerTopMainHeader.js";
+import SellerBottomMainHeader from "./SellerBottomMainHeader";
+// css
+import styles from "./css/MainHeader.module.css";
+
+const MainHeader = () => {
+  const role = useSelector((state) => state.user.role);
+  const TopHeader =
+    role === "COMPANY" ? <SellerTopMainHeader /> : <TopMainHeader />;
+  const BottomHeader =
+    role === "COMPANY" ? <SellerBottomMainHeader /> : <BottomMainHeader />;
+  const HeaderSize = role === "COMPANY" ? styles.HeaderCompany : styles.header;
+  if (window.location.pathname === "/") return null;
+  return (
+    <header className={HeaderSize}>
+      <nav>
+        {TopHeader}
+        {BottomHeader}
+      </nav>
+      <hr />
+    </header>
+  );
+};
+
+export default MainHeader;

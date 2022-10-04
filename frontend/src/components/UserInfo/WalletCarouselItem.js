@@ -1,11 +1,13 @@
-import XsWBtnPBrd from "../ui/XsWBtnPBrd";
-import XsPBtn from "../ui/XsPBtn";
-import XsWBtnKBrd from "../ui/XsWBtnKBrd";
-import XsKBtn from "../ui/XsKBtn";
+// packages
 import { useSelector } from "react-redux";
+// utils
 import useEth from "../../contexts/EthContext/useEth";
-
-import styles from "./WalletCarouselItem.module.css";
+// css
+import styles from "./css/WalletCarouselItem.module.css";
+import XsPBtn from "../ui/XsPBtn";
+import XsKBtn from "../ui/XsKBtn";
+import XsWBtnPBrd from "../ui/XsWBtnPBrd";
+import XsWBtnKBrd from "../ui/XsWBtnKBrd";
 
 const WalletCarouselItem = (props) => {
   const myRole = useSelector((state) => state.user.role);

@@ -4,22 +4,23 @@ import { useSelector } from "react-redux";
 
 import Login from "./pages/Login";
 import MainPage from "./pages/MainPage";
+import FirstMain from "./pages/NewMainPage";
 import ProductDetail from "./pages/ProductDetail";
-import SignUpMain from "./pages/SignUpMain";
-import SignUpSeller from "./pages/SignUpSeller";
-import SignUpCustomer from "./pages/SignUpCustomer";
+import SignUpMain from "./pages/SignUp";
+import SignUpSeller from "./pages/SignUp/SignUpSeller";
+import SignUpCustomer from "./pages/SignUp/SignUpCustomer";
 
-import MyPage from "./pages/customer/MyPage";
-import PurchaseContract from "./pages/customer/PurchaseContract";
-import PurchaseRequest from "./pages/customer/PurchaseRequest";
-import TransactionDetail from "./pages/customer/TransactionDetail";
+import MyPage from "./pages/Mypage";
+import PurchaseContract from "./pages/PurchaseContract";
+import PurchaseRequest from "./pages/PurchaseRequest";
+import TransactionDetail from "./pages/TransactionDetail";
 
-import OrderDetail from "./pages/seller/OrderDetail";
-import OrderManage from "./pages/seller/OrderManage";
-import ProductManage from "./pages/seller/ProductManage";
-import ProductModify from "./pages/seller/ProductModify";
-import ProductRegist from "./pages/seller/ProductRegist";
-import FirstMain from "./pages/FirstMain";
+import OrderDetail from "./pages/OrderDetail";
+import OrderManage from "./pages/OrderManage";
+import ProductManage from "./pages/ProductManage";
+import ProductModify from "./pages/ProductModify";
+import ProductRegist from "./pages/ProductRegist";
+
 function RouteApp() {
   const userType = useSelector((state) => state.user.role);
   const isLogin = useSelector((state) => state.auth.isAuthenticated);
@@ -55,7 +56,6 @@ function RouteApp() {
         path="/mypage/:transactionId/transactionDetail"
         element={<TransactionDetail />}
       />
-
     </Fragment>
   );
 

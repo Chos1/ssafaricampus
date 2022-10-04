@@ -3,8 +3,8 @@ import store, { persistor } from "./store/index";
 import { Provider } from "react-redux";
 
 import RouteApp from "./RouteApp";
-import MainHeader from "./components/MainHeader/MainHeader";
-import MainFooter from "./components/MainFooter/MainFooter";
+import MainHeader from "./components/MainHeader";
+import MainFooter from "./components/MainFooter";
 import EthProvider from "./contexts/EthContext/EthProvider";
 
 function App() {

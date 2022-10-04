@@ -1,12 +1,15 @@
-import WalletCarousel from "./WalletCarousel";
-import AddWalletBtn from "./AddWalletBtn";
+// packages
 import ReactTooltip from "react-tooltip";
-import useEth from "../../contexts/EthContext/useEth";
-import Loading from "../ui/Loading.js";
-import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useState } from "react";
-
-import styles from "./WalletItem.module.css";
+import { AiOutlineInfoCircle } from "react-icons/ai";
+// utils
+import useEth from "../../contexts/EthContext/useEth";
+// components
+import Loading from "../ui/Loading.js";
+import AddWalletBtn from "./AddWalletBtn";
+import WalletCarousel from "./WalletCarousel";
+// css
+import styles from "./css/WalletItem.module.css";
 
 const WalletItem = (props) => {
   const { state } = useEth();
@@ -23,9 +26,18 @@ const WalletItem = (props) => {
       <>
         <h2>지갑 관리</h2>
         <div>
-          <AiOutlineInfoCircle data-for="walletName" data-tip onClick={() => doCopy(state.account)} size="25" className={styles.walletInfo} />
+          <AiOutlineInfoCircle
+            data-for="walletName"
+            data-tip
+            onClick={() => doCopy(state.account)}
+            size="25"
+            className={styles.walletInfo}
+          />
         </div>
-        <ReactTooltip id="walletName" getContent={(dataTip) => state.account}></ReactTooltip>
+        <ReactTooltip
+          id="walletName"
+          getContent={(dataTip) => state.account}
+        ></ReactTooltip>
       </>
     );
   }
