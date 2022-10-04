@@ -22,19 +22,9 @@ const ProductItem = (props) => {
         </div>
         <div className={styles.card_bottom}>
           <h1>{props.good[1]}</h1>
-          <h3>{props.good[3]}</h3>
+          <h3>{(props.good[3] * 1).toLocaleString("ko-KR")} 원</h3>
         </div>
       </div>
-      {/* <div className="card">
-          <div className="card-top">
-            <img src="{item.img_link}" alt="{item.title}" />
-            <h1>{item.title}</h1>
-          </div>
-          <div className="card-bottom">
-            <h3>{item.price}</h3>
-            <p>{item.한줄 설명}</p>
-          </div>
-        </div> */}
     </div>
   );
 };
