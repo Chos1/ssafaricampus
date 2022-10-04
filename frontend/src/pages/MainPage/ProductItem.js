@@ -19,7 +19,7 @@ const ProductItem = (props) => {
         </div>
         <div className={styles.card_bottom}>
           <h1>{props.item[1]}</h1>
-          <h3>{props.item[3]}</h3>
+          <h3>{(props.item[3] * 1).toLocaleString("ko-KR")} 원</h3>
         </div>
       </div>
     </div>

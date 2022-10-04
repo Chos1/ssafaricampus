@@ -15,6 +15,9 @@
 
 .card .card_bottom{
   padding : 14px 10px 0px 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;  
 }
 
 .card .card_bottom h1{
