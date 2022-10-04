@@ -107,11 +107,11 @@ contract SsfariFactory {
   }
 
   // 함수 : 구매자 대표 전용 > 아이템 구매(계약 생성)
-  function purchaseItem(uint _item_No, address _purchase_address, string memory _purchase_name, string memory _shipping_address, uint32 _total_people, uint32 _paid_people, bool _completed, uint _password) payable public returns (uint){
+  function purchaseItem(uint _item_No, address _purchase_address, string memory _purchase_name, string memory _shipping_address, uint32 _total_people, uint32 _paid_people, bool _completed, uint _password, address _seller_address) payable public returns (uint){
     PurchasePk = purchasecontracts.length;
     uint32 puchaseContractPrice = items[_item_No].item_price;
     uint _total_price = puchaseContractPrice * _total_people;
-    PurchaseContract memory purchaseContract = PurchaseContract(PurchasePk, _item_No, _purchase_address, _purchase_name, _shipping_address, _total_people,  _paid_people, _total_price, _completed, _password);
+    PurchaseContract memory purchaseContract = PurchaseContract(PurchasePk, _item_No, _purchase_address, _purchase_name, _shipping_address, _total_people,  _paid_people, _total_price, _completed, _password, _seller_address);
     purchasecontracts.push(purchaseContract);
     
     // Item memory item = items[_item_No];
@@ -135,6 +135,7 @@ contract SsfariFactory {
     uint total_price;
     bool completed;
     uint password;
+    address seller_address;
   }
 
   struct PaidContract {
@@ -159,6 +160,8 @@ contract SsfariFactory {
     PaidContract memory paidcontract = PaidContract(paid_Pk, _item_No, _purchase_No, _paid_address);
     paidcontracts.push(paidcontract);
     purchasecontracts[_purchase_No].paid_people++;
+
+    purchaseNoToPurchaseContract[_purchase_No].paid_people++;
     return paid_Pk;
   }
   // 함수 : 방금 낸 지불 No
@@ -166,10 +169,13 @@ contract SsfariFactory {
     return paid_Pk;
   }
   // 함수 : 계약 취소 ( 구매자들 )
-  function paidcancel(uint _paid_No, address _my_address) payable public returns (bool) {
+  function paidcancel(uint _paid_No, uint _purchase_No, uint, address _my_address) payable public returns (bool) {
     uint32 amount = items[paidcontracts[_paid_No].item_No].item_price;
     payable(_my_address).transfer(amount);
     delete paidcontracts[_paid_No];
+    purchasecontracts[_purchase_No].paid_people--;
+    purchaseNoToPurchaseContract[_purchase_No].paid_people--;
+
     return true;
   }
   // 함수 : 계약 확정 (대표자가 확정) => (셀러에게 돈보냄) 
