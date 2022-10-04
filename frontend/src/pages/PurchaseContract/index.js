@@ -27,9 +27,11 @@ const PurchaseContract = () => {
   };
 
   const fetchConfirmContract = async () => {
-    const resulttest = await contract.methods.confirmContract(contract_No).send({ from: account, gas: 20000000, value: 0 });
-    console.log(resulttest);
+    await contract.methods.confirmContract(contract_No).send({ from: account, value: 0 });
+    alert("결제가 확정되어 판매자에게 송금되었습니다.");
+    // 여기서 contractDetail leload 받거나, navigate로 마이페이지 가던가
     console.log(contractDetail);
+    // 새로 reload된 contractDetail의 complete가 true로 바뀜.
   };
 
   useEffect(() => {
