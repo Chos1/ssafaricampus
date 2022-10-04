@@ -16,68 +16,26 @@ const ProductSummary = (props) => {
   const myRole = useSelector((state) => state.user.role);
 
   const nowPath = window.location.pathname.split("/")[1];
-  const item_No =
-    nowPath === "purchaseContract"
-      ? props.itemNo
-      : window.location.pathname.split("/")[2];
+  const item_No = nowPath === "purchaseContract" ? props.itemNo : window.location.pathname.split("/")[2];
 
   // purchaseContract 페이지일 경우 info data 결정
   const {
     state: { contract, account },
   } = useEth();
   const [itemDetail, setItemDetail] = useState("");
-  const [purchaseContract, setPurchaseContract] = useState("");
 
   useEffect(() => {
     const getItemDetails = async () => {
-      const contractDetail = await contract.methods
-        .viewItemByItemNo(item_No)
-        .call({ from: account });
+      const contractDetail = await contract.methods.viewItemByItemNo(item_No).call({ from: account });
       setItemDetail(contractDetail);
     };
-    const getPurchases = async () => {
-      const purchase = await contract.methods
-        .viewPurchaseContract()
-        .call({ from: account });
-      let thisItemPurchase = []; // 현재 아이템으로 신청된 구매 계약만
-      for (let i = 0; i < purchase.length; i++) {
-        if (purchase[i].item_No === item_No) {
-          thisItemPurchase.push(purchase[i]);
-        }
-      }
-      setPurchaseContract(thisItemPurchase);
-    };
+
     getItemDetails();
-    getPurchases();
-  }, [account, contract, item_No, nowPath]);
-  useEffect(() => {
-    const getItemDetails = async () => {
-      const contractDetail = await contract.methods
-        .viewItemByItemNo(item_No)
-        .call({ from: account });
-      setItemDetail(contractDetail);
-    };
-    const getPurchases = async () => {
-      const purchase = await contract.methods
-        .viewPurchaseContract()
-        .call({ from: account });
-      let thisItemPurchase = []; // 현재 아이템으로 신청된 구매 계약만
-      for (let i = 0; i < purchase.length; i++) {
-        if (purchase[i].item_No === item_No) {
-          thisItemPurchase.push(purchase[i]);
-        }
-      }
-      setPurchaseContract(thisItemPurchase);
-    };
-    getItemDetails();
-    getPurchases();
   }, [account, contract, item_No, nowPath]);
 
-  console.log(purchaseContract);
   // 버튼 형태 결정
   let changeComponent = "";
-  const price_component =
-    myRole === "COMPANY" ? "product_price_seller" : "product_price";
+  const price_component = myRole === "COMPANY" ? "product_price_seller" : "product_price";
   if (nowPath === "purchaseContract" || nowPath === "orderDetail") {
     changeComponent = <div></div>;
   } else if (nowPath === "products" && myRole !== "COMPANY") {
@@ -109,9 +67,7 @@ const ProductSummary = (props) => {
           <div className="product_main">
             <p className="product_title">{itemDetail.item_name}</p>
             <p className="product_subtitle">{itemDetail.oneline_description}</p>
-            <p className={price_component}>
-              {(itemDetail.item_price * 1).toLocaleString("ko-KR")}원
-            </p>
+            <p className={price_component}>{(itemDetail.item_price * 1).toLocaleString("ko-KR")}원</p>
           </div>
           <div>
             <div className="product_mini">
@@ -130,7 +86,6 @@ const ProductSummary = (props) => {
           <br />
           <div className="purchase_btn">{changeComponent}</div>
           <br />
-          <div>{purchaseContract}</div>
         </div>
       </div>
     </div>
