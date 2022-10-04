@@ -25,11 +25,16 @@ const PurchaseContract = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  const fetchConfirmContract = async () => {
+    const resulttest = await contract.methods.confirmContract(contract_No).send({ from: account, gas: 20000000, value: 0 });
+    console.log(resulttest);
+    console.log(contractDetail);
+  };
+
   useEffect(() => {
     const getContractDetails = async () => {
-      const contractDetail = await contract.methods
-        .viewPurchaseContractByPurchaseNod(contract_No)
-        .call({ from: account });
+      const contractDetail = await contract.methods.viewPurchaseContractByPurchaseNod(contract_No).call({ from: account });
       setContractDetail(contractDetail);
     };
 
@@ -37,30 +42,26 @@ const PurchaseContract = () => {
   }, [account, contract, contract_No]);
   console.log(contractDetail);
 
-  let Btn = <></>
+  let Btn = <></>;
 
-  if (contractDetail.paid_people
-    >= contractDetail.total_people){
-      if(parseInt(contractDetail.purchase_address) === parseInt(account)){
-        Btn = <MPBtn >결제 확정하기 </MPBtn>
-      }
-  }else{
-      Btn = <MPBtn onClick={openModal}>{contractDetail.paid_people}/{contractDetail.total_people}</MPBtn>
+  if (contractDetail.paid_people >= contractDetail.total_people) {
+    if (parseInt(contractDetail.purchase_address) === parseInt(account)) {
+      Btn = <MPBtn onClick={fetchConfirmContract}>결제 확정하기 </MPBtn>;
+    }
+  } else {
+    Btn = (
+      <MPBtn onClick={openModal}>
+        {contractDetail.paid_people}/{contractDetail.total_people}
+      </MPBtn>
+    );
   }
-  
+
   return (
     <section className={styles.section}>
       <ProductSummary itemNo={contractDetail.item_No} />
       <RequestInfo contractDetail={contractDetail} />
       {Btn}
-      <ModalBasic
-        open={modalOpen}
-        close={closeModal}
-        header="Modal heading"
-        cont_pass={contractDetail.password}
-        itemNo={contractDetail.item_No}
-        contract_No={contract_No}
-      ></ModalBasic>
+      <ModalBasic open={modalOpen} close={closeModal} header="Modal heading" cont_pass={contractDetail.password} itemNo={contractDetail.item_No} contract_No={contract_No}></ModalBasic>
     </section>
   );
 };

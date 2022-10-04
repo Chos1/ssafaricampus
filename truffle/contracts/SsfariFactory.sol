@@ -185,7 +185,7 @@ contract SsfariFactory {
     purchasecontracts[_purchase_No].completed = true;
     address selleradd = items[purchasecontracts[_purchase_No].item_No].seller_address;
     uint sellerprice = purchasecontracts[_purchase_No].total_price;    
-    payable(selleradd).transfer(sellerprice/20000000);
+    payable(selleradd).transfer(sellerprice * 5 * 1e10);
 
     return true;
   }
