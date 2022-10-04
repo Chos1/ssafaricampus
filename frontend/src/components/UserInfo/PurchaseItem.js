@@ -5,7 +5,6 @@ import styles from "./css/PurchaseItem.module.css";
 
 const PurchaseItem = (props) => {
   const navigate = useNavigate();
-
   return (
     <div>
       <div className={styles.PurchaseItem}>
@@ -23,14 +22,16 @@ const PurchaseItem = (props) => {
             navigate("/mypage/:transactionId/transactionDetail");
           }}
         >
-          <p>{props.title}</p>
-          <p>{props.subtitle}</p>
+          <p>상품명 {props.item.item_name}</p>
         </div>
         <div className={styles.PurchaseCheck}>
-          <p>결제 내역</p>
+          <p>상품 가격: {props.item.item_price}</p>
+        </div>
+        <div className={styles.PurchaseCheck}>
+          <p>구매신청자: {props.cont.purchase_name}</p>
         </div>
         <div className={styles.PurchaseCost}>
-          <p>{props.price}원</p>
+          <p>{props.item.item_price}</p>
         </div>
       </div>
       <hr />
