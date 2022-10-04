@@ -5,7 +5,7 @@ import styles from "./css/ProductItem.module.css";
 
 const ProductItem = (props) => {
   const navigate = useNavigate();
-  let link = "/orderDetail/" + props.good[0];
+  let link = "/products/" + props.good[0];
 
   const move = () => {
     navigate(link, {

@@ -1,6 +1,7 @@
 // packages
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 // utils
 import useEth from "../../contexts/EthContext/useEth";
 import { storage } from "../../index.js";
@@ -22,6 +23,7 @@ const ProductForm = () => {
   const [inputExpressDue, setInputExpressDue] = useState(""); // 배송 기간
   const [inputInfo, setInputInfo] = useState(""); // 상품 설명
 
+  const navigate = useNavigate();
   const inputSellerName = useSelector((state) => state.user.name);
 
   // 파이어베이스
@@ -66,8 +68,6 @@ const ProductForm = () => {
     setInputInfo(e.target.value);
   };
 
-  // const handleImageChange = (e) => {};
-
   // 이미지 상대경로 저장
   const handleAddImages = (event) => {
     for (const image of event.target.files) {
@@ -90,14 +90,6 @@ const ProductForm = () => {
 
   const registItem = async (e) => {
     e.preventDefault();
-    console.log(dfileList);
-    // if (e.target.tagName === "INPUT") {
-    //   return;
-    // }
-    // if (inputTitle === "" || inputLineInfo === "" || inputPrice === "" || inputCategori === "" || inputThumbnail === "" || inputDetail === "" || inputExpressDue === "" || inputInfo === "") {
-    //   alert("Please enter a value to write.");
-    //   return;
-    // }
 
     let d = ""; // 상세이미지 전달 변수
     let t = ""; // 썸네일 전달 변수
@@ -148,7 +140,6 @@ const ProductForm = () => {
                     const expressDue = inputExpressDue;
                     const info = inputInfo;
                     const sellerName = inputSellerName;
-                    console.log("전송시작");
                     await contract.methods
                       .registerItem(
                         title,
@@ -167,7 +158,7 @@ const ProductForm = () => {
                   })
                   .then(async () => {
                     const itemNo = await contract.methods.viewItemNo().call();
-                    console.log(itemNo);
+                    navigate("/products/" + itemNo);
                   });
               });
             });
@@ -271,9 +262,6 @@ const ProductForm = () => {
       <div className="button_position">
         <MKBtn onClick={registItem}>등록하기</MKBtn>
       </div>
-      {/* <div className="button_position">
-        <MKBtn>수정하기</MKBtn>
-      </div> */}
     </form>
   );
 };
