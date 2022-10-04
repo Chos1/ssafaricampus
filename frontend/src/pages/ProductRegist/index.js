@@ -1,5 +1,5 @@
 // components
-import ProductForm from "../../components/ProductForm/ProductForm";
+import ProductForm from "./ProductForm";
 
 const ProductRegist = () => {
   return (

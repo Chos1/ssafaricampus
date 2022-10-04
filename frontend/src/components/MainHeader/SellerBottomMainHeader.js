@@ -11,7 +11,7 @@ const SellerBottomMainHeader = () => {
           <NavLink to="/orderManage">오더 매니지먼트</NavLink>
         </li>
         <li>
-          <NavLink to="/productManage/:productId">상품 확인</NavLink>
+          <NavLink to="/productManage">상품 확인</NavLink>
         </li>
       </ul>
     </div>

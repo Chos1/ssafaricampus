@@ -40,7 +40,7 @@ const WalletCarouselItem = (props) => {
     <div className={styles.WalletCarouselItem}>
       <h2>{props.title}</h2>
       <p>
-        {balance} {unit} ({cash}) 원
+        {balance} {unit} ({cash} 원)
       </p>
       {UserInfoStyle}
     </div>

@@ -23,14 +23,27 @@ const ProductSummary = (props) => {
     state: { contract, account },
   } = useEth();
   const [itemDetail, setItemDetail] = useState("");
+  const [purchaseContract, setPurchaseContract] = useState("");
+
   useEffect(() => {
     const getItemDetails = async () => {
       const contractDetail = await contract.methods.viewItemByItemNo(item_No).call({ from: account });
       setItemDetail(contractDetail);
     };
+    const getPurchases = async () => {
+      const purchase = await contract.methods.viewPurchaseContract().call({ from: account });
+      let thisItemPurchase = []; // 현재 아이템으로 신청된 구매 계약만
+      for (let i = 0; i < purchase.length; i++) {
+        if (purchase[i].item_No === item_No) {
+          thisItemPurchase.push(purchase[i]);
+        }
+      }
+      setPurchaseContract(thisItemPurchase);
+    };
     getItemDetails();
+    getPurchases();
   }, [account, contract, item_No, nowPath]);
-  console.log(itemDetail);
+  console.log(purchaseContract);
   // 버튼 형태 결정
   let changeComponent = "";
   const price_component = myRole === "COMPANY" ? "product_price_seller" : "product_price";
@@ -84,6 +97,8 @@ const ProductSummary = (props) => {
           </div>
           <br />
           <div className="purchase_btn">{changeComponent}</div>
+          <br />
+          <div>{purchaseContract}</div>
         </div>
       </div>
     </div>

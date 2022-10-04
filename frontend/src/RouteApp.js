@@ -18,7 +18,6 @@ import TransactionDetail from "./pages/TransactionDetail";
 import OrderDetail from "./pages/OrderDetail";
 import OrderManage from "./pages/OrderManage";
 import ProductManage from "./pages/ProductManage";
-import ProductModify from "./pages/ProductModify";
 import ProductRegist from "./pages/ProductRegist";
 
 function RouteApp() {
@@ -65,8 +64,8 @@ function RouteApp() {
       <Route path="/orderManage" element={<OrderManage />} />
       <Route path="/productRegist" element={<ProductRegist />} />
       <Route path="/orderDetail/:orderId" element={<OrderDetail />} />
-      <Route path="/productManage/:productId" element={<ProductManage />} />
-      <Route path="/productModify/:productId" element={<ProductModify />} />
+      <Route path="/productManage" element={<ProductManage />} />
+      <Route path="/productManage/:productId" element={<ProductDetail />} />
     </Fragment>
   );
 
