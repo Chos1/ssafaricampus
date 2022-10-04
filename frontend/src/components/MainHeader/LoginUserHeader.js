@@ -56,7 +56,7 @@ const LoginUserHeader = () => {
 
     dispatch(authActions.logout());
     dispatch(userActions.logout());
-    navigate("/main");
+    navigate("/");
   }
 
   const logoutHandler = (e) => {
