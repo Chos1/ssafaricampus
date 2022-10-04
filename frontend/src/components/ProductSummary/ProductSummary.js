@@ -24,13 +24,11 @@ const ProductSummary = (props) => {
   } = useEth();
   const [itemDetail, setItemDetail] = useState("");
   useEffect(() => {
-    if (nowPath === "purchaseContract") {
-      const getItemDetails = async () => {
-        const contractDetail = await contract.methods.viewItemByItemNo(item_No).call({ from: account });
-        setItemDetail(contractDetail);
-      };
-      getItemDetails();
-    }
+    const getItemDetails = async () => {
+      const contractDetail = await contract.methods.viewItemByItemNo(item_No).call({ from: account });
+      setItemDetail(contractDetail);
+    };
+    getItemDetails();
   }, [account, contract, item_No, nowPath]);
   console.log(itemDetail);
   // 버튼 형태 결정
