@@ -179,15 +179,18 @@ contract SsfariFactory {
     return true;
   }
   // 함수 : 계약 확정 (대표자가 확정) => (셀러에게 돈보냄) 
-  function confirmContract(uint _purchase_No) payable external returns (bool) {
-    require(purchasecontracts[_purchase_No].paid_people == purchasecontracts[_purchase_No].total_people);
-    require(purchasecontracts[_purchase_No].completed != false);
+  function confirmContract(uint _purchase_No) payable public returns (bool) {
+    require(purchasecontracts[_purchase_No].paid_people >= purchasecontracts[_purchase_No].total_people);
     purchasecontracts[_purchase_No].completed = true;
     address selleradd = items[purchasecontracts[_purchase_No].item_No].seller_address;
     uint sellerprice = purchasecontracts[_purchase_No].total_price;    
     payable(selleradd).transfer(sellerprice * 5 * 1e10);
-
     return true;
+  }
+  // 함수 : 보내는 주소 확인 함수
+  function confirmContractAddress(uint _purchase_No) public view returns (address){
+    address selleradd = items[purchasecontracts[_purchase_No].item_No].seller_address;
+    return selleradd;
   }
   // 함수 : 전체 지불 리스트 조회
   function viewPaidContract() public view returns (PaidContract[] memory) {
