@@ -3,16 +3,12 @@ import { useNavigate } from "react-router-dom";
 // css
 import styles from "./css/PurchaseItem.module.css";
 
-console.log("1" < "10");
-
 const PurchaseItem = (props) => {
   const navigate = useNavigate();
 
   let completed_cont = <></>;
 
-  if (props.cont.completed) {
-    completed_cont = <>구매확정</>;
-  } else {
+  if (!props.cont.completed) {
     if (props.cont.paid_people * 1 < props.cont.total_people * 1) {
       completed_cont = (
         <>
@@ -20,10 +16,15 @@ const PurchaseItem = (props) => {
         </>
       );
     } else {
-      completed_cont = <>구매대기</>;
+      if (parseInt(props.cont.purchase_address) === parseInt(props.account)) {
+        completed_cont = <>확정필요</>;
+      } else {
+        completed_cont = <>구매대기</>;
+      }
     }
+  } else {
+    completed_cont = <>구매확정</>;
   }
-
   console.log(props);
   return (
     <div>
@@ -31,7 +32,7 @@ const PurchaseItem = (props) => {
         <div
           className={styles.PurchaseImg}
           onClick={() => {
-            navigate("/mypage/:transactionId/transactionDetail");
+            navigate(`/purchaseContract/${props.cont.purchase_No}`);
           }}
         >
           <img src={props.item.thumbnail_picture} alt=""></img>
@@ -39,7 +40,7 @@ const PurchaseItem = (props) => {
         <div
           className={styles.PurchaseTitle}
           onClick={() => {
-            navigate("/mypage/:transactionId/transactionDetail");
+            navigate(`/purchaseContract/${props.cont.purchase_No}`);
           }}
         >
           <p>상품명: {props.item.item_name}</p>

@@ -54,7 +54,7 @@ const PurchaseList = (props) => {
       }
     }
   }
-  const purchaseItem = myItems.map((myItem, idx) => <PurchaseItem key={idx} item={myItem} cont={myContracts[idx]} />);
+  const purchaseItem = myItems.map((myItem, idx) => <PurchaseItem key={idx} item={myItem} cont={myContracts[idx]} account={account} />);
 
   let ListTitle = "";
   if (props.role === "COMPANY") {
