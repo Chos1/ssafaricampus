@@ -44,7 +44,7 @@ const OrderList = (props) => {
     };
     getContractDetails();
   }, [account, contract]);
-
+  
   const orderItem = contractList.map((contract, idx) => (
     <OrderItem key={idx} contractInfo={contract} />
   ));
