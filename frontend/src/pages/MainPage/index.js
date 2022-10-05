@@ -1,6 +1,7 @@
 // packages
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+// import cogoToast from 'cogo-toast';
 // components
 import Banner from "./Banner.js";
 import ProductCarousel from "./ProductCarousel.js";
@@ -35,6 +36,7 @@ const MainPage = () => {
       </div>
     } else {
       alert("MyPage에서 지갑을 연결하세요")
+      // cogoToast.success('지갑을 연결하세요');
       navigate('/mypage')
     }
   }
