@@ -46,7 +46,7 @@ const PurchaseContract = () => {
 
   let Btn = <></>;
 
-  if (contractDetail.paid_people >= contractDetail.total_people) {
+  if (contractDetail.paid_people * 1 >= contractDetail.total_people * 1) {
     if (parseInt(contractDetail.purchase_address) === parseInt(account)) {
       Btn = <MPBtn onClick={fetchConfirmContract}>결제 확정하기 </MPBtn>;
     }
