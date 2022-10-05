@@ -2,6 +2,8 @@
 import styles from "./css/UserInfoItem.module.css";
 import BtnPTxt from "../ui/BtnPTxt";
 
+import cogoToast from 'cogo-toast';
+
 const UserInfoItem = (props) => {
   const phoneNumber =
     props.phone.slice(0, 3) +
@@ -11,7 +13,10 @@ const UserInfoItem = (props) => {
     props.phone.slice(7, 11);
   const EorN = props.companyNumber ? props.companyNumber : props.email;
   const passwordChange = () => {
-    alert("변경되었습니다!");
+    // alert("변경되었습니다!");
+    cogoToast.info('변경되었습니다!',{
+      hideAfter:1,
+    });
   };
   return (
     <div className={styles.UserInfoItem}>
