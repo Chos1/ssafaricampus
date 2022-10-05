@@ -35,7 +35,7 @@ const PurchaseItem = (props) => {
             navigate(`/purchaseContract/${props.cont.purchase_No}`);
           }}
         >
-          <img src={props.item.thumbnail_picture} alt=""></img>
+          <img className={styles.PurchaseImgSize} src={props.item.thumbnail_picture} alt=""></img>
         </div>
         <div
           className={styles.PurchaseTitle}
@@ -43,18 +43,19 @@ const PurchaseItem = (props) => {
             navigate(`/purchaseContract/${props.cont.purchase_No}`);
           }}
         >
-          <p>상품명: {props.item.item_name}</p>
+          <p className={styles.PurchaseName}>{props.item.item_name}</p>
+          <p>{props.cont.purchase_name}</p>
         </div>
         <div className={styles.PurchaseCheck}>
-          <p>상품 가격: {props.item.item_price}</p>
+          <p>{props.item.item_price}원</p>
         </div>
-        <div className={styles.PurchaseCheck}>
+        {/* <div className={styles.PurchaseCheck}>
           <p>구매신청자: {props.cont.purchase_name}</p>
-        </div>
-        <div className={styles.PurchaseCost}>
+        </div> */}
+        {/* <div className={styles.PurchaseCost}>
           <p>배송지: {props.cont.shipping_address}</p>
-        </div>
-        <div className={styles.PurchaseCost}>
+        </div> */}
+        <div className={styles.PurchaseStatus}>
           <p>{completed_cont}</p>
         </div>
       </div>
