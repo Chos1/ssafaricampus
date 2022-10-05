@@ -26,12 +26,11 @@ const ContractItem = () => {
     // eslint-disable-next-line
   }, [account, contract]);
 
-  console.log(typeof(contractDetails))
   const processingItem = contractDetails
-  .filter((contractDetail) => contractDetail.item_No === keyword && (contractDetail.paid_people)*1 < (contractDetail.total_people)*1)
-  .reverse()
-  .map((contractDetail, idx) => (
-    <>
+    .filter((contractDetail) => contractDetail.item_No === keyword && contractDetail.paid_people * 1 < contractDetail.total_people * 1)
+    .reverse()
+    .map((contractDetail, idx) => (
+      <>
         {/* item_no === params일 때만 뜬다 */}
         <div
           className="item_card"

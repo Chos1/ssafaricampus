@@ -33,9 +33,7 @@ const RequestForm = () => {
 
   useEffect(() => {
     const getItemDetails = async () => {
-      const itemDetail = await contract.methods
-        .viewItemByItemNo(item_No)
-        .call({ from: account });
+      const itemDetail = await contract.methods.viewItemByItemNo(item_No).call({ from: account });
       setItemDetail(itemDetail);
     };
     getItemDetails();
@@ -60,8 +58,7 @@ const RequestForm = () => {
         _extraAddress += data.bname;
       }
       if (data.buildingName !== "") {
-        _extraAddress +=
-          _extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+        _extraAddress += _extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
       }
       _fullAddress += _extraAddress !== "" ? ` (${_extraAddress})` : "";
     }
@@ -99,23 +96,16 @@ const RequestForm = () => {
 
   const createPurchaseContract = async (e) => {
     e.preventDefault();
-    const web3 = new Web3(
-      Web3.givenProvider ||
-        "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb"
-    );
+
+    if (zipCode === "" || address === "" || detailAddress === "" || buyer === "" || people === "" || password === "") {
+      alert("모든 입력 칸을 채워주세요");
+      return;
+    }
+
+    const web3 = new Web3(Web3.givenProvider || "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb");
     console.log("전송시작");
     await contract.methods
-      .purchaseItem(
-        item_No,
-        account,
-        buyer,
-        "[" + zipCode + "] " + address + " " + detailAddress,
-        people,
-        0,
-        false,
-        password,
-        sellerAddress
-      )
+      .purchaseItem(item_No, account, buyer, "[" + zipCode + "] " + address + " " + detailAddress, people, 0, false, password, sellerAddress)
       .send({
         from: account,
         gas: 812040,
@@ -132,69 +122,23 @@ const RequestForm = () => {
     <>
       <form className="request_inputgroup">
         <label>배송 주소</label>
-        <input
-          placeholder="우편 번호"
-          id="focus"
-          className="shipping_add"
-          type="text"
-          name="address"
-          value={zipCode}
-          onChange={onChange}
-          readOnly
-          autoFocus
-        />
+        <input placeholder="우편 번호" id="focus" className="shipping_add" type="text" name="address" value={zipCode} onChange={onChange} readOnly autoFocus />
         <SWBtnPBrd className="add_search" onClick={openModal}>
           검색
         </SWBtnPBrd>
-        <input
-          placeholder="주소를 입력해주세요"
-          className="shipping_add_1"
-          type="text"
-          name="address"
-          value={address}
-          onChange={onChange}
-          readOnly
-        />
+        <input placeholder="주소를 입력해주세요" className="shipping_add_1" type="text" name="address" value={address} onChange={onChange} readOnly />
         <br />
-        <input
-          placeholder="상세 주소 입력해주세요"
-          className="shipping_add_1"
-          type="text"
-          value={detailAddress}
-          onChange={detailAddressChangeHandler}
-        />
+        <input placeholder="상세 주소 입력해주세요" className="shipping_add_1" type="text" value={detailAddress} onChange={detailAddressChangeHandler} />
         <br />
         <label>구매자 이름</label>
-        <input
-          placeholder="이름을 입력해주세요"
-          type="text"
-          value={buyer}
-          onChange={buyerChangeHandler}
-        />
+        <input placeholder="이름을 입력해주세요" type="text" value={buyer} onChange={buyerChangeHandler} />
         <br />
         <label>총 인원</label>
-        <input
-          placeholder="총 인원을 입력해주세요"
-          type="number"
-          min="1"
-          value={people}
-          onChange={peopleChangeHandler}
-        />
+        <input placeholder="총 인원을 입력해주세요" type="number" min="1" value={people} onChange={peopleChangeHandler} />
         <br />
         <label>거래 비밀번호</label>
-        <input
-          placeholder="비밀번호를 입력해주세요"
-          type="text"
-          value={password}
-          onChange={passwordChangeHandler}
-        />
+        <input placeholder="비밀번호를 입력해주세요" type="text" value={password} onChange={passwordChangeHandler} />
         <br />
-        {/* <label>첨부 파일</label>
-        <input type="file" placeholder="총 인원을 입력해주세요" className="add_file" />
-        <br />
-        <label>비밀번호</label>
-        <input placeholder="비밀번호를 입력해주세요" />
-        <br /> */}
         <MPBtn onClick={createPurchaseContract}>신청하기</MPBtn>
       </form>
       <AddressModal open={isModal} close={closeModal}>
