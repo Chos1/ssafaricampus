@@ -45,8 +45,8 @@ const PurchaseContract = () => {
 
   let Btn = <></>;
 
-  if(!contractDetail.completed){
-    if ((contractDetail.paid_people)*1 >= (contractDetail.total_people)*1) {
+  if (!contractDetail.completed) {
+    if (contractDetail.paid_people * 1 >= contractDetail.total_people * 1) {
       if (parseInt(contractDetail.purchase_address) === parseInt(account)) {
         Btn = <MPBtn onClick={fetchConfirmContract}>결제 확정하기 </MPBtn>;
       }
@@ -57,8 +57,8 @@ const PurchaseContract = () => {
         </MPBtn>
       );
     }
-  }else{
-    alert("결제가 완료된 계약입니다.")
+  } else {
+    alert("결제가 완료된 계약입니다.");
   }
 
   return (
@@ -66,7 +66,7 @@ const PurchaseContract = () => {
       <ProductSummary itemNo={contractDetail.item_No} />
       <RequestInfo contractDetail={contractDetail} />
       {Btn}
-      <ModalBasic open={modalOpen} close={closeModal} header="Modal heading" cont_pass={contractDetail.password} itemNo={contractDetail.item_No} contract_No={contract_No}></ModalBasic>
+      <ModalBasic open={modalOpen} close={closeModal} header="결제 비밀번호를 입력해주세요" cont_pass={contractDetail.password} itemNo={contractDetail.item_No} contract_No={contract_No}></ModalBasic>
     </section>
   );
 };
