@@ -10,10 +10,6 @@ const RequestInfo = ({ contractDetail }) => {
           <p className="request_content">{contractDetail.shipping_address}</p>
         </div>
         <div className="request_item">
-          <p className="request_label">지갑 주소</p>
-          <p className="request_content">{contractDetail.purchase_address}</p>
-        </div>
-        <div className="request_item">
           <p className="request_label">총 인원</p>
           <p className="request_content">{contractDetail.total_people} 명</p>
         </div>

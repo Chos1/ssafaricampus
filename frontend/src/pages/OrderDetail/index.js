@@ -14,7 +14,7 @@ const OrderDetail = () => {
   const {
     state: { contract, account },
   } = useEth();
-  const itemNo_param = location.state.itemNo;
+  const itemNo_param = location.pathname.split('/')[2];
 
   const [title, setTitle] = useState();
   const [subtitle, setSubtitle] = useState();
@@ -32,7 +32,6 @@ const OrderDetail = () => {
       const item = await contract.methods
         .viewItemByItemNo(itemNo_param)
         .call({ from: account });
-      console.log(item);
       setItemNo(item[0]);
       setTitle(item[1]);
       setSubtitle(item[2]);

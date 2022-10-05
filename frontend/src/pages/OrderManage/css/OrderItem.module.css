@@ -6,6 +6,8 @@
 
 .OrderItem .OrderImg{
   cursor: pointer;
+  width : 300px;
+  height: 300px;
 }
 
 .OrderItem .OrderTitle{

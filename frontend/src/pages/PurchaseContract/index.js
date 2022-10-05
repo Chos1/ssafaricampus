@@ -1,5 +1,6 @@
 // packages
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 // utils
 import useEth from "../../contexts/EthContext/useEth";
 // components
@@ -11,6 +12,7 @@ import styles from "./css/index.module.css";
 import MPBtn from "../../components/ui/MPBtn";
 
 const PurchaseContract = () => {
+  const navigate = useNavigate();
   const {
     state: { contract, account },
   } = useEth();
@@ -38,11 +40,14 @@ const PurchaseContract = () => {
   console.log(contractDetail);
 
   let Btn = <></>
+  const fixPurchase = () => {
+    navigate("/mypage");
+  }
 
   if (contractDetail.paid_people
     >= contractDetail.total_people){
       if(parseInt(contractDetail.purchase_address) === parseInt(account)){
-        Btn = <MPBtn >결제 확정하기 </MPBtn>
+        Btn = <MPBtn onClick={fixPurchase}>결제 확정하기 </MPBtn>
       }
   }else{
       Btn = <MPBtn onClick={openModal}>{contractDetail.paid_people}/{contractDetail.total_people}</MPBtn>
