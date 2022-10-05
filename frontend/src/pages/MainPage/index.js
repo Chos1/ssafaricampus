@@ -20,6 +20,8 @@ const MainPage = () => {
   const isSearch = location.pathname.split('/')[3] ? true : false;
   const banner = isSearch ? null : <Banner />;
 
+ console.log('젠킨스 가동!!!!');
+
   if (state.account) {
     MainCompo = (
       <>
