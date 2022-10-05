@@ -45,16 +45,20 @@ const PurchaseContract = () => {
 
   let Btn = <></>;
 
-  if (contractDetail.paid_people >= contractDetail.total_people) {
-    if (parseInt(contractDetail.purchase_address) === parseInt(account)) {
-      Btn = <MPBtn onClick={fetchConfirmContract}>결제 확정하기 </MPBtn>;
+  if(!contractDetail.completed){
+    if ((contractDetail.paid_people)*1 >= (contractDetail.total_people)*1) {
+      if (parseInt(contractDetail.purchase_address) === parseInt(account)) {
+        Btn = <MPBtn onClick={fetchConfirmContract}>결제 확정하기 </MPBtn>;
+      }
+    } else {
+      Btn = (
+        <MPBtn onClick={openModal}>
+          {contractDetail.paid_people}/{contractDetail.total_people}
+        </MPBtn>
+      );
     }
-  } else {
-    Btn = (
-      <MPBtn onClick={openModal}>
-        {contractDetail.paid_people}/{contractDetail.total_people}
-      </MPBtn>
-    );
+  }else{
+    alert("결제가 완료된 계약입니다.")
   }
 
   return (
