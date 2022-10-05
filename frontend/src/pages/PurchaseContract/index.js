@@ -1,5 +1,6 @@
 // packages
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 // utils
 import useEth from "../../contexts/EthContext/useEth";
 // components
@@ -11,6 +12,7 @@ import styles from "./css/index.module.css";
 import MPBtn from "../../components/ui/MPBtn";
 
 const PurchaseContract = () => {
+  const navigate = useNavigate();
   const {
     state: { contract, account },
   } = useEth();
@@ -29,8 +31,7 @@ const PurchaseContract = () => {
   const fetchConfirmContract = async () => {
     await contract.methods.confirmContract(contract_No).send({ from: account, value: 0 });
     alert("결제가 확정되어 판매자에게 송금되었습니다.");
-    // 여기서 contractDetail leload 받거나, navigate로 마이페이지 가던가
-    // 새로 reload된 contractDetail의 complete가 true로 바뀜.
+    navigate("/mypage");
   };
 
   useEffect(() => {

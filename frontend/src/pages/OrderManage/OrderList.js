@@ -11,25 +11,42 @@ const OrderList = (props) => {
   const {
     state: { contract, account },
   } = useEth();
-  const [contractDetails, setContractDetails] = useState("");
-  const tests = [
-    ["충북대 과잠", "아무튼 서브 이름", "12,900"],
-    ["충남대 과잠", "아무튼 서브 이름", "13,900"],
-  ];
+  const [contractList, setContractList] = useState([]);
 
   useEffect(() => {
     const getContractDetails = async () => {
+      const contractItems = [];
+      let contractItem = {};
       const contractDetails = await contract.methods
         .viewPurchaseContract()
         .call({ from: account });
-      setContractDetails(contractDetails);
+      let nowItem = "";
+      for (let i = 0; i < contractDetails.length; i++) {
+        nowItem = await contract.methods
+          .viewItemByItemNo(contractDetails[i].item_No)
+          .call({ from: account });
+        if (!(parseInt(nowItem.seller_address) === parseInt(account))) {
+          continue;
+        }
+        contractItem['productID'] = nowItem[0];
+        contractItem['title'] = nowItem[1];
+        contractItem['subTitle'] = nowItem[2];
+        contractItem['imgURL'] = nowItem[5];
+        contractItem['totalPrice'] = contractDetails[i][7];
+        contractItem['isComplete'] = contractDetails[i][6] * 1 >= contractDetails[i][5] * 1;
+        contractItem['totalPeople'] = contractDetails[i][5] * 1;
+        contractItem['paidPeople'] = contractDetails[i][6] * 1;
+        contractItem['contractID'] = contractDetails[i][0];
+        contractItems.push(contractItem);
+        contractItem = {};
+      }
+      setContractList(contractItems);
     };
     getContractDetails();
   }, [account, contract]);
-  console.log(contractDetails);
 
-  const orderItem = tests.map((test, idx) => (
-    <OrderItem key={idx} title={test[0]} subtitle={test[1]} price={test[2]} />
+  const orderItem = contractList.map((contract, idx) => (
+    <OrderItem key={idx} contractInfo={contract} />
   ));
 
   let ListTitle = "";

@@ -1,12 +1,14 @@
 // packages
 import Web3 from "web3";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // utils
 import useEth from "../../contexts/EthContext/useEth";
 // css
 import "./css/ModalBasic.css";
 
 const ModalBasic = (props) => {
+  const navigate = useNavigate();
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const { open, close, header, cont_pass, itemNo, contract_No } = props;
   const {
@@ -39,6 +41,7 @@ const ModalBasic = (props) => {
       await payContract();
       alert("결제가 완료되었습니다.");
       close();
+      navigate("/mypage");
     } else {
       alert("응 안돼");
     }

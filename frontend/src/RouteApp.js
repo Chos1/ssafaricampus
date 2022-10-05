@@ -63,7 +63,7 @@ function RouteApp() {
       <Route path="*" element={<OrderManage />} />
       <Route path="/orderManage" element={<OrderManage />} />
       <Route path="/productRegist" element={<ProductRegist />} />
-      <Route path="/orderDetail/:orderId" element={<OrderDetail />} />
+      <Route path="/orderDetail/:productId/:contractID" element={<OrderDetail />} />
       <Route path="/productManage" element={<ProductManage />} />
       <Route path="/productManage/:productId" element={<ProductDetail />} />
     </Fragment>

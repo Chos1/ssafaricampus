@@ -5,32 +5,32 @@ import styles from "./css/OrderItem.module.css";
 
 const OrderItem = (props) => {
   const navigate = useNavigate();
-
+  const {title, subtitle, isComplete, totalPrice, imgURL, contractID, totalPeople, paidPeople, productID} = props.contractInfo
   return (
     <div>
       <div className={styles.OrderItem}>
-        <div
-          className={styles.OrderImg}
-          onClick={() => {
-            navigate("/mypage/:transactionId/transactionDetail");
-          }}
-        >
-          <p>이미지</p>
-        </div>
+          <img
+            className={styles.OrderImg}
+            src={imgURL}
+            alt="상품사진"
+            onClick={() => {
+              navigate("/orderDetail/" + productID + '/' + contractID);
+            }}
+          />
         <div
           className={styles.OrderTitle}
           onClick={() => {
-            navigate("/mypage/:transactionId/transactionDetail");
+            navigate("/orderDetail/" + productID + '/' + contractID);
           }}
         >
-          <p>{props.title}</p>
-          <p>{props.subtitle}</p>
+          <p>{title}</p>
+          <p>{subtitle}</p>
         </div>
         <div className={styles.OrderCheck}>
-          <p>결제 내역</p>
+          <p>{isComplete? '결제 완료' : '결제 진행중 ( ' + paidPeople + ' / ' + totalPeople + ' )'}</p>
         </div>
         <div className={styles.OrderCost}>
-          <p>{props.price}원</p>
+          <p>{totalPrice}원</p>
         </div>
       </div>
       <hr />
