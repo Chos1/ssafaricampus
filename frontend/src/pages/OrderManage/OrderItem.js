@@ -30,7 +30,7 @@ const OrderItem = (props) => {
           <p>{isComplete? '결제 완료' : '결제 진행중 ( ' + paidPeople + ' / ' + totalPeople + ' )'}</p>
         </div>
         <div className={styles.OrderCost}>
-          <p>{totalPrice}원</p>
+          <p>{(totalPrice * 1).toLocaleString('ko-KR')}원</p>
         </div>
       </div>
       <hr />
