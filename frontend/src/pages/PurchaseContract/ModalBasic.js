@@ -4,7 +4,7 @@ import React, { useState } from "react";
 // utils
 import useEth from "../../contexts/EthContext/useEth";
 // css
-import "./css/ModalBasic.module.css";
+import "./css/ModalBasic.css";
 
 const ModalBasic = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -46,7 +46,7 @@ const ModalBasic = (props) => {
 
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
-    <div className={open ? "openModal modal" : "modal"}>
+    <div className={open ? "openModal modal2" : "modal2"}>
       {open ? (
         <section>
           <header>
