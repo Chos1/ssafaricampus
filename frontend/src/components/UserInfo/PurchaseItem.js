@@ -25,7 +25,7 @@ const PurchaseItem = (props) => {
   } else {
     completed_cont = <>구매확정</>;
   }
-  console.log(props);
+
   return (
     <div>
       <div className={styles.PurchaseItem}>
