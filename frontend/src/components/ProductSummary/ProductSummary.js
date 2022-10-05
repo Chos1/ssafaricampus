@@ -10,15 +10,13 @@ import MKBtn from "../ui/MKBtn";
 // assets
 import LPBtn from "../ui/LPBtn";
 
-const ProductSummary = () => {
+const ProductSummary = (props) => {
   const navigate = useNavigate();
-  // const name = useSelector((state) => state.user.name);
   const myRole = useSelector((state) => state.user.role);
 
   const nowPath = window.location.pathname.split("/")[1];
-  const item_No = window.location.pathname.split("/")[2];
+  const item_No = nowPath === 'purchaseContract' ? props.itemNo : window.location.pathname.split("/")[2];
 
-  // purchaseContract 페이지일 경우 info data 결정
   const {
     state: { contract, account },
   } = useEth();
