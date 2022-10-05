@@ -43,7 +43,9 @@ const OrderList = (props) => {
     getContractDetails();
   }, [account, contract]);
 
-  const orderItem = contractList.map((contract, idx) => <OrderItem key={idx} contractInfo={contract} />);
+  const orderItem = contractList.map((contract, idx) => (
+    <OrderItem key={idx} contractInfo={contract} />
+  ));
 
   let ListTitle = "";
   if (props.role === "COMPANY") {

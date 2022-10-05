@@ -13,19 +13,25 @@ const WalletCarouselItem = (props) => {
   const myRole = useSelector((state) => state.user.role);
   const { state } = useEth();
   let UserInfoStyle = "";
+  const chargeMoney = () => {
+    alert('충전되었습니다!');
+  }
+  const outMoney = () => {
+    alert('출금되었습니다!');
+  }
 
   if (myRole === "USER") {
     UserInfoStyle = (
       <div className={styles.btn_div}>
-        <XsPBtn>충전</XsPBtn>
-        <XsWBtnPBrd>출금</XsWBtnPBrd>
+        <XsPBtn onClick={chargeMoney}>충전</XsPBtn>
+        <XsWBtnPBrd onClick={outMoney}>출금</XsWBtnPBrd>
       </div>
     );
   } else {
     UserInfoStyle = (
       <div className={styles.btn_div}>
-        <XsKBtn>충전</XsKBtn>
-        <XsWBtnKBrd>출금</XsWBtnKBrd>
+        <XsKBtn onClick={chargeMoney}>충전</XsKBtn>
+        <XsWBtnKBrd onClick={outMoney}>출금</XsWBtnKBrd>
       </div>
     );
   }
