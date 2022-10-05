@@ -1,5 +1,5 @@
 // packages
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 // components
 import Banner from "./Banner.js";
@@ -11,16 +11,19 @@ import useEth from "../../contexts/EthContext/useEth";
 import styles from "./css/MainHeader.module.css"
 
 const MainPage = () => {
+  const location = useLocation();
   const { state } = useEth();
   const navigate = useNavigate();
   const [TimeCheck, setTimeCheck] = useState(true);
 
   let MainCompo = <></>;
+  const isSearch = location.pathname.split('/')[3] ? true : false;
+  const banner = isSearch ? null : <Banner />;
 
   if (state.account) {
     MainCompo = (
       <>
-        <Banner />
+        {banner}
         <ProductCarousel />
       </>
     );

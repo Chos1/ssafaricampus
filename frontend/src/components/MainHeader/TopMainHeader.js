@@ -30,8 +30,6 @@ const TopMainHeader = () => {
     if (keyword.length > 0) {
       navigate("/main/search/" + keyword);
       setKeyword("");
-    } else {
-      navigate("/main");
     }
   };
 
