@@ -22,14 +22,9 @@ const ModalBasic = (props) => {
   };
   const payContract = async () => {
     // item_No, uint _purchase_No, address _paid_address
-    const itemDetail = await contract.methods
-      .viewItemByItemNo(itemNo)
-      .call({ from: account });
+    const itemDetail = await contract.methods.viewItemByItemNo(itemNo).call({ from: account });
     const etherprice = itemDetail.item_price / 20000000;
-    const web3 = new Web3(
-      Web3.givenProvider ||
-        "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb"
-    );
+    const web3 = new Web3(Web3.givenProvider || "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb");
     await contract.methods.paidContract(itemNo, contract_No, account).send({
       from: account,
       gas: 412040,
@@ -60,21 +55,12 @@ const ModalBasic = (props) => {
           </header>
           <main>
             {props.children}
-            <label>비밀번호</label>
-            <input
-              type="password"
-              value={password}
-              onChange={passwordChangeHandler}
-            />
-          </main>
-          <footer>
-            <button className="close" onClick={close}>
-              닫기
-            </button>
+
+            <input type="password" value={password} onChange={passwordChangeHandler} />
             <button className="accept" onClick={passCheck}>
               입력
             </button>
-          </footer>
+          </main>
         </section>
       ) : null}
     </div>
