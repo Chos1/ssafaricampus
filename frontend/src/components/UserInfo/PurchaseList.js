@@ -54,8 +54,6 @@ const PurchaseList = (props) => {
       }
     }
   }
-  console.log(purchase);
-  console.log(myContracts);
   const purchaseItem = myItems.map((myItem, idx) => <PurchaseItem key={idx} item={myItem} cont={myContracts[idx]} />);
 
   let ListTitle = "";
