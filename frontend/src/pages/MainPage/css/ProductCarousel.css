@@ -9,6 +9,7 @@
   margin: 0 0 27px 0;
   font-family: "GangwonEdu_OTFBoldA";
   font-size: 35px;
+
   /* text-align: center; */
   -ms-user-select: none;
   -moz-user-select: -moz-none;
@@ -21,8 +22,8 @@
   margin: 0 auto;
   margin-bottom: 100px;
 }
-.Product_div{
-  padding : 40px 0 40px 0;
+.Product_div {
+  padding: 40px 0 40px 0;
 }
 .border_out {
   width: 250px;
@@ -62,6 +63,6 @@
   border-radius: 50px;
 }
 
-.Event_Banner:hover{
+.Event_Banner:hover {
   cursor: pointer;
 }

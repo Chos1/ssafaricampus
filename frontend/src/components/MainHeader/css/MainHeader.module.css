@@ -127,7 +127,8 @@
 .HeaderCompany a:hover,
 .HeaderCompany a:active,
 .HeaderCompany a.active {
-  color: #5d33e6;
+  /* color: #5d33e6; */
+  font-weight: bold;
   padding-bottom: 0.25rem;
   /* border-bottom: 4px solid #95bcf0; */
 }
@@ -135,7 +136,8 @@
 .HeaderCompany button:hover,
 .HeaderCompany button:active,
 .HeaderCompany button.active {
-  color: #5d33e6;
+  /* color: #5d33e6; */
+  font-weight: bold;
   padding-bottom: 0.25rem;
   /* border-bottom: 4px solid #95bcf0; */
 }

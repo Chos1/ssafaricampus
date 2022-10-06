@@ -1,12 +1,14 @@
-.Login_ul{
+.Login_ul {
   width: 250px;
 }
 
-.Login_ul .Logout{
+.Login_ul .Logout {
   /* margin-left:20px; */
+  cursor: pointer;
 }
 
-.Login_ul .username{
+.Login_ul .username {
   margin-left: 50px;
-  white-space:nowrap;
+  white-space: nowrap;
+  cursor: pointer;
 }
