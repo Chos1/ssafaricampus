@@ -6,8 +6,6 @@ import useEth from "../../contexts/EthContext/useEth";
 import styles from "./css/WalletCarouselItem.module.css";
 import XsPBtn from "../ui/XsPBtn";
 import XsKBtn from "../ui/XsKBtn";
-import XsWBtnPBrd from "../ui/XsWBtnPBrd";
-import XsWBtnKBrd from "../ui/XsWBtnKBrd";
 // 송금
 import Web3 from "web3";
 
@@ -29,22 +27,17 @@ const WalletCarouselItem = (props) => {
 
     alert("충전되었습니다!");
   };
-  const outMoney = () => {
-    alert("출금되었습니다!");
-  };
 
   if (myRole === "USER") {
     UserInfoStyle = (
       <div className={styles.btn_div}>
         <XsPBtn onClick={chargeMoney}>충전</XsPBtn>
-        <XsWBtnPBrd onClick={outMoney}>출금</XsWBtnPBrd>
       </div>
     );
   } else {
     UserInfoStyle = (
       <div className={styles.btn_div}>
         <XsKBtn onClick={chargeMoney}>충전</XsKBtn>
-        <XsWBtnKBrd onClick={outMoney}>출금</XsWBtnKBrd>
       </div>
     );
   }
@@ -55,11 +48,17 @@ const WalletCarouselItem = (props) => {
   unit = "eth";
   let cash = (balance * 20000000).toLocaleString("ko-KR");
 
+  let don = <></>
+  if (props.title === "CASH"){
+    don = <>{cash} 원</>
+  }else{
+    don = <>{balance} {unit}</>
+  }
   return (
     <div className={styles.WalletCarouselItem}>
       <h2>{props.title}</h2>
       <p>
-        {balance} {unit} ({cash} 원)
+        {don}
       </p>
       {UserInfoStyle}
     </div>
