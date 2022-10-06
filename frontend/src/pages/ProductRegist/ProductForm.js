@@ -119,14 +119,14 @@ const ProductForm = () => {
       // 업로드된 이미지 링크 상태로 지정 (보통은 해당 링크를 데이터베이스(파이어스토어)에 저장)
       const getData = () => {
         tUrls.then((tData) => {
-          tData[0]
+          tData[tData.length - 1]
             .then((tUrlData) => {
               t = tUrlData;
               console.log(t);
             })
             .then(() => {
               dUrls.then((dData) => {
-                dData[0]
+                dData[dData.length - 1]
                   .then((dUrlData) => {
                     d = dUrlData;
                     console.log(d);
