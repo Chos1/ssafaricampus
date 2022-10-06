@@ -8,10 +8,10 @@ const SellerBottomMainHeader = () => {
     <div className={styles.justify_center_seller}>
       <ul>
         <li>
-          <NavLink to="/orderManage">오더 매니지먼트</NavLink>
+          <NavLink to="/orderManage">주문 관리</NavLink>
         </li>
         <li>
-          <NavLink to="/productManage">상품 확인</NavLink>
+          <NavLink to="/productManage">상품 관리</NavLink>
         </li>
       </ul>
     </div>

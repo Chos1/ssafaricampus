@@ -17,10 +17,14 @@ const OrderList = (props) => {
     const getContractDetails = async () => {
       const contractItems = [];
       let contractItem = {};
-      const contractDetails = await contract.methods.viewPurchaseContract().call({ from: account });
+      const contractDetails = await contract.methods
+        .viewPurchaseContract()
+        .call({ from: account });
       let nowItem = "";
       for (let i = 0; i < contractDetails.length; i++) {
-        nowItem = await contract.methods.viewItemByItemNo(contractDetails[i].item_No).call({ from: account });
+        nowItem = await contract.methods
+          .viewItemByItemNo(contractDetails[i].item_No)
+          .call({ from: account });
         if (!(parseInt(nowItem.seller_address) === parseInt(account))) {
           continue;
         }
@@ -29,7 +33,8 @@ const OrderList = (props) => {
         contractItem["subTitle"] = nowItem[2];
         contractItem["imgURL"] = nowItem[5];
         contractItem["totalPrice"] = contractDetails[i][7];
-        contractItem["isComplete"] = contractDetails[i][6] * 1 >= contractDetails[i][5] * 1;
+        contractItem["isComplete"] =
+          contractDetails[i][6] * 1 >= contractDetails[i][5] * 1;
         contractItem["totalPeople"] = contractDetails[i][5] * 1;
         contractItem["paidPeople"] = contractDetails[i][6] * 1;
         contractItem["contractID"] = contractDetails[i][0];
@@ -45,11 +50,13 @@ const OrderList = (props) => {
 
   const orderItem =
     contractList.length > 0 ? (
-      contractList.map((contract, idx) => <OrderItem key={idx} contractInfo={contract} />)
+      contractList.map((contract, idx) => (
+        <OrderItem key={idx} contractInfo={contract} />
+      ))
     ) : (
       <div className={styles.empty}>
         <AiOutlineInfoCircle size="150" />
-        <div>등록한 상품이 없습니다.</div>
+        <div>들어온 주문이 없습니다.</div>
       </div>
     );
 
