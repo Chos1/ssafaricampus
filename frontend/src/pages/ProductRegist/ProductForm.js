@@ -8,15 +8,14 @@ import { storage } from "../../index.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 //css
 import CoolDeal from "../../assets/cool_deal.gif";
-import "./ProductForm.css";
+import "./css/ProductForm.css";
 import MKBtn from "../../components/ui/MKBtn";
-import ModalA from "./ModalA"
+import ModalA from "./ModalA";
 
 const ProductForm = () => {
   // 모달
   const [modalOpen, setModalOpen] = useState(false);
-  const openModal = (e) => {
-    e.preventDefault()
+  const openModal = () => {
     setModalOpen(true);
   };
 
@@ -34,7 +33,6 @@ const ProductForm = () => {
 
   const navigate = useNavigate();
   const inputSellerName = useSelector((state) => state.user.name);
-  const [loadingSpinner, setLoadingSpinner] = useState(<div></div>);
 
   // 파이어베이스
   const [tfileList, setTFileList] = useState([]); // 썸네일 파일 리스트
@@ -145,7 +143,8 @@ const ProductForm = () => {
       );
       // 업로드된 이미지 링크 상태로 지정 (보통은 해당 링크를 데이터베이스(파이어스토어)에 저장)
       const getData = () => {
-        setLoadingSpinner(loading);
+        openModal();
+        window.scrollTo({ top: 0, behavior: "smooth" });
         tUrls.then((tData) => {
           tData[tData.length - 1]
             .then((tUrlData) => {
@@ -210,7 +209,6 @@ const ProductForm = () => {
   const [selected, setSelected] = useState(options[0].value);
   return (
     <form className="product_inputgroup">
-      {loadingSpinner}
       <label>상품명</label>
       <input
         placeholder="상품명을 입력해주세요"
@@ -289,17 +287,14 @@ const ProductForm = () => {
       <div className="button_position">
         <MKBtn onClick={registItem}>등록하기</MKBtn>
       </div>
-      <MKBtn onClick={openModal}>
-          모달
-        </MKBtn>
       <ModalA open={modalOpen}>
-        <img src={CoolDeal} alt="쿨거래" style={{width:"200px"}} />
+        <img src={CoolDeal} alt="쿨거래" style={{ width: "200px" }} />
         <div>
-          <p>끗나따 끗나따~~</p>
+          <p>상품등록 중입니다</p>
+          <p>잠시만 기다려주세요</p>
         </div>
       </ModalA>
     </form>
-    
   );
 };
 
