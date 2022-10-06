@@ -221,7 +221,6 @@ const CustomerForm = () => {
           <br />
           <label>학교 이메일</label>
           <input
-            className="info_add"
             type="email"
             value={email}
             onChange={emailChangeHandler}

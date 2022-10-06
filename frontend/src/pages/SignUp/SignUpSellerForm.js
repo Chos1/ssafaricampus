@@ -218,7 +218,6 @@ const SellerForm = () => {
           <br />
           <label>사업체 등록번호</label>
           <input
-            className="info_add"
             type="text"
             value={companyNumber}
             onChange={companyNumberChangeHandler}
