@@ -14,11 +14,11 @@ const WalletCarouselItem = (props) => {
   const { state } = useEth();
   let UserInfoStyle = "";
   const chargeMoney = () => {
-    alert('충전되었습니다!');
-  }
+    alert("충전되었습니다!");
+  };
   const outMoney = () => {
-    alert('출금되었습니다!');
-  }
+    alert("출금되었습니다!");
+  };
 
   if (myRole === "USER") {
     UserInfoStyle = (
