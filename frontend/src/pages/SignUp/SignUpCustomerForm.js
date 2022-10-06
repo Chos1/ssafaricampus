@@ -6,7 +6,6 @@ import apiPath from "../../api/apiPath";
 // css
 import "./css/SignUpForm.css";
 import MPBtn from "../../components/ui/MPBtn";
-import SWBtnPBrd from "../../components/ui/SWBtnPBrd";
 
 const CustomerForm = () => {
   const navigate = useNavigate();
@@ -228,7 +227,6 @@ const CustomerForm = () => {
             onChange={emailChangeHandler}
             placeholder="학교 이메일을 입력해주세요"
           />
-          <SWBtnPBrd className="info_confirm">이메일 인증</SWBtnPBrd>
           {isValidEmail}
           <br />
           <label>전화번호</label>

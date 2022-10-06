@@ -6,7 +6,6 @@ import apiPath from "../../api/apiPath";
 // css
 import "./css/SignUpForm.css";
 import MPBtn from "../../components/ui/MPBtn";
-import SWBtnPBrd from "../../components/ui/SWBtnPBrd";
 
 const SellerForm = () => {
   const navigate = useNavigate();
@@ -40,18 +39,8 @@ const SellerForm = () => {
         "Content-Type": "application/json",
       },
     });
-    // const data = await response.json();
     navigate("/login");
   }
-  // 전화번호 형식
-  // useEffect(() => {
-  //   if (phone.length === 8) {
-  //     setPhone(phone.replace(/(\d{3})(\d{4})(\d{1})/, "$1-$2-$3"));
-  //   }
-  //   if (phone.length === 11) {
-  //     setPhone(phone.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"));
-  //   }
-  // }, [phone]);
 
   const signUpHandler = (e) => {
     e.preventDefault();
@@ -230,12 +219,12 @@ const SellerForm = () => {
           <label>사업체 등록번호</label>
           <input
             className="info_add"
-            type="email"
+            type="text"
             value={companyNumber}
             onChange={companyNumberChangeHandler}
             placeholder="사업체 번호을 입력해주세요"
+            maxLength="10"
           />
-          <SWBtnPBrd className="info_confirm">사업자 인증</SWBtnPBrd>
           {isValidCompanyNumber}
           <br />
           <label>전화번호</label>
