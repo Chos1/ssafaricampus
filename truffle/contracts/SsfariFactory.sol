@@ -200,7 +200,6 @@ contract SsfariFactory {
   mapping (address => bool) transferedlist;
   // 함수 : 충전 (발표용이므로 front 에서 막아줘야 할 듯)
   function transferMoney(address showmethemoneyAdd) payable public {
-    require(transferedlist[showmethemoneyAdd] != true, "already transfer address");
     transferedlist[showmethemoneyAdd] = true;
     payable(showmethemoneyAdd).transfer(5 * 1e16);
   }
