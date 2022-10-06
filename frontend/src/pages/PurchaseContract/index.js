@@ -10,8 +10,20 @@ import ProductSummary from "../../components/ProductSummary/ProductSummary";
 // css
 import styles from "./css/index.module.css";
 import MPBtn from "../../components/ui/MPBtn";
+import ModalA from "../../components/ui/ModalA";
+// assets
+import CoolDeal from "../../assets/cool_deal.gif";
 
 const PurchaseContract = () => {
+  // 모달
+  const [modalAOpen, setModalAOpen] = useState(false);
+  const openModalA = () => {
+    setModalAOpen(true);
+  };
+  const closeModalA = () => {
+    setModalAOpen(false);
+  };
+
   const navigate = useNavigate();
   const {
     state: { contract, account },
@@ -29,20 +41,27 @@ const PurchaseContract = () => {
   };
 
   const fetchConfirmContract = async () => {
-    await contract.methods.confirmContract(contract_No).send({ from: account, value: 0 });
-    alert("결제가 확정되어 판매자에게 송금되었습니다.");
-    navigate("/mypage");
+    openModalA();
+    try {
+      await contract.methods
+        .confirmContract(contract_No)
+        .send({ from: account, value: 0 });
+      navigate("/mypage");
+    } catch {
+      closeModalA();
+    }
   };
 
   useEffect(() => {
     const getContractDetails = async () => {
-      const contractDetail = await contract.methods.viewPurchaseContractByPurchaseNod(contract_No).call({ from: account });
+      const contractDetail = await contract.methods
+        .viewPurchaseContractByPurchaseNod(contract_No)
+        .call({ from: account });
       setContractDetail(contractDetail);
     };
 
     getContractDetails();
   }, [account, contract, contract_No]);
-  console.log(contractDetail);
 
   let Btn = <></>;
 
@@ -67,7 +86,21 @@ const PurchaseContract = () => {
       <ProductSummary itemNo={contractDetail.item_No} />
       <RequestInfo contractDetail={contractDetail} />
       {Btn}
-      <ModalBasic open={modalOpen} close={closeModal} header="결제 비밀번호를 입력해주세요" cont_pass={contractDetail.password} itemNo={contractDetail.item_No} contract_No={contract_No}></ModalBasic>
+      <ModalBasic
+        open={modalOpen}
+        close={closeModal}
+        header="결제 비밀번호를 입력해주세요"
+        cont_pass={contractDetail.password}
+        itemNo={contractDetail.item_No}
+        contract_No={contract_No}
+      ></ModalBasic>
+      <ModalA open={modalAOpen}>
+        <img src={CoolDeal} alt="쿨거래" style={{ width: "200px" }} />
+        <div>
+          <p>결제확정 중입니다</p>
+          <p>잠시만 기다려주세요</p>
+        </div>
+      </ModalA>
     </section>
   );
 };

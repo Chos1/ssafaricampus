@@ -33,7 +33,9 @@ const ProductDetail = () => {
 
   useEffect(() => {
     const displayItem = async () => {
-      const item = await contract.methods.viewItemByItemNo(itemNo_param).call({ from: account });
+      const item = await contract.methods
+        .viewItemByItemNo(itemNo_param)
+        .call({ from: account });
       // const contractList = await contract.methods.viewPurchaseContract().call({ from: account });
       setItemNo(item[0]);
       setTitle(item[1]);
@@ -48,13 +50,7 @@ const ProductDetail = () => {
     };
     displayItem();
   }, [account, contract, itemNo_param]);
-  // let thisItemContract = [];
-  // for (let i = 0; i < list.length; i++) {
-  //   if (list[i].item_No * 1 === itemNo_param) {
-  //     thisItemContract.push(list[i]);
-  //   }
-  // }
-  // console.log(thisItemContract);
+
   const myRole = useSelector((state) => state.user.role);
   let changeComponent = "";
 
@@ -81,7 +77,17 @@ const ProductDetail = () => {
   }
   return (
     <section className={styles.section}>
-      <ProductSummary itemNo={itemNo} title={title} subtitle={subtitle} category={category} descript={descript} seller={seller} period={period} price={price} tUrl={tUrl} />
+      <ProductSummary
+        itemNo={itemNo}
+        title={title}
+        subtitle={subtitle}
+        category={category}
+        descript={descript}
+        seller={seller}
+        period={period}
+        price={price}
+        tUrl={tUrl}
+      />
       {contr_list}
       <ProductImage dUrl={dUrl} />
       {changeComponent}

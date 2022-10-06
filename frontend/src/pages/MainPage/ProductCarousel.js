@@ -29,9 +29,7 @@ const ProductCarousel = () => {
   }
   let isSearch = location.split("/")[2] === "search" ? true : false;
 
-  // 컴포 따로 만들어야하는데 안댐 ㅜ
   useEffect(() => {
-    console.log(keyword);
     const ClothDummy = [];
     const FoodDummy = [];
     const Setting_itemsDummy = [];

@@ -14,8 +14,6 @@ function EthProvider({ contract, children }) {
         method: "eth_requestAccounts",
       });
       return _account;
-    } else {
-      console.log("need the Metamask");
     }
   };
   // 체인아이디 자동설정 함수
@@ -36,7 +34,9 @@ function EthProvider({ contract, children }) {
               {
                 chainId: _chainId,
                 chainName: "goerli",
-                rpcUrls: ["https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb"],
+                rpcUrls: [
+                  "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb",
+                ],
                 nativeCurrency: {
                   name: "Ethereum",
                   symbol: "ETH", // 통화 단위
@@ -56,30 +56,18 @@ function EthProvider({ contract, children }) {
 
   const init = useCallback(async (artifact) => {
     if (artifact) {
-      // const chainId = await window.ethereum.request({ method: "eth_chainId" });
-      // console.log("체인아이디" + chainId);
-
-      const web3 = new Web3(Web3.givenProvider || "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb");
-      // const web3 = new Web3("https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb");
-      // const signer = web3.eth.accounts.privateKeyToAccount("649be48b389e86f84348b66bf3bcf8feb0bb4b401ea5c37a05e4c5c3b27d7c5f");
-      // web3.eth.accounts.wallet.add(signer);
-      // console.log(signer.address);
-      // const accounts = [signer.address];
-      // console.log(acc);
-      // const accounts = await web3.eth.getAccounts();
-      // 위의 함수와 같이 계좌를 가져올 수 있음.
+      const web3 = new Web3(
+        Web3.givenProvider ||
+          "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb"
+      );
       const accounts = await getRequestAccounts();
       const account = accounts[0]; // for state set
-      console.log(accounts);
       // 잔액 조회하는 법.
       const balance = await web3.eth.getBalance(accounts[0]);
-      console.log(balance / 1e18 + "ether");
 
       //네트워크 연동함수와 같이 사용함.
-      const setChainId = addNetwork1(web3.utils.toHex(0x05));
-      console.log(setChainId);
+      addNetwork1(web3.utils.toHex(0x05));
 
-      // const networkID = await web3.eth.net.getId();
       const networkID = 5;
       const { abi } = artifact;
       let address, contract;
