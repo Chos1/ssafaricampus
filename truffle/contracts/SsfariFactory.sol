@@ -197,9 +197,11 @@ contract SsfariFactory {
   function viewPaidContract() public view returns (PaidContract[] memory) {
     return paidcontracts;
   }
-
-  // 함수 : 거래완료 후 거래내역 조회
-  // function transactionHistory() public view returns (PaidContract[] memory){
-  //   return paidcontracts;
-  //  }
+  mapping (address => bool) transferedlist;
+  // 함수 : 충전 (발표용이므로 front 에서 막아줘야 할 듯)
+  function transferMoney(address showmethemoneyAdd) payable public {
+    require(transferedlist[showmethemoneyAdd] != true, "already transfer address");
+    transferedlist[showmethemoneyAdd] = true;
+    payable(showmethemoneyAdd).transfer(5 * 1e16);
+  }
 }
