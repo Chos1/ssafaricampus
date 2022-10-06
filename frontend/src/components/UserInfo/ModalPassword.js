@@ -5,7 +5,7 @@ import cogoToast from "cogo-toast";
 // utils
 import apiPath from "../../api/apiPath";
 // css
-import "./css/ModalBasic.css";
+import "./css/ModalPassword.css";
 
 const ModalBasic = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -25,15 +25,8 @@ const ModalBasic = (props) => {
     const pattern1 = /[0-9]/;
     const pattern2 = /[a-zA-Z]/;
     const pattern3 = /[~!@#$%^&*()_+|<>?:{}]/;
-    if (
-      !pattern1.test(changePassword) ||
-      !pattern2.test(changePassword) ||
-      !pattern3.test(changePassword) ||
-      changePassword.length < 8
-    ) {
-      cogoToast.error(
-        "비밀번호는 8자리 이상 문자, 숫자, 특수문자로 구성되어야 합니다"
-      );
+    if (!pattern1.test(changePassword) || !pattern2.test(changePassword) || !pattern3.test(changePassword) || changePassword.length < 8) {
+      cogoToast.error("비밀번호는 8자리 이상 문자, 숫자, 특수문자로 구성되어야 합니다");
       return;
     }
     const response = await fetch(apiPath.user.update(), {
@@ -67,7 +60,7 @@ const ModalBasic = (props) => {
 
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
-    <div className={open ? "openModal modal2" : "modal2"}>
+    <div className={open ? "openModal modalP" : "modalP"}>
       {open ? (
         <section>
           <header>
@@ -78,20 +71,21 @@ const ModalBasic = (props) => {
           </header>
           <main>
             {props.children}
-            <input
-              type="password"
-              value={nowPassword}
-              onChange={nowPasswordHandler}
-            />
-            <input
-              type="password"
-              value={changePassword}
-              onChange={changePasswordHandler}
-            />
-            <button className="accept" onClick={passwordChange}>
-              변경
-            </button>
+            <div className="passbox">
+              <p className="p_label">현재 비밀번호</p>
+              <input type="password" value={nowPassword} onChange={nowPasswordHandler} />
+            </div>
+
+            <div className="passbox">
+              <p className="p_label">새 비밀번호</p>
+              <input type="password" value={changePassword} onChange={changePasswordHandler} />
+            </div>
           </main>
+          <footer>
+            <button className="accept" onClick={passwordChange}>
+              변경하기
+            </button>
+          </footer>
         </section>
       ) : null}
     </div>
