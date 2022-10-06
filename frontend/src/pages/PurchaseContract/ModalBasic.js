@@ -42,6 +42,7 @@ const ModalBasic = (props) => {
         "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb"
     );
     openModalA();
+    close();
     try {
       await contract.methods.paidContract(itemNo, contract_No, account).send({
         from: account,
