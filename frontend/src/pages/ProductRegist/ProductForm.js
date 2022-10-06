@@ -7,10 +7,19 @@ import useEth from "../../contexts/EthContext/useEth";
 import { storage } from "../../index.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 //css
+import CoolDeal from "../../assets/cool_deal.gif";
 import "./ProductForm.css";
 import MKBtn from "../../components/ui/MKBtn";
+import ModalA from "./ModalA"
 
 const ProductForm = () => {
+  // 모달
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = (e) => {
+    e.preventDefault()
+    setModalOpen(true);
+  };
+
   const {
     state: { contract, accounts },
   } = useEth();
@@ -279,7 +288,17 @@ const ProductForm = () => {
       <div className="button_position">
         <MKBtn onClick={registItem}>등록하기</MKBtn>
       </div>
+      <MKBtn onClick={openModal}>
+          모달
+        </MKBtn>
+      <ModalA open={modalOpen}>
+        <img src={CoolDeal} alt="쿨거래" style={{width:"200px"}} />
+        <div>
+          <p>끗나따 끗나따~~</p>
+        </div>
+      </ModalA>
     </form>
+    
   );
 };
 
