@@ -15,11 +15,14 @@ const WalletCarouselItem = (props) => {
 
   let UserInfoStyle = "";
   const chargeMoney = async () => {
-    const web3 = new Web3(Web3.givenProvider || "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb");
+    const web3 = new Web3(
+      Web3.givenProvider ||
+        "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb"
+    );
     await state.contract.methods.transferMoney(state.account).send({
       from: state.account,
       gas: 402004,
-      value: web3.utils.toWei("0.6", "ether"),
+      value: web3.utils.toWei("0", "ether"),
     });
 
     alert("충전되었습니다!");
