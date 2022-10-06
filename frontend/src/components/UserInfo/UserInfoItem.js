@@ -1,7 +1,7 @@
 // packages
 import { useState } from "react";
 // components
-import ModalBasic from "./ModalBasic";
+import ModalPassword from "./ModalPassword";
 // css
 import styles from "./css/UserInfoItem.module.css";
 import BtnPTxt from "../ui/BtnPTxt";
@@ -15,12 +15,7 @@ const UserInfoItem = (props) => {
   const closeModal = () => {
     setModalOpen(false);
   };
-  const phoneNumber =
-    props.phone.slice(0, 3) +
-    "-" +
-    props.phone.slice(3, 7) +
-    "-" +
-    props.phone.slice(7, 11);
+  const phoneNumber = props.phone.slice(0, 3) + "-" + props.phone.slice(3, 7) + "-" + props.phone.slice(7, 11);
   const EorN = props.companyNumber ? props.companyNumber : props.email;
 
   return (
@@ -37,11 +32,7 @@ const UserInfoItem = (props) => {
           <BsFillKeyFill />
           비밀번호 변경
         </BtnPTxt>
-        <ModalBasic
-          open={modalOpen}
-          close={closeModal}
-          header="비밀번호 변경"
-        ></ModalBasic>
+        <ModalPassword open={modalOpen} close={closeModal} header="비밀번호 변경"></ModalPassword>
       </div>
     </div>
   );
