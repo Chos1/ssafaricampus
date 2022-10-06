@@ -69,7 +69,7 @@ const LoginUserHeader = () => {
         <li>{userName}</li>
         <li>
           <button onClick={logoutHandler} className={styles.Logout}>
-            Logout
+            로그아웃
           </button>
         </li>
       </ul>

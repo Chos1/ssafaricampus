@@ -166,8 +166,8 @@ const ProductForm = () => {
   const options = [
     { value: "", text: "카테고리를 선택해주세요" },
     { value: "의류", text: "의류" },
-    { value: "식료품", text: "식료품" },
-    { value: "준비물", text: "준비물" },
+    { value: "식품", text: "식품" },
+    { value: "잡화", text: "잡화" },
   ];
   const [selected, setSelected] = useState(options[0].value);
   return (

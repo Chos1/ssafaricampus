@@ -99,7 +99,11 @@ input::file-selector-button {
   margin-top: 1.4rem;
   max-width: 450px;
 }
-
+.product_inputgroup .detail_img {
+  margin-left: 150px;
+  margin-top: 1.4rem;
+  max-width: 450px;
+}
 .button_position {
   display: flex;
   justify-content: center;

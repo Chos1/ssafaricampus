@@ -1,10 +1,10 @@
-.container_purchaseList{
-  width:1080px;
+.container_purchaseList {
+  width: 1080px;
   /* padding: 0 3.2rem; */
   margin: 0 auto;
 }
-.container_purchaseList h1{
-    display:flex;
-    justify-content: first;
-    margin-left:1rem;
+.container_purchaseList h1 {
+  display: flex;
+  justify-content: first;
+  margin-left: 1rem;
 }
