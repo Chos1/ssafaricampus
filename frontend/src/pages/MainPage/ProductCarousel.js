@@ -42,9 +42,9 @@ const ProductCarousel = () => {
           if (location.split("/")[2] && !itemArray[i][1].includes(keyword)) {
             continue;
           }
-          if (itemArray[i][4] === "준비물") {
+          if (itemArray[i][4] === "잡화") {
             Setting_itemsDummy.push(itemArray[i]);
-          } else if (itemArray[i][4] === "의류") {
+          } else if (itemArray[i][4] === "의류" && i > 2) {
             ClothDummy.push(itemArray[i]);
           } else if (itemArray[i][4] === "식료품") {
             FoodDummy.push(itemArray[i]);
