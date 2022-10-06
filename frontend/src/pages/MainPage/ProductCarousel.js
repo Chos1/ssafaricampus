@@ -37,7 +37,7 @@ const ProductCarousel = () => {
     const Setting_itemsDummy = [];
     const displayItems = async () => {
       const itemArray = await contract.methods.viewItems().call({ from: account });
-      for (let i = 0; i < itemArray.length; i++) {
+      for (let i = itemArray.length - 1; i >= 0; i--) {
         if (parseInt(itemArray[i][0]) >= 0) {
           if (location.split("/")[2] && !itemArray[i][1].includes(keyword)) {
             continue;
@@ -65,7 +65,7 @@ const ProductCarousel = () => {
   }
 
   // 의류
-  const ClothesCarousel = Clothes.reverse().map((item, idx) => {
+  const ClothesCarousel = Clothes.map((item, idx) => {
     let link = "/products/" + item.item_No;
     const move = () => {
       navigate(link, {
@@ -92,7 +92,7 @@ const ProductCarousel = () => {
     );
 
   // 식료품
-  const FoodCarousel = Foods.reverse().map((item, idx) => {
+  const FoodCarousel = Foods.map((item, idx) => {
     let link = "/products/" + item.item_No;
     const move = () => {
       navigate(link, {
@@ -119,7 +119,7 @@ const ProductCarousel = () => {
     );
 
   // 외 준비물
-  const SettingCarousel = setting_items.reverse().map((item, idx) => {
+  const SettingCarousel = setting_items.map((item, idx) => {
     let link = "/products/" + item.item_No;
     const move = () => {
       navigate(link, {
