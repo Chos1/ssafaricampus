@@ -131,7 +131,7 @@
   width: 100vw;
   height: 100vh;
 
-  background-image: url("../../assets/학교2.jpg");
+  background-image: url("../../assets/배경.png");
   background-size: cover;
   object-fit: cover;
   /* filter: brightness(0.8); */
@@ -161,5 +161,23 @@
   justify-content: center;
 }
 .main_new {
-  margin-top: 2rem;
+  margin-top: 80px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.panda {
+  width: 200px;
+  height: 270px;
+  /* top: 340px;
+  right: 335px;  */
+}
+.saza {
+  /* 
+  left: 325px;
+  top: 370px; */
+  width: 200px;
+}
+.last {
+  display: flex;
+  justify-content: center;
 }
