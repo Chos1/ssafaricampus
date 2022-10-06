@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 import useEth from "../../contexts/EthContext/useEth";
 import { storage } from "../../index.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-//css
+// components
+import loading from "../../components/ui/Loading";
+// css
 import "./ProductForm.css";
 import MKBtn from "../../components/ui/MKBtn";
 
@@ -25,6 +27,7 @@ const ProductForm = () => {
 
   const navigate = useNavigate();
   const inputSellerName = useSelector((state) => state.user.name);
+  const [loadingSpinner, setLoadingSpinner] = useState(<div></div>);
 
   // 파이어베이스
   const [tfileList, setTFileList] = useState([]); // 썸네일 파일 리스트
@@ -135,11 +138,11 @@ const ProductForm = () => {
       );
       // 업로드된 이미지 링크 상태로 지정 (보통은 해당 링크를 데이터베이스(파이어스토어)에 저장)
       const getData = () => {
+        setLoadingSpinner(loading);
         tUrls.then((tData) => {
           tData[tData.length - 1]
             .then((tUrlData) => {
               t = tUrlData;
-              console.log(t);
             })
             .then(() => {
               dUrls.then((dData) => {
@@ -172,7 +175,6 @@ const ProductForm = () => {
                         sellerName
                       )
                       .send({ from: accounts[0], gas: 5020400 });
-                    alert("성공적으로 업로드 되었습니다");
                   })
                   .then(async () => {
                     const itemNo = await contract.methods.viewItemNo().call();
@@ -201,6 +203,7 @@ const ProductForm = () => {
   const [selected, setSelected] = useState(options[0].value);
   return (
     <form className="product_inputgroup">
+      {loadingSpinner}
       <label>상품명</label>
       <input
         placeholder="상품명을 입력해주세요"
