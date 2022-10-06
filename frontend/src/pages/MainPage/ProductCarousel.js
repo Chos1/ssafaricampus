@@ -36,19 +36,17 @@ const ProductCarousel = () => {
     const FoodDummy = [];
     const Setting_itemsDummy = [];
     const displayItems = async () => {
-      const itemArray = await contract.methods
-        .viewItems()
-        .call({ from: account });
+      const itemArray = await contract.methods.viewItems().call({ from: account });
       for (let i = 0; i < itemArray.length; i++) {
         if (parseInt(itemArray[i][0]) >= 0) {
           if (location.split("/")[2] && !itemArray[i][1].includes(keyword)) {
             continue;
           }
-          if (itemArray[i][4] === "잡화") {
+          if (itemArray[i][4] === "잡화" && i !== 4) {
             Setting_itemsDummy.push(itemArray[i]);
-          } else if (itemArray[i][4] === "의류" && i > 2) {
+          } else if (itemArray[i][4] === "의류") {
             ClothDummy.push(itemArray[i]);
-          } else if (itemArray[i][4] === "식료품") {
+          } else if (itemArray[i][4] === "식품") {
             FoodDummy.push(itemArray[i]);
           }
         }
@@ -87,13 +85,7 @@ const ProductCarousel = () => {
     Clothes.length < 1 ? null : (
       <div className="Product_div">
         <h2 className="ProductList_title">의류</h2>
-        <Swiper
-          grabCursor={true}
-          className="mySwiper"
-          slidesPerView={4}
-          navigation={true}
-          modules={[Navigation]}
-        >
+        <Swiper grabCursor={true} className="mySwiper" slidesPerView={4} navigation={true} modules={[Navigation]}>
           {ClothesCarousel}
         </Swiper>
       </div>
@@ -120,13 +112,7 @@ const ProductCarousel = () => {
     Foods.length < 1 ? null : (
       <div className="Product_div">
         <h2 className="ProductList_title">식품</h2>
-        <Swiper
-          grabCursor={true}
-          className="mySwiper"
-          slidesPerView={4}
-          navigation={true}
-          modules={[Navigation]}
-        >
+        <Swiper grabCursor={true} className="mySwiper" slidesPerView={4} navigation={true} modules={[Navigation]}>
           {FoodCarousel}
         </Swiper>
       </div>
@@ -153,13 +139,7 @@ const ProductCarousel = () => {
     setting_items.length < 1 ? null : (
       <div className="Product_div">
         <h2 className="ProductList_title">잡화</h2>
-        <Swiper
-          grabCursor={true}
-          className="mySwiper"
-          slidesPerView={4}
-          navigation={true}
-          modules={[Navigation]}
-        >
+        <Swiper grabCursor={true} className="mySwiper" slidesPerView={4} navigation={true} modules={[Navigation]}>
           {SettingCarousel}
         </Swiper>
       </div>
@@ -168,11 +148,7 @@ const ProductCarousel = () => {
   return (
     <div className="App">
       {FoodList}
-      <div className="Product_div">
-        {isSearch ? null : (
-          <img className="Event_Banner" src={BannerImg} alt="" />
-        )}
-      </div>
+      <div className="Product_div">{isSearch ? null : <img className="Event_Banner" src={BannerImg} alt="" />}</div>
       {ClothList}
       {OtherList}
     </div>
