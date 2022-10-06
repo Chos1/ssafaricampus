@@ -5,7 +5,7 @@ import useEth from "../../contexts/EthContext/useEth";
 // components
 import Notion from "../../components/UserInfo/Notion";
 import UserInfo from "../../components/UserInfo";
-import PurchaseList from "./OrderList";
+import OrderList from "./OrderList";
 // css
 import styles from "./css/index.module.css";
 
@@ -18,8 +18,7 @@ function OrderManage() {
   const companyNumber = useSelector((state) => state.user.companyNumber);
 
   const { state } = useEth();
-  const item =
-    state.account !== null ? <PurchaseList /> : <Notion role={role} />;
+  const item = state.account !== null ? <OrderList /> : <Notion role={role} />;
 
   return (
     <div className={styles.mypage}>

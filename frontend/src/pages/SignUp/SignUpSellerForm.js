@@ -110,7 +110,7 @@ const SellerForm = () => {
     } else if (!pattern.test(e.target.value)) {
       setIsValidPhone(
         <div className="inputvalid">
-          <p>10자리 숫자를 입력해 주세요</p>
+          <p>숫자만 입력해 주세요</p>
         </div>
       );
     } else if (
@@ -140,7 +140,7 @@ const SellerForm = () => {
     } else if (e.target.value.length !== 10) {
       setIsValidCompanyNumber(
         <div className="inputvalid">
-          <p>올바른 번호를 입력해주세요</p>
+          <p>10자리 숫자를 입력해주세요</p>
         </div>
       );
     } else {
