@@ -172,7 +172,7 @@ const ProductForm = () => {
                         sellerName
                       )
                       .send({ from: accounts[0], gas: 5020400 });
-                    console.log("전송끝");
+                    alert("성공적으로 업로드 되었습니다");
                   })
                   .then(async () => {
                     const itemNo = await contract.methods.viewItemNo().call();
@@ -183,7 +183,6 @@ const ProductForm = () => {
         });
       };
       getData();
-      alert("성공적으로 업로드 되었습니다");
     } catch (err) {
       console.error(err);
     }
