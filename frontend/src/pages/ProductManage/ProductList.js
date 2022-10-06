@@ -46,7 +46,6 @@ const ProductList = () => {
         </MKBtn>
       </div>
       <div className={styles.gridList}>{goodsList}</div>
-      {/* 페이지네이션 */}
     </div>
   );
 };
