@@ -65,6 +65,7 @@ const CustomerForm = () => {
     setName("");
     setEmail("");
     setPhone("");
+    navigate("/login");
   };
 
   const checkPassword = (e) => {

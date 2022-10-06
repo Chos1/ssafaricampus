@@ -64,6 +64,7 @@ const SellerForm = () => {
     setName("");
     setCompanyNumber("");
     setPhone("");
+    navigate("/login");
   };
 
   const checkPassword = (e) => {
@@ -109,7 +110,7 @@ const SellerForm = () => {
     } else if (!pattern.test(e.target.value)) {
       setIsValidPhone(
         <div className="inputvalid">
-          <p>숫자만 입력해 주세요</p>
+          <p>10자리 숫자를 입력해 주세요</p>
         </div>
       );
     } else if (
