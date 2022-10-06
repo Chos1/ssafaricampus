@@ -1,13 +1,12 @@
 // packages
 import { useSelector } from "react-redux";
 // utils
+import Web3 from "web3";
 import useEth from "../../contexts/EthContext/useEth";
 // css
 import styles from "./css/WalletCarouselItem.module.css";
 import XsPBtn from "../ui/XsPBtn";
 import XsKBtn from "../ui/XsKBtn";
-// 송금
-import Web3 from "web3";
 
 const WalletCarouselItem = (props) => {
   const myRole = useSelector((state) => state.user.role);
@@ -48,18 +47,20 @@ const WalletCarouselItem = (props) => {
   unit = "eth";
   let cash = (balance * 20000000).toLocaleString("ko-KR");
 
-  let don = <></>
-  if (props.title === "CASH"){
-    don = <>{cash} 원</>
-  }else{
-    don = <>{balance} {unit}</>
+  let don = <></>;
+  if (props.title === "CASH") {
+    don = <>{cash} 원</>;
+  } else {
+    don = (
+      <>
+        {balance} {unit}
+      </>
+    );
   }
   return (
     <div className={styles.WalletCarouselItem}>
       <h2>{props.title}</h2>
-      <p>
-        {don}
-      </p>
+      <p>{don}</p>
       {UserInfoStyle}
     </div>
   );

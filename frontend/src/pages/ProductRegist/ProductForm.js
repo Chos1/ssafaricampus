@@ -6,17 +6,21 @@ import { useNavigate } from "react-router-dom";
 import useEth from "../../contexts/EthContext/useEth";
 import { storage } from "../../index.js";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-//css
-import CoolDeal from "../../assets/cool_deal.gif";
+// css
 import "./css/ProductForm.css";
 import MKBtn from "../../components/ui/MKBtn";
-import ModalA from "./ModalA";
+import ModalA from "../../components/ui/ModalA";
+// assets
+import CoolDeal from "../../assets/cool_deal.gif";
 
 const ProductForm = () => {
   // 모달
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   const {
@@ -145,50 +149,53 @@ const ProductForm = () => {
       const getData = () => {
         openModal();
         window.scrollTo({ top: 0, behavior: "smooth" });
-        tUrls.then((tData) => {
-          tData[tData.length - 1]
-            .then((tUrlData) => {
-              t = tUrlData;
-            })
-            .then(() => {
-              dUrls.then((dData) => {
-                dData[dData.length - 1]
-                  .then((dUrlData) => {
-                    d = dUrlData;
-                    console.log(d);
-                  })
-                  .then(async () => {
-                    const title = inputTitle;
-                    const lineInfo = inputLineInfo;
-                    const price = parseInt(inputPrice);
-                    const categori = inputCategori;
-                    const thumbnail = t;
-                    const detail = d;
-                    const expressDue = inputExpressDue;
-                    const info = inputInfo;
-                    const sellerName = inputSellerName;
-                    await contract.methods
-                      .registerItem(
-                        title,
-                        lineInfo,
-                        price,
-                        categori,
-                        thumbnail,
-                        detail,
-                        expressDue,
-                        info,
-                        accounts[0],
-                        sellerName
-                      )
-                      .send({ from: accounts[0], gas: 5020400 });
-                  })
-                  .then(async () => {
-                    const itemNo = await contract.methods.viewItemNo().call();
-                    navigate("/products/" + itemNo);
-                  });
+        try {
+          tUrls.then((tData) => {
+            tData[tData.length - 1]
+              .then((tUrlData) => {
+                t = tUrlData;
+              })
+              .then(() => {
+                dUrls.then((dData) => {
+                  dData[dData.length - 1]
+                    .then((dUrlData) => {
+                      d = dUrlData;
+                    })
+                    .then(async () => {
+                      const title = inputTitle;
+                      const lineInfo = inputLineInfo;
+                      const price = parseInt(inputPrice);
+                      const categori = inputCategori;
+                      const thumbnail = t;
+                      const detail = d;
+                      const expressDue = inputExpressDue;
+                      const info = inputInfo;
+                      const sellerName = inputSellerName;
+                      await contract.methods
+                        .registerItem(
+                          title,
+                          lineInfo,
+                          price,
+                          categori,
+                          thumbnail,
+                          detail,
+                          expressDue,
+                          info,
+                          accounts[0],
+                          sellerName
+                        )
+                        .send({ from: accounts[0], gas: 5020400 });
+                    })
+                    .then(async () => {
+                      const itemNo = await contract.methods.viewItemNo().call();
+                      navigate("/products/" + itemNo);
+                    });
+                });
               });
-            });
-        });
+          });
+        } catch {
+          closeModal();
+        }
       };
       getData();
     } catch (err) {

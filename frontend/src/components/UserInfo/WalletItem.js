@@ -2,7 +2,7 @@
 import ReactTooltip from "react-tooltip";
 import { useState } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import cogoToast from 'cogo-toast';
+import cogoToast from "cogo-toast";
 // utils
 import useEth from "../../contexts/EthContext/useEth";
 // components
@@ -61,12 +61,10 @@ const WalletItem = (props) => {
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        // alert("클립보드에 복사되었습니다.");
-        cogoToast.success('클립보드에 복사되었습니다!');
+        cogoToast.success("클립보드에 복사되었습니다!");
       })
       .catch(() => {
-        // alert("복사를 다시 시도해주세요.");
-        cogoToast.error('복사를 다시 시도해주세요!');
+        cogoToast.error("복사를 다시 시도해주세요!");
       });
   };
 

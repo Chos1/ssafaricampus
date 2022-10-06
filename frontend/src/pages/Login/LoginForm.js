@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import cogoToast from 'cogo-toast';
+import cogoToast from "cogo-toast";
 // utils
 import apiPath from "../../api/apiPath";
 import { authActions } from "../../store/auth";
@@ -66,8 +66,7 @@ const LoginForm = () => {
         navigate("/orderManage");
       }
     } else {
-      // alert("login fail");
-      cogoToast.error('로그인 실패!');
+      cogoToast.error("로그인 실패");
     }
   }
 
