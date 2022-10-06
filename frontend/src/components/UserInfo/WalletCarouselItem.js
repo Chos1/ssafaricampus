@@ -8,12 +8,25 @@ import XsPBtn from "../ui/XsPBtn";
 import XsKBtn from "../ui/XsKBtn";
 import XsWBtnPBrd from "../ui/XsWBtnPBrd";
 import XsWBtnKBrd from "../ui/XsWBtnKBrd";
+// 송금
+import Web3 from "web3";
 
 const WalletCarouselItem = (props) => {
   const myRole = useSelector((state) => state.user.role);
   const { state } = useEth();
+
   let UserInfoStyle = "";
-  const chargeMoney = () => {
+  const chargeMoney = async () => {
+    const web3 = new Web3(Web3.givenProvider || "https://goerli.infura.io/v3/7885ac55f47f453488027010d12acadb");
+    console.log("전송시작");
+    console.log(state);
+    await state.contract.methods.transferMoney(state.account).send({
+      from: state.account,
+      gas: 402004,
+      value: web3.utils.toWei("0.6", "ether"),
+    });
+    console.log("전송끝");
+
     alert("충전되었습니다!");
   };
   const outMoney = () => {
