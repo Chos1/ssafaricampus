@@ -1,3 +1,8 @@
+.empty {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 .container_purchaseList {
   width: 1080px;
   /* padding: 0 3.2rem; */
