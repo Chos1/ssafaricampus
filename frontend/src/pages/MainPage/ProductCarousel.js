@@ -27,7 +27,7 @@ const ProductCarousel = () => {
   if (location.split("/")[2] && keyword !== location.split("/")[3]) {
     setKeyword(location.split("/")[3]);
   }
-  let isSearch = location.split("/")[2] === 'search' ? true : false;
+  let isSearch = location.split("/")[2] === "search" ? true : false;
 
   // 컴포 따로 만들어야하는데 안댐 ㅜ
   useEffect(() => {
@@ -36,9 +36,7 @@ const ProductCarousel = () => {
     const FoodDummy = [];
     const Setting_itemsDummy = [];
     const displayItems = async () => {
-      const itemArray = await contract.methods
-        .viewItems()
-        .call({ from: account });
+      const itemArray = await contract.methods.viewItems().call({ from: account });
       for (let i = 0; i < itemArray.length; i++) {
         if (parseInt(itemArray[i][0]) >= 0) {
           if (location.split("/")[2] && !itemArray[i][1].includes(keyword)) {
@@ -60,9 +58,9 @@ const ProductCarousel = () => {
 
     displayItems();
   }, [account, contract, keyword, location]);
-  if (isSearch && (Clothes.length + Foods.length + setting_items.length) < 1) {
-    alert('검색 결과가 없습니다!');
-    navigate('/main');
+  if (isSearch && Clothes.length + Foods.length + setting_items.length < 1) {
+    alert("검색 결과가 없습니다!");
+    navigate("/main");
   }
 
   // 의류
@@ -82,19 +80,15 @@ const ProductCarousel = () => {
     );
   });
 
-  const ClothList = (Clothes.length < 1 ? null : <div className="Product_div">
-  <h2 className="ProductList_title">옷</h2>
-  <Swiper
-    grabCursor={true}
-    className="mySwiper"
-    slidesPerView={4}
-    navigation={true}
-    modules={[Navigation]}
-  >
-    {ClothesCarousel}
-  </Swiper>
-</div>)
-
+  const ClothList =
+    Clothes.length < 1 ? null : (
+      <div className="Product_div">
+        <h2 className="ProductList_title">의류</h2>
+        <Swiper grabCursor={true} className="mySwiper" slidesPerView={4} navigation={true} modules={[Navigation]}>
+          {ClothesCarousel}
+        </Swiper>
+      </div>
+    );
 
   // 식료품
   const FoodCarousel = Foods.map((item, idx) => {
@@ -113,18 +107,15 @@ const ProductCarousel = () => {
     );
   });
 
-  const FoodList = (Foods.length < 1 ? null : <div className="Product_div">
-  <h2 className="ProductList_title">식품</h2>
-  <Swiper
-    grabCursor={true}
-    className="mySwiper"
-    slidesPerView={4}
-    navigation={true}
-    modules={[Navigation]}
-  >
-    {FoodCarousel}
-  </Swiper>
-</div>);
+  const FoodList =
+    Foods.length < 1 ? null : (
+      <div className="Product_div">
+        <h2 className="ProductList_title">식품</h2>
+        <Swiper grabCursor={true} className="mySwiper" slidesPerView={4} navigation={true} modules={[Navigation]}>
+          {FoodCarousel}
+        </Swiper>
+      </div>
+    );
 
   // 외 준비물
   const SettingCarousel = setting_items.map((item, idx) => {
@@ -143,25 +134,20 @@ const ProductCarousel = () => {
     );
   });
 
-  const OtherList = (setting_items.length < 1 ? null : <div className="Product_div">
-  <h2 className="ProductList_title">그 외 것</h2>
-  <Swiper
-    grabCursor={true}
-    className="mySwiper"
-    slidesPerView={4}
-    navigation={true}
-    modules={[Navigation]}
-  >
-    {SettingCarousel}
-  </Swiper>
-</div>);
+  const OtherList =
+    setting_items.length < 1 ? null : (
+      <div className="Product_div">
+        <h2 className="ProductList_title">잡화</h2>
+        <Swiper grabCursor={true} className="mySwiper" slidesPerView={4} navigation={true} modules={[Navigation]}>
+          {SettingCarousel}
+        </Swiper>
+      </div>
+    );
 
   return (
     <div className="App">
       {FoodList}
-      <div className="Product_div">
-        {isSearch? null : <img className="Event_Banner" src={BannerImg} alt="" />}
-      </div>
+      <div className="Product_div">{isSearch ? null : <img className="Event_Banner" src={BannerImg} alt="" />}</div>
       {ClothList}
       {OtherList}
     </div>

@@ -1,21 +1,16 @@
 // css
 import styles from "./css/UserInfoItem.module.css";
 import BtnPTxt from "../ui/BtnPTxt";
-
-import cogoToast from 'cogo-toast';
+import { BsFillKeyFill } from "react-icons/bs";
+import cogoToast from "cogo-toast";
 
 const UserInfoItem = (props) => {
-  const phoneNumber =
-    props.phone.slice(0, 3) +
-    "-" +
-    props.phone.slice(3, 7) +
-    "-" +
-    props.phone.slice(7, 11);
+  const phoneNumber = props.phone.slice(0, 3) + "-" + props.phone.slice(3, 7) + "-" + props.phone.slice(7, 11);
   const EorN = props.companyNumber ? props.companyNumber : props.email;
   const passwordChange = () => {
     // alert("변경되었습니다!");
-    cogoToast.info('변경되었습니다!',{
-      hideAfter:1,
+    cogoToast.info("변경되었습니다!", {
+      hideAfter: 1,
     });
   };
   return (
@@ -28,7 +23,10 @@ const UserInfoItem = (props) => {
         <p>{phoneNumber}</p>
       </div>
       <div className={styles.Passchange}>
-        <BtnPTxt onClick={passwordChange}>비밀번호 변경</BtnPTxt>
+        <BtnPTxt onClick={passwordChange}>
+          <BsFillKeyFill />
+          비밀번호 변경
+        </BtnPTxt>
       </div>
       {/* Your account is: {props.account}
       <h1>Contacts</h1>

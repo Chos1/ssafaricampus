@@ -33,9 +33,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     const displayItem = async () => {
-      const item = await contract.methods
-        .viewItemByItemNo(itemNo_param)
-        .call({ from: account });
+      const item = await contract.methods.viewItemByItemNo(itemNo_param).call({ from: account });
       // const contractList = await contract.methods.viewPurchaseContract().call({ from: account });
       setItemNo(item[0]);
       setTitle(item[1]);
@@ -60,6 +58,11 @@ const ProductDetail = () => {
   const myRole = useSelector((state) => state.user.role);
   let changeComponent = "";
 
+  let contr_list = <></>;
+  if (myRole === "USER") {
+    contr_list = <ContractItem />;
+  }
+
   const navigate = useNavigate();
   if (myRole === "COMPANY") {
     changeComponent = <div></div>;
@@ -78,18 +81,8 @@ const ProductDetail = () => {
   }
   return (
     <section className={styles.section}>
-      <ProductSummary
-        itemNo={itemNo}
-        title={title}
-        subtitle={subtitle}
-        category={category}
-        descript={descript}
-        seller={seller}
-        period={period}
-        price={price}
-        tUrl={tUrl}
-      />
-      <ContractItem />
+      <ProductSummary itemNo={itemNo} title={title} subtitle={subtitle} category={category} descript={descript} seller={seller} period={period} price={price} tUrl={tUrl} />
+      {contr_list}
       <ProductImage dUrl={dUrl} />
       {changeComponent}
     </section>
