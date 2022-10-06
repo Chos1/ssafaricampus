@@ -67,7 +67,7 @@ const ProductCarousel = () => {
   }
 
   // 의류
-  const ClothesCarousel = Clothes.map((item, idx) => {
+  const ClothesCarousel = Clothes.reverse().map((item, idx) => {
     let link = "/products/" + item.item_No;
     const move = () => {
       navigate(link, {
@@ -100,7 +100,7 @@ const ProductCarousel = () => {
     );
 
   // 식료품
-  const FoodCarousel = Foods.map((item, idx) => {
+  const FoodCarousel = Foods.reverse().map((item, idx) => {
     let link = "/products/" + item.item_No;
     const move = () => {
       navigate(link, {
@@ -133,7 +133,7 @@ const ProductCarousel = () => {
     );
 
   // 외 준비물
-  const SettingCarousel = setting_items.map((item, idx) => {
+  const SettingCarousel = setting_items.reverse().map((item, idx) => {
     let link = "/products/" + item.item_No;
     const move = () => {
       navigate(link, {
