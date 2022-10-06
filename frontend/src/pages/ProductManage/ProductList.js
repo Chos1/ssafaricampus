@@ -15,9 +15,12 @@ const ProductList = () => {
   const [goods, setGoods] = useState([]);
 
   const navigate = useNavigate();
-  const goodsList = goods.map((good, idx) => (
-    <ProductItem key={idx} good={good} />
-  ));
+  const goodsList =
+    goods.length > 0 ? (
+      goods.map((good, idx) => <ProductItem key={idx} good={good} />)
+    ) : (
+      <p>등록한 상품이 없습니다</p>
+    );
 
   useEffect(() => {
     const displayItems = async () => {
