@@ -8,6 +8,7 @@ import ProductItem from "./ProductItem";
 // css
 import styles from "./css/ProductList.module.css";
 import MKBtn from "../../components/ui/MKBtn";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 const ProductList = () => {
   const {
     state: { contract, account },
@@ -15,12 +16,23 @@ const ProductList = () => {
   const [goods, setGoods] = useState([]);
 
   const navigate = useNavigate();
+
   const goodsList =
     goods.length > 0 ? (
       goods.map((good, idx) => <ProductItem key={idx} good={good} />)
     ) : (
-      <p>등록한 상품이 없습니다</p>
+      <div className={styles.empty}>
+        <AiOutlineInfoCircle size="150" />
+        <div>등록한 상품이 없습니다.</div>
+      </div>
     );
+
+  let goodsList_div = <></>;
+  if (goods.length > 0) {
+    goodsList_div = <div className={styles.gridList}>{goodsList}</div>;
+  } else {
+    goodsList_div = <div>{goodsList}</div>;
+  }
 
   useEffect(() => {
     const displayItems = async () => {
@@ -48,7 +60,7 @@ const ProductList = () => {
           상품 등록
         </MKBtn>
       </div>
-      <div className={styles.gridList}>{goodsList}</div>
+      {goodsList_div}
     </div>
   );
 };
