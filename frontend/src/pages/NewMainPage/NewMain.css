@@ -132,7 +132,7 @@
   height: 100vh;
 
   background-image: url("../../assets/배경.png");
-  background-size: cover;
+
   object-fit: cover;
   /* filter: brightness(0.8); */
   /* opacity: 0.8; */
